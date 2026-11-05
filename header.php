@@ -54,6 +54,7 @@ $currentPage = basename($_SERVER['PHP_SELF'], '.php');
 
                 <ul class="nav-menu" id="navMenu">
                     <li><a href="index.php" class="<?php echo ($currentPage === 'index') ? 'active' : ''; ?>"><i class="fas fa-home"></i> Trang Chủ</a></li>
+                    <li><a href="store.php" class="<?php echo ($currentPage === 'store') ? 'active' : ''; ?>" style="color:var(--primary); font-weight:800;"><i class="fas fa-cubes"></i> Kho App Store</a></li>
                     <li><a href="downloader.php" class="<?php echo ($currentPage === 'downloader') ? 'active' : ''; ?>"><i class="fas fa-download"></i> Mã Downloader</a></li>
                     <li><a href="optimizer.php" class="<?php echo ($currentPage === 'optimizer') ? 'active' : ''; ?>"><i class="fas fa-gauge-high"></i> Tối Ưu RAM</a></li>
                     <li><a href="booking.php" class="<?php echo ($currentPage === 'booking') ? 'active' : ''; ?>"><i class="fas fa-calendar-plus"></i> Đặt Lịch Hỗ Trợ</a></li>
