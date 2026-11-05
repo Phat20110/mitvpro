@@ -33,9 +33,9 @@ require_once __DIR__ . '/header.php';
                 <div class="code-display" style="margin: 22px 0; background:rgba(0,0,0,0.4); padding:16px 24px; border-radius:12px; display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:16px;">
                     <div>
                         <span style="font-size:0.85rem; color:var(--text-muted); display:block; margin-bottom:4px;">MÃ DOWNLOADER CHÍNH THỨC:</span>
-                        <div class="code-val" style="font-size:2.8rem; letter-spacing:4px;"><?php e(APP_DOWNLOADER_CODE); ?></div>
+                        <div class="code-val" style="font-size:2.8rem; letter-spacing:4px;">6372800</div>
                         <div style="font-size:0.85rem; color:#00B4D8; margin-top:4px;">
-                            <i class="fas fa-shield"></i> Mã dự phòng: <strong>898989</strong> | Hoặc gõ link trực tiếp: <strong style="color:#fff;">is.gd/mitv25</strong>
+                            <i class="fas fa-shield-check"></i> Đã kích hoạt chính thức trên AFTVnews | Link dự phòng: <strong style="color:#fff;">is.gd/mitv25</strong>
                         </div>
                     </div>
                     <div style="display:flex; gap:10px; flex-wrap:wrap;">
