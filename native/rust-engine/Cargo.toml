@@ -1,0 +1,8 @@
+[package]
+name = "mitv-rust-engine"
+version = "3.0.0"
+edition = "2021"
+authors = ["Phat20110 <dev@mitvpro.local>"]
+description = "High-Safety Background Memory & Stream Guardian Daemon for Android TV and Xiaomi TV"
+
+[dependencies]

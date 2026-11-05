@@ -2,7 +2,8 @@
 
 <p align="center">
   <img src="https://img.shields.io/badge/Platform-Android%20TV%20%7C%20Google%20TV%20%7C%20PatchWall-FF6900?style=for-the-badge&logo=xiaomi&logoColor=white" alt="Platform">
-  <img src="https://img.shields.io/badge/Downloader_Code-6789-00B4D8?style=for-the-badge&logo=fastlane&logoColor=white" alt="Downloader Code">
+  <img src="https://img.shields.io/badge/Native_Core-C%2B%2B20%20%7C%20Rust-DEA584?style=for-the-badge&logo=rust&logoColor=white" alt="Native Core">
+  <img src="https://img.shields.io/badge/Downloader_Shortlink-is.gd%2Fmitv25-00B4D8?style=for-the-badge&logo=fastlane&logoColor=white" alt="Downloader Link">
   <img src="https://img.shields.io/badge/Security-OWASP%20Hardened-2EA44F?style=for-the-badge&logo=securityscorecard&logoColor=white" alt="Security">
   <img src="https://img.shields.io/badge/PHP-8.0%2B-777BB4?style=for-the-badge&logo=php&logoColor=white" alt="PHP Version">
   <img src="https://img.shields.io/badge/License-Apache--2.0-blue?style=for-the-badge" alt="License">
@@ -216,6 +217,23 @@ mitvpro/
 ├── tool-check.php             # Giao diện tra cứu model TV Xiaomi
 └── track.php                  # Tra cứu tiến độ đơn hẹn theo mã MTV-XXXXXX
 ```
+
+---
+
+## 📱 9. Kho Ứng Dụng Đỉnh Cao Cho Tivi Xiaomi (Bóng Đá, Phim 4K, VTV1 & Quốc Tế)
+
+Hệ sinh thái MiTV Pro cung cấp sẵn danh sách mã tải trực tiếp cho các ứng dụng giải trí đỉnh cao nhất hiện nay, tương thích 100% với remote Tivi Xiaomi:
+
+| Ứng Dụng (App Name) | Thể Loại | Mã Downloader | Tính Năng Nổi Bật |
+| :--- | :--- | :---: | :--- |
+| **MiTV Optimizer Pro** | Tối ưu hệ thống | `6789` | Dọn RAM, giải phóng bộ nhớ, đóng băng quảng cáo ngầm Xiaomi |
+| **SmartTube Next Stable** | YouTube 4K HDR | `28544` | Chặn sạch 100% quảng cáo, xem 4K 60fps HDR, bỏ qua đoạn tài trợ |
+| **Monster TV Sports Live** | Trực tiếp Bóng đá | `88412` | Trực tiếp Ngoại Hạng Anh, Cúp C1, World Cup, bình luận tiếng Việt |
+| **Xôi Lạc / Vebo TV** | Bóng đá TV Edition | `79234` | Bản chuyên biệt cho Remote Xiaomi TV, độ trễ thấp, không giật |
+| **VTV Go TV (Bản Chuẩn TV)** | Truyền hình Quốc gia | `52410` | Ứng dụng chính thức của Đài THVN: VTV1 HD đến VTV9, xem lại 6 tháng |
+| **TiviMate IPTV Player Pro** | 250+ Kênh VN & QT | `11281` | Đầy đủ VTV, HTV, Vĩnh Long THVL, K+ Sport, HBO, Cinemax, Discovery |
+| **Stremio TV 4K Cinema** | Rạp phim bom tấn | `44921` | Xem phim chiếu rạp Netflix, HBO, Disney+ chuẩn 4K Dolby Vision Vietsub |
+| **TV360 Smart TV** | Truyền hình tốc độ cao | `63219` | Server CDN Viettel tại VN, mở kênh 0.5s, miễn phí data |
 
 ---
 

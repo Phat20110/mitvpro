@@ -27,3 +27,10 @@ Thumbs.db
 data/*.sqlite
 data/*.sqlite-wal
 data/*.sqlite-shm
+
+# Native Build Artifacts
+native/rust-engine/target/
+*.pdb
+
+
+native/c-core/*.exe

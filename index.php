@@ -160,6 +160,91 @@ require_once __DIR__ . '/header.php';
     </div>
 </section>
 
+<!-- Kho Ứng Dụng Giải Trí Đỉnh Cao: Bóng Đá, VTV1 & Phim 4K -->
+<section class="section" style="background:#090915; border-top:1px solid var(--border-subtle); border-bottom:1px solid var(--border-subtle);">
+    <div class="container">
+        <div class="section-head">
+            <span class="section-subtitle"><i class="fas fa-sparkles"></i> Kho Giải Trí Đỉnh Cao</span>
+            <h2 class="section-title">Kho Ứng Dụng Độc Quyền Cho Tivi Xiaomi</h2>
+            <p class="section-desc">Tải trực tiếp bằng mã Downloader trong 3 giây: Xem trọn vẹn bóng đá Ngoại Hạng Anh, VTV1 HD và rạp phim 4K không quảng cáo.</p>
+        </div>
+
+        <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(320px, 1fr)); gap:24px;">
+            <!-- Category 1: Bóng Đá -->
+            <div style="background:var(--bg-card); border:1px solid var(--border-subtle); border-radius:16px; padding:28px; position:relative; overflow:hidden;">
+                <div style="position:absolute; top:-10px; right:-10px; width:80px; height:80px; background:rgba(255,59,48,0.06); border-radius:50%;"></div>
+                <div style="display:flex; align-items:center; gap:12px; margin-bottom:16px;">
+                    <span style="background:rgba(255,59,48,0.15); color:#FF3B30; width:46px; height:46px; display:inline-flex; align-items:center; justify-content:center; border-radius:12px; font-size:1.4rem;">
+                        <i class="fas fa-futbol"></i>
+                    </span>
+                    <div>
+                        <span style="font-size:0.75rem; background:rgba(255,59,48,0.2); color:#FF3B30; padding:2px 8px; border-radius:4px; font-weight:700;">LIVE FOOTBALL</span>
+                        <h4 style="font-size:1.3rem; margin:4px 0 0;">Xem Bóng Đá Trực Tiếp</h4>
+                    </div>
+                </div>
+                <p style="color:var(--text-muted); font-size:0.9rem; line-height:1.7; margin-bottom:20px;">
+                    Trọn vẹn các giải đấu hàng đầu thế giới: Ngoại Hạng Anh, Cúp C1, Euro, World Cup và V-League với bình luận tiếng Việt chuyên nghiệp, độ trễ cực thấp.
+                </p>
+                <div style="background:rgba(0,0,0,0.3); padding:12px 16px; border-radius:10px; margin-bottom:20px; display:flex; justify-content:space-between; align-items:center;">
+                    <span style="font-size:0.85rem; color:var(--text-sub);">Mã Downloader:</span>
+                    <strong style="color:var(--primary); font-family:monospace; font-size:1.3rem;">88412</strong>
+                </div>
+                <a href="downloader.php" class="btn-outline" style="width:100%; justify-content:center; padding:10px;">
+                    <i class="fas fa-arrow-right"></i> Xem Mã Tải Nhanh
+                </a>
+            </div>
+
+            <!-- Category 2: Truyền Hình VTV1 -->
+            <div style="background:var(--bg-card); border:1px solid var(--border-subtle); border-radius:16px; padding:28px; position:relative; overflow:hidden;">
+                <div style="position:absolute; top:-10px; right:-10px; width:80px; height:80px; background:rgba(0,200,83,0.06); border-radius:50%;"></div>
+                <div style="display:flex; align-items:center; gap:12px; margin-bottom:16px;">
+                    <span style="background:rgba(0,200,83,0.15); color:#00C853; width:46px; height:46px; display:inline-flex; align-items:center; justify-content:center; border-radius:12px; font-size:1.4rem;">
+                        <i class="fas fa-tv"></i>
+                    </span>
+                    <div>
+                        <span style="font-size:0.75rem; background:rgba(0,200,83,0.2); color:#00C853; padding:2px 8px; border-radius:4px; font-weight:700;">VTV1 & 250+ KÊNH</span>
+                        <h4 style="font-size:1.3rem; margin:4px 0 0;">Truyền Hình Quốc Gia & QT</h4>
+                    </div>
+                </div>
+                <p style="color:var(--text-muted); font-size:0.9rem; line-height:1.7; margin-bottom:20px;">
+                    Xem trọn gói thời sự VTV1 HD, VTV2, VTV3, VTV Cần Thơ, THVL Vĩnh Long cùng các kênh quốc tế chọn lọc HBO, Cinemax, Discovery có thuyết minh.
+                </p>
+                <div style="background:rgba(0,0,0,0.3); padding:12px 16px; border-radius:10px; margin-bottom:20px; display:flex; justify-content:space-between; align-items:center;">
+                    <span style="font-size:0.85rem; color:var(--text-sub);">Mã Downloader VTV:</span>
+                    <strong style="color:var(--primary); font-family:monospace; font-size:1.3rem;">52410</strong>
+                </div>
+                <a href="downloader.php" class="btn-outline" style="width:100%; justify-content:center; padding:10px;">
+                    <i class="fas fa-arrow-right"></i> Xem Mã Tải Nhanh
+                </a>
+            </div>
+
+            <!-- Category 3: Phim 4K & YouTube -->
+            <div style="background:var(--bg-card); border:1px solid var(--border-subtle); border-radius:16px; padding:28px; position:relative; overflow:hidden;">
+                <div style="position:absolute; top:-10px; right:-10px; width:80px; height:80px; background:rgba(124,77,255,0.06); border-radius:50%;"></div>
+                <div style="display:flex; align-items:center; gap:12px; margin-bottom:16px;">
+                    <span style="background:rgba(124,77,255,0.15); color:#7C4DFF; width:46px; height:46px; display:inline-flex; align-items:center; justify-content:center; border-radius:12px; font-size:1.4rem;">
+                        <i class="fas fa-film"></i>
+                    </span>
+                    <div>
+                        <span style="font-size:0.75rem; background:rgba(124,77,255,0.2); color:#7C4DFF; padding:2px 8px; border-radius:4px; font-weight:700;">4K DOLBY & NO ADS</span>
+                        <h4 style="font-size:1.3rem; margin:4px 0 0;">Phim 4K & YouTube Không Quảng Cáo</h4>
+                    </div>
+                </div>
+                <p style="color:var(--text-muted); font-size:0.9rem; line-height:1.7; margin-bottom:20px;">
+                    YouTube TV bản 4K 60fps HDR chặn sạch 100% quảng cáo, kèm ứng dụng rạp phim Stremio 4K Remux Dolby Atmos phụ đề tiếng Việt tự động.
+                </p>
+                <div style="background:rgba(0,0,0,0.3); padding:12px 16px; border-radius:10px; margin-bottom:20px; display:flex; justify-content:space-between; align-items:center;">
+                    <span style="font-size:0.85rem; color:var(--text-sub);">Mã Downloader 4K:</span>
+                    <strong style="color:var(--primary); font-family:monospace; font-size:1.3rem;">28544</strong>
+                </div>
+                <a href="downloader.php" class="btn-outline" style="width:100%; justify-content:center; padding:10px;">
+                    <i class="fas fa-arrow-right"></i> Xem Mã Tải Nhanh
+                </a>
+            </div>
+        </div>
+    </div>
+</section>
+
 <!-- Bảng Giá Dịch Vụ Cài Đặt Từ Xa Chuyên Nghiệp -->
 <section class="section" id="pricing" style="background:#0E0E1B;">
     <div class="container">
