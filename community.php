@@ -17,6 +17,25 @@ require_once __DIR__ . '/header.php';
 
             <!-- Danh sách bài viết kỹ thuật -->
             <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(310px, 1fr)); gap:24px; margin-bottom:40px;">
+                <!-- Bài Nổi Bật: Port App TV -->
+                <div style="background:linear-gradient(135deg, rgba(255,103,0,0.12), rgba(33,150,243,0.08)); border:1px solid rgba(255,103,0,0.3); border-radius:14px; padding:24px; grid-column:1 / -1;">
+                    <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:12px; margin-bottom:12px;">
+                        <span style="font-size:0.75rem; background:rgba(255,103,0,0.2); color:var(--primary); padding:4px 10px; border-radius:6px; font-weight:800;">
+                            <i class="fas fa-star"></i> BÀI VIẾT NỔI BẬT: CHUYÊN SÂU LẬP TRÌNH & MODDING
+                        </span>
+                        <a href="porting-guide.php" class="btn-primary" style="padding:6px 14px; font-size:0.82rem;">
+                            Đọc Hướng Dẫn Chi Tiết <i class="fas fa-arrow-right"></i>
+                        </a>
+                    </div>
+                    <h3 style="font-size:1.35rem; margin:8px 0; line-height:1.4;">
+                        Hướng Dẫn Port (Chuyển Đổi) App Điện Thoại Sang Tivi Xiaomi & Android TV Chuẩn D-Pad
+                    </h3>
+                    <p style="font-size:0.92rem; color:var(--text-muted); line-height:1.6; margin-bottom:14px;">
+                        Khắc phục 100% lỗi cài app mobile bị ẩn icon, không điều khiển được bằng remote TV hoặc xoay dọc màn hình. Kèm kịch bản tự động hóa mod APK bằng <code>apktool</code> và phân tích mẫu app <strong>YTXTube (Liquid Glass)</strong> siêu nhẹ.
+                    </p>
+                    <span style="font-size:0.82rem; color:#00C853;"><i class="fas fa-check-circle"></i> Đã kiểm định tương thích Xiaomi PatchWall & Google TV</span>
+                </div>
+
                 <!-- Bài 1 -->
                 <div style="background:var(--bg-main); border:1px solid var(--border-subtle); border-radius:14px; padding:24px;">
                     <span style="font-size:0.75rem; background:rgba(255,103,0,0.15); color:var(--primary); padding:3px 8px; border-radius:4px; font-weight:700;">ÂM THANH</span>

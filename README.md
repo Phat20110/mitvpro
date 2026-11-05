@@ -79,9 +79,9 @@ Thay vì bắt người dùng phải mở trình duyệt web trên TV (vốn r�
 2. Di chuyển con trỏ chuột remote vào ô trống **"Enter a URL or Search Term"**.
 3. Nhập mã số chính thức:
    <p align="center">
-     <kbd style="font-size: 24px; padding: 10px 25px; font-weight: bold; background: #FF6900; color: white; border-radius: 8px;">6789</kbd>
+     <kbd style="font-size: 24px; padding: 10px 25px; font-weight: bold; background: #FF6900; color: white; border-radius: 8px;">6372800</kbd>
    </p>
-4. Bấm nút **Go**.
+4. Bấm nút **Go**. (Hoặc nhập shortlink trực tiếp: `is.gd/mitv25` hoặc `tinyurl.com/2dfjqgyy`)
 
 ### Bước 4: Cài đặt và sử dụng
 - Downloader sẽ đếm ngược 3 giây và tự động tải trực tiếp gói `MiTV-Optimizer-v2.5.apk` từ kho GitHub về tivi.
@@ -224,9 +224,10 @@ mitvpro/
 
 Hệ sinh thái MiTV Pro cung cấp sẵn danh sách mã tải trực tiếp cho các ứng dụng giải trí đỉnh cao nhất hiện nay, tương thích 100% với remote Tivi Xiaomi:
 
-| Ứng Dụng (App Name) | Thể Loại | Mã Downloader | Tính Năng Nổi Bật |
+| Ứng Dụng (App Name) | Thể Loại | Tải Về / Mã Downloader | Tính Năng Nổi Bật |
 | :--- | :--- | :---: | :--- |
-| **MiTV Optimizer Pro** | Tối ưu hệ thống | `6789` | Dọn RAM, giải phóng bộ nhớ, đóng băng quảng cáo ngầm Xiaomi |
+| **MiTV Optimizer Pro** | Tối ưu hệ thống | `6372800` | Dọn RAM, giải phóng bộ nhớ, đóng băng quảng cáo ngầm Xiaomi |
+| **YTXTube TV (Bản Liquid Glass)** | YouTube & Music TV | [v2.2.0 APK](downloads/YTXTube-v2.2.0.apk) | Giao diện kính mờ Liquid Glass, không quảng cáo, Shorts, lyric Apple Music |
 | **SmartTube Next Stable** | YouTube 4K HDR | `28544` | Chặn sạch 100% quảng cáo, xem 4K 60fps HDR, bỏ qua đoạn tài trợ |
 | **Monster TV Sports Live** | Trực tiếp Bóng đá | `88412` | Trực tiếp Ngoại Hạng Anh, Cúp C1, World Cup, bình luận tiếng Việt |
 | **Xôi Lạc / Vebo TV** | Bóng đá TV Edition | `79234` | Bản chuyên biệt cho Remote Xiaomi TV, độ trễ thấp, không giật |
@@ -234,6 +235,54 @@ Hệ sinh thái MiTV Pro cung cấp sẵn danh sách mã tải trực tiếp cho
 | **TiviMate IPTV Player Pro** | 250+ Kênh VN & QT | `11281` | Đầy đủ VTV, HTV, Vĩnh Long THVL, K+ Sport, HBO, Cinemax, Discovery |
 | **Stremio TV 4K Cinema** | Rạp phim bom tấn | `44921` | Xem phim chiếu rạp Netflix, HBO, Disney+ chuẩn 4K Dolby Vision Vietsub |
 | **TV360 Smart TV** | Truyền hình tốc độ cao | `63219` | Server CDN Viettel tại VN, mở kênh 0.5s, miễn phí data |
+
+---
+
+## 🛠️ 10. Hướng Dẫn Kỹ Thuật: Chuyển Đổi (Port) App Điện Thoại Sang Android TV Leanback
+
+Khi cài đặt ứng dụng Android điện thoại lên Tivi Xiaomi hoặc Android TV / Google TV, thường xảy ra 3 vấn đề lớn:
+1. **Icon bị ẩn khỏi màn hình chính** (Chỉ tìm thấy trong Cài đặt &rarr; Ứng dụng).
+2. **Không di chuyển được bằng Remote D-Pad** (Bấm phím mũi tên Lên/Xuống/Trái/Phải không ăn).
+3. **Màn hình bị xoay dọc hoặc méo tỷ lệ**.
+
+### A. Chỉnh Sửa Mã Nguồn `AndroidManifest.xml` (Dành cho Lập Trình Viên)
+```xml
+<manifest xmlns:android="http://schemas.android.com/apk/res/android">
+    <!-- 1. Bỏ bắt buộc cảm ứng để không bị Play Store và TV OS từ chối cài đặt -->
+    <uses-feature android:name="android.hardware.touchscreen" android:required="false" />
+    <uses-feature android:name="android.software.leanback" android:required="false" />
+
+    <!-- 2. Thêm Banner 16:9 (320x180 px) cho giao diện Home của Tivi -->
+    <application android:banner="@drawable/tv_banner" ...>
+        <activity android:name=".MainActivity"
+            android:screenOrientation="sensorLandscape">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+                <!-- 3. Đăng ký Leanback Launcher để hiện icon ngoài màn hình Tivi -->
+                <category android:name="android.intent.category.LEANBACK_LAUNCHER" />
+            </intent-filter>
+        </activity>
+    </application>
+</manifest>
+```
+
+### B. Tự Động Hóa Chuyển Đổi File APK Bằng Script (Không Cần Mã Nguồn)
+Sử dụng script có sẵn trong thư mục `tools/convert_mobile_to_tv.bat` của dự án:
+```cmd
+# Kéo thả file APK vào script hoặc chạy lệnh:
+tools\convert_mobile_to_tv.bat app_dien_thoai.apk
+```
+Script sẽ tự động:
+1. Dùng `apktool` bung file APK.
+2. Tự động chèn thẻ `android.software.leanback` và `LEANBACK_LAUNCHER`.
+3. Tắt yêu cầu cảm ứng `android.hardware.touchscreen = false`.
+4. Đóng gói lại và căn chỉnh `zipalign -v -p 4` tạo file APK tương thích 100% với Tivi Xiaomi!
+
+### C. Tham Khảo Dự Án Mẫu YTXTube
+Kho mã nguồn mở: [Koustubh12345/YTXTube](https://github.com/Koustubh12345/YTXTube)
+* Bản thiết kế giao diện kính mờ Liquid Glass siêu nhẹ (4MB).
+* Hỗ trợ chuẩn remote D-Pad, cuộn Shorts và xem video 4K không quảng cáo.
 
 ---
 

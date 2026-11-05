@@ -60,6 +60,7 @@ $currentPage = basename($_SERVER['PHP_SELF'], '.php');
                     <li><a href="booking.php" class="<?php echo ($currentPage === 'booking') ? 'active' : ''; ?>"><i class="fas fa-calendar-plus"></i> Đặt Lịch Hỗ Trợ</a></li>
                     <li><a href="speedtest.php" class="<?php echo ($currentPage === 'speedtest') ? 'active' : ''; ?>"><i class="fas fa-wifi"></i> Đo Mạng TV</a></li>
                     <li><a href="community.php" class="<?php echo ($currentPage === 'community') ? 'active' : ''; ?>"><i class="fas fa-book"></i> Cẩm Nang Sửa Lỗi</a></li>
+                    <li><a href="porting-guide.php" class="<?php echo ($currentPage === 'porting') ? 'active' : ''; ?>"><i class="fas fa-tv"></i> Port App TV</a></li>
                 </ul>
 
                 <div class="nav-actions">

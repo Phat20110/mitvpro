@@ -333,6 +333,37 @@ require_once __DIR__ . '/header.php';
                 </button>
             </div>
 
+            <!-- App 5b: YTXTube TV Edition (Liquid Glass UI) -->
+            <div class="tv-app-card" data-category="movie">
+                <div>
+                    <div class="tv-app-header">
+                        <div class="tv-app-icon" style="background:rgba(255,23,68,0.15); color:#FF1744;">
+                            <i class="fab fa-youtube"></i>
+                        </div>
+                        <div class="tv-app-meta">
+                            <h3>YTXTube TV (v2.2.0 - Liquid Glass)</h3>
+                            <span>Tác giả: Koustubh12345 &bull; Dung lượng: 4.1 MB (Siêu Nhẹ)</span>
+                        </div>
+                    </div>
+                    <div class="tv-app-tags">
+                        <span class="tv-tag" style="background:rgba(255,23,68,0.2); color:#FF1744;">LIQUID GLASS UI</span>
+                        <span class="tv-tag" style="background:rgba(0,200,83,0.2); color:#00C853;">REMOTE D-PAD READY</span>
+                        <span class="tv-tag" style="background:rgba(33,150,243,0.2); color:#2196F3;">YT MUSIC & 4K</span>
+                    </div>
+                    <p class="tv-app-desc">
+                        Bản YouTube & Music mã nguồn mở thiết kế giao diện kính mờ Liquid Glass siêu mượt. Không quảng cáo, hỗ trợ cuộn Shorts vô tận, lời bài hát phong cách Apple Music, tối ưu hoàn hảo cho Remote Tivi và màn hình lớn.
+                    </p>
+                </div>
+                <div style="display:flex; gap:8px; margin-top:16px;">
+                    <a href="downloads/YTXTube-v2.2.0.apk" download class="tv-install-btn btn-primary" style="flex:2; text-decoration:none; text-align:center; padding:12px; border-radius:10px;">
+                        <i class="fas fa-cloud-arrow-down"></i> Tải APK (4.1MB)
+                    </a>
+                    <a href="https://github.com/Koustubh12345/YTXTube" target="_blank" class="tv-install-btn" style="flex:1; background:rgba(255,255,255,0.08); color:var(--text-main); text-decoration:none; text-align:center; padding:12px; border-radius:10px; border:1px solid var(--border-subtle);">
+                        <i class="fab fa-github"></i> Repo
+                    </a>
+                </div>
+            </div>
+
             <!-- App 6: Stremio TV 4K Cinema -->
             <div class="tv-app-card" data-category="movie">
                 <div>
