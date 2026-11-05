@@ -1,0 +1,75 @@
+<?php
+require_once __DIR__ . '/config.php';
+$currentPage = basename($_SERVER['PHP_SELF'], '.php');
+?>
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title><?php e(isset($pageTitle) ? $pageTitle . ' - ' . APP_NAME : APP_NAME . ' | ' . APP_TAGLINE); ?></title>
+    <meta name="description" content="<?php e(isset($pageDesc) ? $pageDesc : 'Dịch vụ cài đặt, hỗ trợ từ xa và tối ưu hoá hệ thống tivi Xiaomi chuyên nghiệp. Tải app không quảng cáo, tối ưu RAM, gỡ bloatware.'); ?>">
+    <meta name="keywords" content="tivi xiaomi, cai tivi xiaomi, toi uu xiaomi tv, downloader code, smarttube, viet xiaomi, ho tro tu xa">
+    
+    <!-- Open Graph SEO -->
+    <meta property="og:title" content="<?php e(isset($pageTitle) ? $pageTitle : APP_NAME); ?>">
+    <meta property="og:description" content="Trung tâm hỗ trợ và giải pháp tối ưu Tivi Xiaomi hàng đầu Việt Nam.">
+    <meta property="og:type" content="website">
+
+    <!-- Fonts & Icons -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+
+    <!-- Top Security & Announcement Banner -->
+    <div class="top-notice">
+        <div>
+            <i class="fas fa-shield-halved" style="color:#00C853;"></i> 
+            Chứng nhận bảo mật kết nối 256-bit &bull; Hỗ trợ trực tuyến <span>24/7</span> &bull; 
+            Mã Downloader chính thức: <strong><?php e(APP_DOWNLOADER_CODE); ?></strong>
+        </div>
+    </div>
+
+    <!-- Navigation Header -->
+    <header class="navbar">
+        <div class="container">
+            <div class="nav-wrapper">
+                <a href="index.php" class="brand-logo">
+                    <div class="brand-icon">
+                        <i class="fas fa-tv"></i>
+                    </div>
+                    <div class="brand-text">
+                        MiTV<span>Pro</span>
+                        <span class="brand-tag">VN</span>
+                    </div>
+                </a>
+
+                <ul class="nav-menu" id="navMenu">
+                    <li><a href="index.php" class="<?php echo ($currentPage === 'index') ? 'active' : ''; ?>"><i class="fas fa-home"></i> Trang Chủ</a></li>
+                    <li><a href="downloader.php" class="<?php echo ($currentPage === 'downloader') ? 'active' : ''; ?>"><i class="fas fa-download"></i> Mã Tải Downloader</a></li>
+                    <li><a href="optimizer.php" class="<?php echo ($currentPage === 'optimizer') ? 'active' : ''; ?>"><i class="fas fa-gauge-high"></i> Tối Ưu RAM & Rác</a></li>
+                    <li><a href="tool-check.php" class="<?php echo ($currentPage === 'tool-check') ? 'active' : ''; ?>"><i class="fas fa-microchip"></i> Tra Cứu Model</a></li>
+                    <li><a href="guide-adblock.php" class="<?php echo ($currentPage === 'guide-adblock') ? 'active' : ''; ?>"><i class="fas fa-shield-virus"></i> Chặn Quảng Cáo</a></li>
+                </ul>
+
+                <div class="nav-actions">
+                    <button class="btn-code" onclick="copyDownloaderCode('<?php e(APP_DOWNLOADER_CODE); ?>')">
+                        <i class="fas fa-bolt"></i> Mã: <?php e(APP_DOWNLOADER_CODE); ?>
+                    </button>
+                    <a href="https://zalo.me/" target="_blank" class="btn-primary">
+                        <i class="fas fa-headset"></i> Hỗ Trợ Zalo
+                    </a>
+                    <button class="menu-toggle" id="menuToggle" aria-label="Menu">
+                        <i class="fas fa-bars"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </header>
