@@ -33,7 +33,8 @@ $currentPage = basename($_SERVER['PHP_SELF'], '.php');
         <div>
             <i class="fas fa-shield-halved" style="color:#00C853;"></i> 
             Chứng nhận bảo mật kết nối 256-bit &bull; Hỗ trợ trực tuyến <span>24/7</span> &bull; 
-            Mã Downloader chính thức: <strong><?php e(APP_DOWNLOADER_CODE); ?></strong>
+            Mã Downloader chính thức: <strong><?php e(APP_DOWNLOADER_CODE); ?></strong> &bull;
+            <a href="booking.php" style="color:#00C853; text-decoration:underline; margin-left:6px;"><i class="fas fa-calendar-check"></i> Đặt lịch cài từ xa</a>
         </div>
     </div>
 
@@ -53,18 +54,22 @@ $currentPage = basename($_SERVER['PHP_SELF'], '.php');
 
                 <ul class="nav-menu" id="navMenu">
                     <li><a href="index.php" class="<?php echo ($currentPage === 'index') ? 'active' : ''; ?>"><i class="fas fa-home"></i> Trang Chủ</a></li>
-                    <li><a href="downloader.php" class="<?php echo ($currentPage === 'downloader') ? 'active' : ''; ?>"><i class="fas fa-download"></i> Mã Tải Downloader</a></li>
-                    <li><a href="optimizer.php" class="<?php echo ($currentPage === 'optimizer') ? 'active' : ''; ?>"><i class="fas fa-gauge-high"></i> Tối Ưu RAM & Rác</a></li>
-                    <li><a href="tool-check.php" class="<?php echo ($currentPage === 'tool-check') ? 'active' : ''; ?>"><i class="fas fa-microchip"></i> Tra Cứu Model</a></li>
-                    <li><a href="guide-adblock.php" class="<?php echo ($currentPage === 'guide-adblock') ? 'active' : ''; ?>"><i class="fas fa-shield-virus"></i> Chặn Quảng Cáo</a></li>
+                    <li><a href="downloader.php" class="<?php echo ($currentPage === 'downloader') ? 'active' : ''; ?>"><i class="fas fa-download"></i> Mã Downloader</a></li>
+                    <li><a href="optimizer.php" class="<?php echo ($currentPage === 'optimizer') ? 'active' : ''; ?>"><i class="fas fa-gauge-high"></i> Tối Ưu RAM</a></li>
+                    <li><a href="booking.php" class="<?php echo ($currentPage === 'booking') ? 'active' : ''; ?>"><i class="fas fa-calendar-plus"></i> Đặt Lịch Hỗ Trợ</a></li>
+                    <li><a href="speedtest.php" class="<?php echo ($currentPage === 'speedtest') ? 'active' : ''; ?>"><i class="fas fa-wifi"></i> Đo Mạng TV</a></li>
+                    <li><a href="community.php" class="<?php echo ($currentPage === 'community') ? 'active' : ''; ?>"><i class="fas fa-book"></i> Cẩm Nang Sửa Lỗi</a></li>
                 </ul>
 
                 <div class="nav-actions">
                     <button class="btn-code" onclick="copyDownloaderCode('<?php e(APP_DOWNLOADER_CODE); ?>')">
                         <i class="fas fa-bolt"></i> Mã: <?php e(APP_DOWNLOADER_CODE); ?>
                     </button>
-                    <a href="https://zalo.me/" target="_blank" class="btn-primary">
-                        <i class="fas fa-headset"></i> Hỗ Trợ Zalo
+                    <a href="track.php" class="btn-outline" style="padding:8px 16px; font-size:0.85rem;" title="Tra cứu phiếu hỗ trợ">
+                        <i class="fas fa-magnifying-glass"></i> Tra Cứu Phiếu
+                    </a>
+                    <a href="<?php e(APP_ZALO); ?>" target="_blank" class="btn-primary">
+                        <i class="fas fa-headset"></i> Zalo
                     </a>
                     <button class="menu-toggle" id="menuToggle" aria-label="Menu">
                         <i class="fas fa-bars"></i>

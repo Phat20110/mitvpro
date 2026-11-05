@@ -23,3 +23,7 @@ Thumbs.db
 .idea/
 .vscode/
 *.swp
+
+data/*.sqlite
+data/*.sqlite-wal
+data/*.sqlite-shm
