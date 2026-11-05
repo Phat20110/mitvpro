@@ -43,8 +43,8 @@ $currentPage = basename($_SERVER['PHP_SELF'], '.php');
         <div class="container">
             <div class="nav-wrapper">
                 <a href="index.php" class="brand-logo">
-                    <div class="brand-icon">
-                        <i class="fas fa-tv"></i>
+                    <div class="brand-icon" style="background:transparent; box-shadow:none; padding:2px;">
+                        <img src="assets/img/xiaomi-logo.svg" alt="Xiaomi Logo" style="width:100%; height:100%; object-fit:contain; filter:drop-shadow(0 4px 12px rgba(255,103,0,0.4));">
                     </div>
                     <div class="brand-text">
                         MiTV<span>Pro</span>

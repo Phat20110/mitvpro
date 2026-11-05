@@ -37,7 +37,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // 3. One-Click Copy Downloader Code
     window.copyDownloaderCode = function(code) {
-        if (!code) code = '3041587';
+        if (!code) code = '6789';
         navigator.clipboard.writeText(code).then(() => {
             showToast(`Đã sao chép mã [ ${code} ] vào bộ nhớ đệm!`);
         }).catch(err => {

@@ -70,7 +70,7 @@ define('APP_ZALO', env('APP_ZALO', 'https://zalo.me/'));
 define('APP_TELEGRAM', env('APP_TELEGRAM', 'https://t.me/'));
 define('APP_TIKTOK', env('APP_TIKTOK', 'https://tiktok.com/@vietxiaomi'));
 define('APP_VERSION', '2.5.0');
-define('APP_DOWNLOADER_CODE', env('APP_DOWNLOADER_CODE', '3041587'));
+define('APP_DOWNLOADER_CODE', env('APP_DOWNLOADER_CODE', '6789'));
 
 // Hàm lọc chống XSS an toàn
 function clean_output($data) {
