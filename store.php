@@ -172,8 +172,8 @@ require_once __DIR__ . '/header.php';
                     Chỉ cần cài <strong>1 ứng dụng duy nhất</strong> trên tivi. Toàn bộ kho app xem bóng đá trực tiếp, truyền hình VTV1-VTV9, phim 4K không quảng cáo đều nằm sẵn bên trong — bấm là cài ngay không cần gõ mã!
                 </p>
                 <div style="display:flex; gap:16px; flex-wrap:wrap; align-items:center;">
-                    <a href="https://is.gd/mitv25" class="btn-primary" style="padding:12px 26px; font-size:1rem; text-decoration:none;">
-                        <i class="fas fa-download"></i> Tải Gói Cài Đặt MiTV Store APK (Bản Mới Nhất)
+                    <a href="downloads/MiTV-Pro.apk" download class="btn-primary" style="padding:12px 26px; font-size:1rem; text-decoration:none;">
+                        <i class="fas fa-download"></i> Tải Gói Cài Đặt MiTV Pro TV APK (Bản Mới Nhất)
                     </a>
                     <span style="color:#00C853; font-weight:700; font-size:0.9rem;">
                         <i class="fas fa-shield-check"></i> Cam kết 100% Sạch & Không Quảng Cáo
@@ -328,7 +328,7 @@ require_once __DIR__ . '/header.php';
                         Bản YouTube hoàn hảo nhất cho Tivi Xiaomi: Tuyệt đối không có quảng cáo, tự động bỏ qua intro xin tài trợ của video, hỗ trợ đăng nhập tài khoản Google và bypass chặn mạng của các nhà mạng viễn thông.
                     </p>
                 </div>
-                <button class="tv-install-btn btn-primary" onclick="installAppDirect('SmartTube Next 4K', 'https://raw.githubusercontent.com/Phat20110/mitvpro/main/downloads/MiTV-Optimizer-v2.5.apk')">
+                <button class="tv-install-btn btn-primary" onclick="installAppDirect('SmartTube Next 4K', 'downloads/SmartTube-Stable.apk')">
                     <i class="fas fa-cloud-arrow-down"></i> Cài Đặt Trực Tiếp (1 Chạm)
                 </button>
             </div>
