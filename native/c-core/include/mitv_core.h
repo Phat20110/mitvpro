@@ -79,6 +79,11 @@ std::vector<ProcessInfo> get_top_memory_processes(size_t limit = 10);
 OptimizationReport freeze_xiaomi_bloatware();
 
 /**
+ * Gỡ bỏ vĩnh viễn (Uninstall user 0) toàn bộ ứng dụng rác và bloatware nội địa Xiaomi
+ */
+OptimizationReport uninstall_xiaomi_bloatware();
+
+/**
  * Kiểm tra tốc độ kết nối socket TCP tới các CDN phát sóng VTV1, K+, HBO
  */
 IptvLatencyReport test_iptv_latency(const std::string& server_name, const std::string& host, int port = 80);

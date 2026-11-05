@@ -32,8 +32,11 @@ require_once __DIR__ . '/header.php';
 
                 <div class="code-display" style="margin: 22px 0; background:rgba(0,0,0,0.4); padding:16px 24px; border-radius:12px; display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:16px;">
                     <div>
-                        <span style="font-size:0.85rem; color:var(--text-muted); display:block; margin-bottom:4px;">MÃ DOWNLOADER TIVI:</span>
+                        <span style="font-size:0.85rem; color:var(--text-muted); display:block; margin-bottom:4px;">MÃ DOWNLOADER CHÍNH THỨC:</span>
                         <div class="code-val" style="font-size:2.8rem; letter-spacing:4px;"><?php e(APP_DOWNLOADER_CODE); ?></div>
+                        <div style="font-size:0.85rem; color:#00B4D8; margin-top:4px;">
+                            <i class="fas fa-shield"></i> Mã dự phòng: <strong>898989</strong> | Hoặc gõ link trực tiếp: <strong style="color:#fff;">is.gd/mitv25</strong>
+                        </div>
                     </div>
                     <div style="display:flex; gap:10px; flex-wrap:wrap;">
                         <button class="btn-copy" onclick="copyDownloaderCode('<?php e(APP_DOWNLOADER_CODE); ?>')" style="padding:12px 24px; font-size:1rem;">
@@ -47,7 +50,7 @@ require_once __DIR__ . '/header.php';
 
                 <div style="font-size:0.9rem; color:var(--text-sub); display:flex; align-items:center; gap:10px;">
                     <i class="fas fa-lightbulb" style="color:var(--primary); font-size:1.2rem;"></i> 
-                    <span>Mở app <strong>Downloader</strong> trên Tivi Xiaomi ➜ Nhập mã <strong><?php e(APP_DOWNLOADER_CODE); ?></strong> vào ô URL ➜ Bấm <strong>Go</strong> để tải thẳng về TV.</span>
+                    <span>Mở app <strong>Downloader</strong> trên Tivi Xiaomi ➜ Nhập mã <strong><?php e(APP_DOWNLOADER_CODE); ?></strong> (hoặc gõ ngắn gọn: <strong>is.gd/mitv25</strong>) ➜ Bấm <strong>Go</strong> để tải thẳng về TV.</span>
                 </div>
             </div>
 

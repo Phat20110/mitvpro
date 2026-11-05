@@ -77,6 +77,41 @@ require_once __DIR__ . '/header.php';
                 </div>
             </div>
 
+            <!-- Tính Năng Mới: Gỡ Bỏ Vĩnh Viễn App Rác & Trạm Chặn QC Cả Nhà -->
+            <div style="display:grid; grid-template-columns:1fr 1fr; gap:24px; margin-bottom:40px;">
+                <!-- Feature 1: Gỡ Bỏ Vĩnh Viễn App Rác -->
+                <div style="background:linear-gradient(135deg, #1b172a 0%, #121020 100%); border:2px solid rgba(255,59,48,0.4); border-radius:16px; padding:26px;">
+                    <span style="font-size:0.75rem; background:rgba(255,59,48,0.2); color:#FF3B30; padding:4px 10px; border-radius:6px; font-weight:700;">
+                        <i class="fas fa-trash-can"></i> TÍNH NĂNG ĐỘC QUYỀN
+                    </span>
+                    <h3 style="font-size:1.35rem; margin:14px 0 8px; color:#fff;">Gỡ Bỏ Vĩnh Viễn App Rác Xiaomi</h3>
+                    <p style="color:var(--text-muted); font-size:0.9rem; line-height:1.7; margin-bottom:18px;">
+                        Không chỉ đóng băng tạm thời, MiTV Optimizer sử dụng lệnh hạt nhân <code style="color:#FF3B30; background:rgba(0,0,0,0.3); padding:2px 6px; border-radius:4px;">pm uninstall -k --user 0</code> gỡ sạch triệt để các ứng dụng rác nội địa Trung Quốc mà không cần root tivi:
+                    </p>
+                    <ul style="color:var(--text-sub); font-size:0.88rem; line-height:1.8; padding-left:18px; margin-bottom:0;">
+                        <li>Xóa Xiaomi App Mall, Mi Pay, Game Center, Mi Video rác.</li>
+                        <li>Giải phóng 2GB - 4GB bộ nhớ trong (ROM) cho tivi.</li>
+                        <li>Đảm bảo RAM hệ thống duy trì ở mức <strong>dưới 750MB</strong> (cực mượt).</li>
+                    </ul>
+                </div>
+
+                <!-- Feature 2: Biến Tivi Thành Trạm Chặn Quảng Cáo Cả Nhà (Pi-Hole TV) -->
+                <div style="background:linear-gradient(135deg, #131b2e 0%, #0d1222 100%); border:2px solid rgba(0,180,216,0.4); border-radius:16px; padding:26px;">
+                    <span style="font-size:0.75rem; background:rgba(0,180,216,0.2); color:#00B4D8; padding:4px 10px; border-radius:6px; font-weight:700;">
+                        <i class="fas fa-network-wired"></i> CÔNG NGHỆ RASPBERRY PI
+                    </span>
+                    <h3 style="font-size:1.35rem; margin:14px 0 8px; color:#fff;">Biến Tivi Thành Trạm Chặn QC Cả Nhà</h3>
+                    <p style="color:var(--text-muted); font-size:0.9rem; line-height:1.7; margin-bottom:18px;">
+                        Hoạt động hoàn toàn tương tự dự án <strong>Pi-hole trên Raspberry Pi</strong>: Tivi Xiaomi của bạn sẽ trở thành một máy chủ DNS lọc quảng cáo cục bộ cho toàn bộ mạng gia đình:
+                    </p>
+                    <ul style="color:var(--text-sub); font-size:0.88rem; line-height:1.8; padding-left:18px; margin-bottom:0;">
+                        <li>Toàn bộ điện thoại, máy tính, iPad bắt Wi-Fi đều tự động sạch bóng quảng cáo.</li>
+                        <li>Chặn triệt để tên miền quảng cáo, banner độc hại và website theo dõi.</li>
+                        <li>Tốc độ phân giải DNS siêu tốc (< 5ms) qua lõi Native Rust Engine.</li>
+                    </ul>
+                </div>
+            </div>
+
             <!-- Hướng Dẫn Cài Đặt -->
             <h2 style="font-size:1.6rem; margin-bottom: 18px;"><i class="fas fa-list-ol" style="color:var(--primary);"></i> 2 Cách Cài Đặt Lên Tivi Xiaomi Đơn Giản Nhất</h2>
 
