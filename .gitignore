@@ -1,0 +1,25 @@
+# Bảo mật: Không bao giờ commit file chứa secret, mật khẩu, API key lên Git
+.env
+.env.local
+.env.production
+*.env
+
+# Nhật ký hệ thống & Cache
+*.log
+logs/
+tmp/
+temp/
+cache/
+
+# Môi trường chạy & Runtime
+php_bin/
+php.zip
+*.zip
+*.tar.gz
+
+# IDE & OS Files
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/
+*.swp
