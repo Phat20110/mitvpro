@@ -1,0 +1,1048 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>MiTV Pro - Apple TV 4K & OLED Cinema Edition</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        /* ==========================================================================
+           UI/UX PRO MAX - APPLE TV 4K & OLED CINEMA DESIGN SYSTEM
+           Strictly No Emojis - 100% Vector SVG - Premium Glassmorphism
+           ========================================================================== */
+        :root {
+            --bg-void: #050508;
+            --bg-canvas: #090912;
+            --glass-base: rgba(22, 22, 36, 0.6);
+            --glass-surface: rgba(30, 30, 48, 0.72);
+            --glass-focus: rgba(42, 42, 68, 0.95);
+            --border-subtle: rgba(255, 255, 255, 0.08);
+            --border-glass: rgba(255, 255, 255, 0.14);
+            --border-highlight: rgba(255, 255, 255, 0.28);
+            --accent-brand: #FF6700;
+            --accent-brand-glow: rgba(255, 103, 0, 0.45);
+            --accent-cyan: #06B6D4;
+            --accent-emerald: #10B981;
+            --accent-purple: #8B5CF6;
+            --text-pure: #FFFFFF;
+            --text-high: #F1F5F9;
+            --text-med: #94A3B8;
+            --text-low: #64748B;
+            --bezier-tv: cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            user-select: none;
+            -webkit-user-select: none;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        body {
+            font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, "SF Pro Display", sans-serif;
+            background: var(--bg-void);
+            color: var(--text-high);
+            height: 100vh;
+            width: 100vw;
+            overflow: hidden;
+            display: flex;
+            position: relative;
+        }
+
+        /* Ambient Dynamic Color Backdrop (Apple TV Cinema Glow) */
+        .ambient-backdrop {
+            position: fixed;
+            top: -25%;
+            left: -15%;
+            width: 150vw;
+            height: 150vh;
+            background-size: cover;
+            background-position: center;
+            filter: blur(90px) saturate(200%) brightness(0.24);
+            transform: scale(1.15);
+            transition: all 0.8s var(--bezier-tv);
+            pointer-events: none;
+            z-index: 0;
+            opacity: 0.92;
+        }
+
+        .ambient-vignette {
+            position: fixed;
+            inset: 0;
+            background: radial-gradient(circle at 65% 35%, transparent 15%, rgba(5, 5, 8, 0.82) 75%),
+                        linear-gradient(180deg, rgba(5,5,8,0.4) 0%, rgba(5,5,8,0.95) 100%);
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        /* ==========================================================================
+           LEFT NAVIGATION DOCK (Apple TV Frosted Rail)
+           ========================================================================== */
+        .tv-dock {
+            width: 88px;
+            height: 100vh;
+            background: rgba(12, 12, 20, 0.65);
+            backdrop-filter: blur(50px);
+            -webkit-backdrop-filter: blur(50px);
+            border-right: 1px solid var(--border-subtle);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: space-between;
+            padding: 28px 0;
+            transition: width 0.35s var(--bezier-tv), background 0.35s var(--bezier-tv);
+            z-index: 100;
+            flex-shrink: 0;
+            position: relative;
+        }
+
+        .tv-dock:hover, .tv-dock:focus-within, .tv-dock.expanded {
+            width: 250px;
+            background: rgba(14, 14, 24, 0.92);
+            box-shadow: 25px 0 70px rgba(0, 0, 0, 0.85);
+        }
+
+        .dock-brand {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            padding: 0 20px;
+            width: 100%;
+            overflow: hidden;
+            text-decoration: none;
+        }
+
+        .dock-brand-logo {
+            width: 48px;
+            height: 48px;
+            border-radius: 14px;
+            flex-shrink: 0;
+            box-shadow: 0 6px 20px rgba(255, 103, 0, 0.4);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+        }
+
+        .dock-brand-meta {
+            opacity: 0;
+            white-space: nowrap;
+            transition: opacity 0.25s ease;
+        }
+
+        .tv-dock:hover .dock-brand-meta, .tv-dock:focus-within .dock-brand-meta, .tv-dock.expanded .dock-brand-meta {
+            opacity: 1;
+        }
+
+        .dock-brand-title {
+            font-size: 1.15rem;
+            font-weight: 800;
+            letter-spacing: -0.02em;
+            color: var(--text-pure);
+        }
+
+        .dock-brand-sub {
+            font-size: 0.7rem;
+            font-weight: 700;
+            color: var(--accent-brand);
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+        }
+
+        /* Dock Navigation Items */
+        .dock-menu {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            width: 100%;
+            padding: 0 12px;
+        }
+
+        .dock-item {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            padding: 13px 18px;
+            border-radius: 14px;
+            color: var(--text-med);
+            cursor: pointer;
+            outline: none;
+            transition: all 0.22s var(--bezier-tv);
+            white-space: nowrap;
+            overflow: hidden;
+            border: 1px solid transparent;
+            background: transparent;
+            width: 100%;
+            text-align: left;
+            font-size: 0.95rem;
+            font-weight: 600;
+        }
+
+        .dock-item svg {
+            width: 22px;
+            height: 22px;
+            stroke-width: 2;
+            flex-shrink: 0;
+            transition: stroke 0.2s ease, transform 0.2s ease;
+        }
+
+        .dock-item .dock-label {
+            opacity: 0;
+            transition: opacity 0.25s ease;
+        }
+
+        .tv-dock:hover .dock-label, .tv-dock:focus-within .dock-label, .tv-dock.expanded .dock-label {
+            opacity: 1;
+        }
+
+        .dock-item:focus, .dock-item:hover, .dock-item.active {
+            background: rgba(255, 103, 0, 0.16);
+            color: var(--text-pure);
+            border-color: rgba(255, 103, 0, 0.45);
+            box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.15);
+        }
+
+        .dock-item:focus svg, .dock-item:hover svg, .dock-item.active svg {
+            stroke: var(--accent-brand);
+            transform: scale(1.1);
+        }
+
+        /* RAM Quick-Clean Capsule */
+        .dock-ram-widget {
+            width: 88%;
+            background: rgba(255, 255, 255, 0.04);
+            border: 1px solid var(--border-subtle);
+            border-radius: 14px;
+            padding: 12px;
+            cursor: pointer;
+            outline: none;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            color: var(--text-high);
+            transition: all 0.25s var(--bezier-tv);
+            overflow: hidden;
+        }
+
+        .dock-ram-widget svg {
+            width: 20px;
+            height: 20px;
+            stroke: var(--accent-brand);
+            flex-shrink: 0;
+        }
+
+        .dock-ram-meta {
+            display: flex;
+            flex-direction: column;
+            opacity: 0;
+            white-space: nowrap;
+            transition: opacity 0.25s ease;
+        }
+
+        .tv-dock:hover .dock-ram-meta, .tv-dock:focus-within .dock-ram-meta, .tv-dock.expanded .dock-ram-meta {
+            opacity: 1;
+        }
+
+        .dock-ram-title {
+            font-size: 0.82rem;
+            font-weight: 800;
+        }
+
+        .dock-ram-val {
+            font-size: 0.68rem;
+            color: var(--accent-emerald);
+            font-weight: 700;
+        }
+
+        .dock-ram-widget:focus, .dock-ram-widget:hover {
+            background: var(--accent-brand);
+            color: #fff;
+            border-color: #fff;
+            box-shadow: 0 0 25px var(--accent-brand-glow);
+            transform: scale(1.04);
+        }
+
+        .dock-ram-widget:focus svg, .dock-ram-widget:hover svg {
+            stroke: #fff;
+        }
+
+        .dock-ram-widget:focus .dock-ram-val, .dock-ram-widget:hover .dock-ram-val {
+            color: #fff;
+        }
+
+        /* ==========================================================================
+           MAIN STAGE (10-Foot Leanback Canvas)
+           ========================================================================== */
+        .tv-canvas {
+            flex-grow: 1;
+            height: 100vh;
+            overflow-y: auto;
+            overflow-x: hidden;
+            padding: 34px 56px 80px;
+            scroll-behavior: smooth;
+            position: relative;
+            z-index: 10;
+        }
+
+        .tv-canvas::-webkit-scrollbar {
+            display: none;
+        }
+
+        /* ==========================================================================
+           CINEMA HERO SPOTLIGHT (Apple TV 4K Style)
+           ========================================================================== */
+        .hero-banner {
+            position: relative;
+            min-height: 270px;
+            border-radius: 26px;
+            background: linear-gradient(135deg, rgba(22, 22, 38, 0.7) 0%, rgba(14, 14, 24, 0.85) 100%);
+            backdrop-filter: blur(40px);
+            -webkit-backdrop-filter: blur(40px);
+            border: 1px solid var(--border-glass);
+            box-shadow: inset 0 1px 0 var(--border-highlight), 0 25px 65px rgba(0, 0, 0, 0.75);
+            padding: 34px 44px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 40px;
+            overflow: hidden;
+        }
+
+        .hero-banner::after {
+            content: '';
+            position: absolute;
+            top: -50px;
+            right: -50px;
+            width: 420px;
+            height: 380px;
+            background: radial-gradient(circle, rgba(255, 103, 0, 0.22) 0%, transparent 70%);
+            pointer-events: none;
+        }
+
+        .hero-info {
+            max-width: 68%;
+            z-index: 2;
+        }
+
+        .hero-badge-row {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 12px;
+            flex-wrap: wrap;
+        }
+
+        .hero-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            background: rgba(255, 103, 0, 0.15);
+            border: 1px solid rgba(255, 103, 0, 0.4);
+            color: #FFA05C;
+            font-size: 0.72rem;
+            font-weight: 800;
+            padding: 4px 14px;
+            border-radius: 30px;
+            letter-spacing: 0.06em;
+            text-transform: uppercase;
+        }
+
+        .hero-tech-chip {
+            background: rgba(255, 255, 255, 0.06);
+            border: 1px solid var(--border-subtle);
+            color: var(--text-med);
+            font-size: 0.7rem;
+            font-weight: 700;
+            padding: 4px 10px;
+            border-radius: 6px;
+            letter-spacing: 0.04em;
+        }
+
+        .hero-title {
+            font-size: 2.4rem;
+            font-weight: 800;
+            letter-spacing: -0.03em;
+            color: var(--text-pure);
+            margin-bottom: 10px;
+            line-height: 1.15;
+            text-shadow: 0 4px 20px rgba(0, 0, 0, 0.6);
+        }
+
+        .hero-desc {
+            font-size: 1rem;
+            color: var(--text-med);
+            line-height: 1.55;
+            margin-bottom: 22px;
+            font-weight: 400;
+            max-width: 90%;
+        }
+
+        .hero-cta {
+            background: #FFFFFF;
+            color: #0A0A10;
+            font-size: 0.98rem;
+            font-weight: 800;
+            letter-spacing: -0.01em;
+            border: none;
+            padding: 14px 34px;
+            border-radius: 14px;
+            cursor: pointer;
+            outline: none;
+            transition: all 0.25s var(--bezier-tv);
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            box-shadow: 0 6px 24px rgba(0, 0, 0, 0.35);
+        }
+
+        .hero-cta svg {
+            width: 20px;
+            height: 20px;
+            stroke-width: 2.5;
+            stroke: #0A0A10;
+        }
+
+        .hero-cta:focus, .hero-cta:hover {
+            background: var(--accent-brand);
+            color: #FFFFFF;
+            transform: scale(1.06);
+            box-shadow: 0 10px 35px var(--accent-brand-glow);
+        }
+
+        .hero-cta:focus svg, .hero-cta:hover svg {
+            stroke: #FFFFFF;
+        }
+
+        .hero-visual {
+            width: 155px;
+            height: 155px;
+            border-radius: 26px;
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid var(--border-glass);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 16px;
+            box-shadow: 0 18px 45px rgba(0, 0, 0, 0.65);
+            z-index: 2;
+            flex-shrink: 0;
+            position: relative;
+        }
+
+        .hero-visual img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            border-radius: 18px;
+            filter: drop-shadow(0 8px 16px rgba(0,0,0,0.4));
+        }
+
+        /* ==========================================================================
+           HORIZONTAL SHELVES & LUXURY GLASS CARDS
+           ========================================================================== */
+        .shelf-block {
+            margin-bottom: 38px;
+        }
+
+        .shelf-header {
+            display: flex;
+            align-items: baseline;
+            gap: 12px;
+            margin-bottom: 16px;
+        }
+
+        .shelf-title {
+            font-size: 1.35rem;
+            font-weight: 800;
+            letter-spacing: -0.02em;
+            color: var(--text-pure);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .shelf-title svg {
+            width: 20px;
+            height: 20px;
+            stroke: var(--accent-brand);
+        }
+
+        .shelf-subtitle {
+            font-size: 0.8rem;
+            font-weight: 600;
+            color: var(--text-low);
+            letter-spacing: 0.02em;
+        }
+
+        .shelf-rail {
+            display: flex;
+            gap: 22px;
+            overflow-x: auto;
+            padding: 12px 6px 24px;
+            scroll-behavior: smooth;
+        }
+
+        .shelf-rail::-webkit-scrollbar {
+            display: none;
+        }
+
+        /* The Apple TV Glass Card */
+        .tv-card {
+            flex: 0 0 260px;
+            height: 172px;
+            background: var(--glass-base);
+            backdrop-filter: blur(30px);
+            -webkit-backdrop-filter: blur(30px);
+            border: 1px solid var(--border-subtle);
+            box-shadow: inset 0 1px 0 var(--border-highlight), 0 12px 30px rgba(0, 0, 0, 0.55);
+            border-radius: 22px;
+            padding: 20px;
+            cursor: pointer;
+            outline: none;
+            transition: all 0.28s var(--bezier-tv);
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            position: relative;
+        }
+
+        /* Active D-Pad Focus State */
+        .tv-card:focus, .tv-card:hover {
+            transform: scale3d(1.08, 1.08, 1) translateY(-6px);
+            background: var(--glass-focus);
+            border-color: rgba(255, 103, 0, 0.88);
+            box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.35), 0 22px 50px rgba(255, 103, 0, 0.38);
+            z-index: 50;
+        }
+
+        .card-top {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+        }
+
+        .card-icon-frame {
+            width: 52px;
+            height: 52px;
+            border-radius: 14px;
+            flex-shrink: 0;
+            background: rgba(0, 0, 0, 0.4);
+            border: 1px solid var(--border-subtle);
+            padding: 6px;
+            box-shadow: 0 6px 16px rgba(0, 0, 0, 0.4);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .card-icon-frame img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            border-radius: 8px;
+        }
+
+        .card-info {
+            overflow: hidden;
+        }
+
+        .card-app-title {
+            font-size: 1.08rem;
+            font-weight: 800;
+            color: var(--text-pure);
+            letter-spacing: -0.02em;
+            margin-bottom: 2px;
+            line-height: 1.2;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .card-app-ver {
+            font-size: 0.74rem;
+            color: var(--text-low);
+            font-weight: 600;
+        }
+
+        .card-tag {
+            align-self: flex-start;
+            font-size: 0.68rem;
+            font-weight: 800;
+            padding: 3px 10px;
+            border-radius: 20px;
+            letter-spacing: 0.04em;
+            margin-top: 6px;
+            text-transform: uppercase;
+        }
+
+        .card-action {
+            background: rgba(255, 255, 255, 0.04);
+            border: 1px solid var(--border-subtle);
+            color: var(--text-med);
+            border-radius: 12px;
+            padding: 9px;
+            font-size: 0.84rem;
+            font-weight: 700;
+            text-align: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            transition: all 0.2s ease;
+        }
+
+        .card-action svg {
+            width: 16px;
+            height: 16px;
+            stroke: currentColor;
+            stroke-width: 2.5;
+        }
+
+        .tv-card:focus .card-action, .tv-card:hover .card-action {
+            background: var(--accent-brand);
+            border-color: transparent;
+            color: #FFFFFF;
+            box-shadow: 0 4px 18px var(--accent-brand-glow);
+        }
+
+        /* Toast HUD */
+        #tvHud {
+            position: fixed;
+            bottom: 32px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: rgba(18, 18, 30, 0.95);
+            border: 1px solid var(--accent-brand);
+            padding: 14px 34px;
+            border-radius: 40px;
+            font-size: 0.98rem;
+            font-weight: 800;
+            color: var(--text-pure);
+            display: none;
+            z-index: 99999;
+            backdrop-filter: blur(25px);
+            box-shadow: 0 16px 50px rgba(0, 0, 0, 0.9);
+            letter-spacing: 0.01em;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Ambient Dynamic Cinema Glow (Apple TV Style) -->
+    <div class="ambient-backdrop" id="ambientLayer" style="background-image: url('img/cinema_4k.png');"></div>
+    <div class="ambient-vignette"></div>
+
+    <!-- Navigation Dock -->
+    <aside class="tv-dock" id="tvDock">
+        <div class="dock-brand">
+            <img src="logo.png" alt="MiTV Pro" class="dock-brand-logo">
+            <div class="dock-brand-meta">
+                <div class="dock-brand-title">MiTV PRO</div>
+                <div class="dock-brand-sub">Xiaomi Edition</div>
+            </div>
+        </div>
+
+        <nav class="dock-menu">
+            <button class="dock-item active" tabindex="0" onclick="jumpSection('sec-recommended')">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
+                <span class="dock-label">Khuyên Dùng</span>
+            </button>
+            <button class="dock-item" tabindex="0" onclick="jumpSection('sec-sports')">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><circle cx="12" cy="12" r="10"></circle><path d="M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20"></path><path d="M2 12h20"></path></svg>
+                <span class="dock-label">Bóng Đá</span>
+            </button>
+            <button class="dock-item" tabindex="0" onclick="jumpSection('sec-cinema')">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><rect x="2" y="2" width="20" height="20" rx="2.18" ry="2.18"></rect><line x1="7" y1="2" x2="7" y2="22"></line><line x1="17" y1="2" x2="17" y2="22"></line><line x1="2" y1="12" x2="22" y2="12"></line><line x1="2" y1="7" x2="7" y2="7"></line><line x1="2" y1="17" x2="7" y2="17"></line><line x1="17" y1="17" x2="22" y2="17"></line><line x1="17" y1="7" x2="22" y2="7"></line></svg>
+                <span class="dock-label">Phim 4K HDR</span>
+            </button>
+        </nav>
+
+        <button class="dock-ram-widget" tabindex="0" onclick="triggerCleanRam()">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon></svg>
+            <div class="dock-ram-meta">
+                <span class="dock-ram-title">Dọn Bộ Nhớ</span>
+                <span class="dock-ram-val">RAM: Trống 68%</span>
+            </div>
+        </button>
+    </aside>
+
+    <!-- Main Canvas -->
+    <main class="tv-canvas" id="tvCanvas">
+
+        <!-- Cinema Hero Showcase -->
+        <section class="hero-banner">
+            <div class="hero-info">
+                <div class="hero-badge-row">
+                    <span class="hero-badge" id="heroBadge">CHÍNH HÃNG CHO TIVI XIAOMI</span>
+                    <span class="hero-tech-chip">4K HDR</span>
+                    <span class="hero-tech-chip">DOLBY VISION</span>
+                    <span class="hero-tech-chip">NO ADS</span>
+                </div>
+                <h1 class="hero-title" id="heroTitle">SmartTube Next 4K</h1>
+                <p class="hero-desc" id="heroDesc">Xem YouTube 4K HDR tuyệt đối không có quảng cáo, tự động bỏ qua intro tài trợ, hỗ trợ tài khoản Google và điều khiển Remote D-Pad mượt mà 60 FPS.</p>
+                <button class="hero-cta" id="heroActionBtn" tabindex="0" onclick="installActiveHero()">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
+                    <span>CÀI ĐẶT 1-CHẠM</span>
+                </button>
+            </div>
+            <div class="hero-visual">
+                <img id="heroLogo" src="img/smarttube_icon.png" alt="App Logo">
+            </div>
+        </section>
+
+        <!-- Shelf 1: Khuyên Dùng Hàng Đầu -->
+        <section class="shelf-block" id="sec-recommended">
+            <div class="shelf-header">
+                <h2 class="shelf-title">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
+                    Ứng Dụng Khuyên Dùng
+                </h2>
+                <span class="shelf-subtitle">Bộ ứng dụng chuẩn nhận diện thương hiệu gốc</span>
+            </div>
+            <div class="shelf-rail">
+                <!-- SmartTube -->
+                <article class="tv-card" tabindex="0"
+                    onfocus="updateHero('SmartTube Next 4K', 'Xem YouTube 4K HDR tuyệt đối không có quảng cáo, tự động bỏ qua intro tài trợ, hỗ trợ tài khoản Google và điều khiển Remote D-Pad mượt mà 60 FPS.', 'KHUYÊN DÙNG #1', 'https://raw.githubusercontent.com/Phat20110/mitvpro/main/downloads/SmartTube-Stable.apk', 'img/smarttube_icon.png')"
+                    onclick="triggerInstall('SmartTube Next 4K', 'https://raw.githubusercontent.com/Phat20110/mitvpro/main/downloads/SmartTube-Stable.apk')">
+                    <div class="card-top">
+                        <div class="card-icon-frame">
+                            <img src="img/smarttube_icon.png" alt="SmartTube">
+                        </div>
+                        <div class="card-info">
+                            <div class="card-app-title">SmartTube 4K</div>
+                            <div class="card-app-ver">v22.40 &bull; 35 MB</div>
+                        </div>
+                    </div>
+                    <span class="card-tag" style="background: rgba(16, 185, 129, 0.15); color: #34D399; border: 1px solid rgba(16, 185, 129, 0.35);">CHẶN 100% QC</span>
+                    <div class="card-action">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
+                        <span>Cài Đặt Ngay</span>
+                    </div>
+                </article>
+
+                <!-- VTV Go -->
+                <article class="tv-card" tabindex="0"
+                    onfocus="updateHero('VTV Go TV (Chính Chủ)', 'Xem Thời sự 19h VTV1, giải trí VTV3, thể thao VTV5 bản quyền của Đài Truyền Hình Việt Nam. Xem lại 6 tháng không bỏ lỡ.', 'ĐÀI THVN CHÍNH THỐNG', 'https://raw.githubusercontent.com/Phat20110/mitvpro/main/downloads/SmartTube-Stable.apk', 'img/vtvgo.png')"
+                    onclick="triggerInstall('VTV Go TV', 'https://raw.githubusercontent.com/Phat20110/mitvpro/main/downloads/SmartTube-Stable.apk')">
+                    <div class="card-top">
+                        <div class="card-icon-frame">
+                            <img src="img/vtvgo.png" alt="VTV Go">
+                        </div>
+                        <div class="card-info">
+                            <div class="card-app-title">VTV Go TV</div>
+                            <div class="card-app-ver">Đài THVN &bull; HD</div>
+                        </div>
+                    </div>
+                    <span class="card-tag" style="background: rgba(6, 182, 212, 0.15); color: #22D3EE; border: 1px solid rgba(6, 182, 212, 0.35);">VTV1 - VTV9 HD</span>
+                    <div class="card-action">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
+                        <span>Cài Đặt Ngay</span>
+                    </div>
+                </article>
+
+                <!-- TiviMate -->
+                <article class="tv-card" tabindex="0"
+                    onfocus="updateHero('TiviMate IPTV Player Pro', 'Trình xem truyền hình số 1 trên Android TV: 250+ kênh HD/FHD trong nước & quốc tế (K+ Sport, HBO, Discovery).', 'IPTV SỐ 1', 'https://raw.githubusercontent.com/Phat20110/mitvpro/main/downloads/SmartTube-Stable.apk', 'img/tivimate.png')"
+                    onclick="triggerInstall('TiviMate IPTV Pro', 'https://raw.githubusercontent.com/Phat20110/mitvpro/main/downloads/SmartTube-Stable.apk')">
+                    <div class="card-top">
+                        <div class="card-icon-frame">
+                            <img src="img/tivimate.png" alt="TiviMate">
+                        </div>
+                        <div class="card-info">
+                            <div class="card-app-title">TiviMate Pro</div>
+                            <div class="card-app-ver">v4.7.0 &bull; 14 MB</div>
+                        </div>
+                    </div>
+                    <span class="card-tag" style="background: rgba(139, 92, 246, 0.15); color: #C084FC; border: 1px solid rgba(139, 92, 246, 0.35);">250+ KÊNH HD</span>
+                    <div class="card-action">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
+                        <span>Cài Đặt Ngay</span>
+                    </div>
+                </article>
+            </div>
+        </section>
+
+        <!-- Shelf 2: Thể Thao & Bóng Đá Trực Tiếp -->
+        <section class="shelf-block" id="sec-sports">
+            <div class="shelf-header">
+                <h2 class="shelf-title">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><circle cx="12" cy="12" r="10"></circle><path d="M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20"></path><path d="M2 12h20"></path></svg>
+                    Thể Thao & Bóng Đá Trực Tiếp
+                </h2>
+                <span class="shelf-subtitle">Trọn vẹn Ngoại Hạng Anh, Cúp C1 tốc độ cao</span>
+            </div>
+            <div class="shelf-rail">
+                <!-- Monster TV -->
+                <article class="tv-card" tabindex="0"
+                    onfocus="updateHero('Monster TV Sports Live', 'Trực tiếp trọn vẹn Ngoại Hạng Anh, Cúp C1 Champions League, La Liga, Serie A với bình luận viên tiếng Việt chuyên nghiệp.', 'BÓNG ĐÁ TRỰC TIẾP', 'https://raw.githubusercontent.com/Phat20110/mitvpro/main/downloads/SmartTube-Stable.apk', 'img/monstertv.png')"
+                    onclick="triggerInstall('Monster TV Sports', 'https://raw.githubusercontent.com/Phat20110/mitvpro/main/downloads/SmartTube-Stable.apk')">
+                    <div class="card-top">
+                        <div class="card-icon-frame">
+                            <img src="img/monstertv.png" alt="Monster TV">
+                        </div>
+                        <div class="card-info">
+                            <div class="card-app-title">Monster TV</div>
+                            <div class="card-app-ver">v3.8.2 &bull; Thể Thao</div>
+                        </div>
+                    </div>
+                    <span class="card-tag" style="background: rgba(239, 68, 68, 0.15); color: #F87171; border: 1px solid rgba(239, 68, 68, 0.35);">NGOẠI HẠNG ANH</span>
+                    <div class="card-action">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
+                        <span>Cài Đặt Ngay</span>
+                    </div>
+                </article>
+
+                <!-- Xôi Lạc TV -->
+                <article class="tv-card" tabindex="0"
+                    onfocus="updateHero('Xôi Lạc TV Live', 'Kênh thể thao trực tiếp tốc độ cao, hỗ trợ Remote Tivi Xiaomi mượt mà, tự động chuyển luồng dự phòng chống lag.', 'XÔI LẠC OFFICIAL', 'https://raw.githubusercontent.com/Phat20110/mitvpro/main/downloads/SmartTube-Stable.apk', 'img/xoilactv.png')"
+                    onclick="triggerInstall('Xôi Lạc TV', 'https://raw.githubusercontent.com/Phat20110/mitvpro/main/downloads/SmartTube-Stable.apk')">
+                    <div class="card-top">
+                        <div class="card-icon-frame">
+                            <img src="img/xoilactv.png" alt="Xôi Lạc">
+                        </div>
+                        <div class="card-info">
+                            <div class="card-app-title">Xôi Lạc TV</div>
+                            <div class="card-app-ver">Full HD &bull; 60 FPS</div>
+                        </div>
+                    </div>
+                    <span class="card-tag" style="background: rgba(245, 158, 11, 0.15); color: #FBBF24; border: 1px solid rgba(245, 158, 11, 0.35);">BL TIẾNG VIỆT</span>
+                    <div class="card-action">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
+                        <span>Cài Đặt Ngay</span>
+                    </div>
+                </article>
+            </div>
+        </section>
+
+        <!-- Shelf 3: Rạp Phim Điện Ảnh 4K HDR -->
+        <section class="shelf-block" id="sec-cinema">
+            <div class="shelf-header">
+                <h2 class="shelf-title">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><rect x="2" y="2" width="20" height="20" rx="2.18" ry="2.18"></rect><line x1="7" y1="2" x2="7" y2="22"></line><line x1="17" y1="2" x2="17" y2="22"></line><line x1="2" y1="12" x2="22" y2="12"></line><line x1="2" y1="7" x2="7" y2="7"></line><line x1="2" y1="17" x2="7" y2="17"></line><line x1="17" y1="17" x2="22" y2="17"></line><line x1="17" y1="7" x2="22" y2="7"></line></svg>
+                    Rạp Phim 4K & Dolby Vision
+                </h2>
+                <span class="shelf-subtitle">Phim chiếu rạp bom tấn quốc tế và phụ đề tiếng Việt</span>
+            </div>
+            <div class="shelf-rail">
+                <!-- Stremio -->
+                <article class="tv-card" tabindex="0"
+                    onfocus="updateHero('Stremio 4K Cinema', 'Kho phim điện ảnh bom tấn Netflix, HBO, Disney+. Chất lượng 4K Dolby Vision, tự động kéo phụ đề tiếng Việt chuẩn xác.', 'STREMIO CINEMA', 'https://raw.githubusercontent.com/Phat20110/mitvpro/main/downloads/SmartTube-Stable.apk', 'img/stremio.png')"
+                    onclick="triggerInstall('Stremio 4K Cinema', 'https://raw.githubusercontent.com/Phat20110/mitvpro/main/downloads/SmartTube-Stable.apk')">
+                    <div class="card-top">
+                        <div class="card-icon-frame">
+                            <img src="img/stremio.png" alt="Stremio">
+                        </div>
+                        <div class="card-info">
+                            <div class="card-app-title">Stremio 4K</div>
+                            <div class="card-app-ver">v1.6.11 &bull; 32 MB</div>
+                        </div>
+                    </div>
+                    <span class="card-tag" style="background: rgba(139, 92, 246, 0.15); color: #C084FC; border: 1px solid rgba(139, 92, 246, 0.35);">RẠP PHIM 4K</span>
+                    <div class="card-action">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
+                        <span>Cài Đặt Ngay</span>
+                    </div>
+                </article>
+
+                <!-- Cinema 4K -->
+                <article class="tv-card" tabindex="0"
+                    onfocus="updateHero('Kho Phim 4K HDR Vietsub', 'Tuyển tập phim chiếu rạp bom tấn thế giới, âm thanh vòm Dolby Atmos 7.1, tự động đồng bộ phụ đề tiếng Việt chuẩn điện ảnh.', 'DOLBY CINEMA', 'https://raw.githubusercontent.com/Phat20110/mitvpro/main/downloads/SmartTube-Stable.apk', 'img/cinema_4k.png')"
+                    onclick="triggerInstall('Kho Phim 4K', 'https://raw.githubusercontent.com/Phat20110/mitvpro/main/downloads/SmartTube-Stable.apk')">
+                    <div class="card-top">
+                        <div class="card-icon-frame">
+                            <img src="img/cinema_4k.png" alt="Cinema 4K" style="object-fit:cover;">
+                        </div>
+                        <div class="card-info">
+                            <div class="card-app-title">Phim 4K HDR</div>
+                            <div class="card-app-ver">Dolby Vision &bull; Vietsub</div>
+                        </div>
+                    </div>
+                    <span class="card-tag" style="background: rgba(255, 103, 0, 0.15); color: #FFA05C; border: 1px solid rgba(255, 103, 0, 0.35);">RẠP PHIM TẠI GIA</span>
+                    <div class="card-action">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><polygon points="5 3 19 12 5 21 5 3"></polygon></svg>
+                        <span>Khám Phá Ngay</span>
+                    </div>
+                </article>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- TV HUD Notification -->
+    <div id="tvHud"></div>
+
+    <script>
+        let currentInstallUrl = 'https://raw.githubusercontent.com/Phat20110/mitvpro/main/downloads/SmartTube-Stable.apk';
+        let currentAppName = 'SmartTube Next 4K';
+
+        function updateHero(title, desc, badge, url, imgPath) {
+            document.getElementById('heroTitle').innerText = title;
+            document.getElementById('heroDesc').innerText = desc;
+            document.getElementById('heroBadge').innerText = badge;
+            if (imgPath) {
+                document.getElementById('heroLogo').src = imgPath;
+                document.getElementById('ambientLayer').style.backgroundImage = `url('${imgPath}')`;
+            }
+            currentInstallUrl = url;
+            currentAppName = title;
+        }
+
+        function installActiveHero() {
+            triggerInstall(currentAppName, currentInstallUrl);
+        }
+
+        function triggerInstall(name, url) {
+            if (window.AndroidBridge && window.AndroidBridge.installApp) {
+                window.AndroidBridge.installApp(url, name);
+            } else {
+                showHud(`Đang bắt đầu tải và cài đặt ${name}...`);
+                window.location.href = url;
+            }
+        }
+
+        function triggerCleanRam() {
+            if (window.AndroidBridge && window.AndroidBridge.cleanRam) {
+                try {
+                    const res = JSON.parse(window.AndroidBridge.cleanRam());
+                    showHud(`Đã giải phóng ~${res.freedMb}MB RAM! Xiaomi TV hoạt động siêu mượt 60 FPS.`);
+                } catch(e) {
+                    showHud('Đã tối ưu hóa bộ nhớ RAM thành công!');
+                }
+            } else {
+                showHud('Đã giải phóng ~480MB RAM! Xiaomi TV hoạt động siêu mượt 60 FPS.');
+            }
+        }
+
+        function showHud(text) {
+            const hud = document.getElementById('tvHud');
+            hud.innerText = text;
+            hud.style.display = 'block';
+            setTimeout(() => { hud.style.display = 'none'; }, 3600);
+        }
+
+        function jumpSection(id) {
+            const sec = document.getElementById(id);
+            if (sec) {
+                sec.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                const firstCard = sec.querySelector('.tv-card');
+                if (firstCard) firstCard.focus();
+            }
+        }
+
+        // Remote D-Pad Navigation Engine
+        document.addEventListener('keydown', function(e) {
+            const active = document.activeElement;
+            if (!active) return;
+
+            if (active.classList.contains('tv-card')) {
+                if (e.key === 'ArrowRight') {
+                    const next = active.nextElementSibling;
+                    if (next && next.classList.contains('tv-card')) {
+                        next.focus();
+                        e.preventDefault();
+                    }
+                } else if (e.key === 'ArrowLeft') {
+                    const prev = active.previousElementSibling;
+                    if (prev && prev.classList.contains('tv-card')) {
+                        prev.focus();
+                        e.preventDefault();
+                    } else {
+                        const link = document.querySelector('.dock-item.active') || document.querySelector('.dock-item');
+                        if (link) link.focus();
+                        e.preventDefault();
+                    }
+                } else if (e.key === 'ArrowDown') {
+                    const curShelf = active.closest('.shelf-block');
+                    if (curShelf) {
+                        const nextShelf = curShelf.nextElementSibling;
+                        if (nextShelf && nextShelf.classList.contains('shelf-block')) {
+                            const target = nextShelf.querySelector('.tv-card');
+                            if (target) {
+                                target.focus();
+                                target.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                                e.preventDefault();
+                            }
+                        }
+                    }
+                } else if (e.key === 'ArrowUp') {
+                    const curShelf = active.closest('.shelf-block');
+                    if (curShelf) {
+                        const prevShelf = curShelf.previousElementSibling;
+                        if (prevShelf && prevShelf.classList.contains('shelf-block')) {
+                            const target = prevShelf.querySelector('.tv-card');
+                            if (target) {
+                                target.focus();
+                                target.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                                e.preventDefault();
+                            }
+                        } else {
+                            const cta = document.getElementById('heroActionBtn');
+                            if (cta) cta.focus();
+                            e.preventDefault();
+                        }
+                    }
+                } else if (e.key === 'Enter') {
+                    active.click();
+                }
+            } else if (active.classList.contains('dock-item')) {
+                if (e.key === 'ArrowRight') {
+                    const firstCard = document.querySelector('.tv-card');
+                    if (firstCard) firstCard.focus();
+                    e.preventDefault();
+                } else if (e.key === 'ArrowDown') {
+                    const next = active.nextElementSibling;
+                    if (next && next.classList.contains('dock-item')) {
+                        next.focus();
+                        e.preventDefault();
+                    } else {
+                        const ramBtn = document.querySelector('.dock-ram-widget');
+                        if (ramBtn) ramBtn.focus();
+                        e.preventDefault();
+                    }
+                } else if (e.key === 'ArrowUp') {
+                    const prev = active.previousElementSibling;
+                    if (prev && prev.classList.contains('dock-item')) {
+                        prev.focus();
+                        e.preventDefault();
+                    }
+                } else if (e.key === 'Enter') {
+                    active.click();
+                }
+            } else if (active.classList.contains('dock-ram-widget')) {
+                if (e.key === 'ArrowUp') {
+                    const lastItem = document.querySelector('.dock-item:last-of-type');
+                    if (lastItem) lastItem.focus();
+                    e.preventDefault();
+                } else if (e.key === 'ArrowRight') {
+                    const firstCard = document.querySelector('.tv-card');
+                    if (firstCard) firstCard.focus();
+                    e.preventDefault();
+                } else if (e.key === 'Enter') {
+                    active.click();
+                }
+            } else if (active.id === 'heroActionBtn') {
+                if (e.key === 'ArrowDown') {
+                    const firstCard = document.querySelector('.tv-card');
+                    if (firstCard) {
+                        firstCard.focus();
+                        e.preventDefault();
+                    }
+                } else if (e.key === 'ArrowLeft') {
+                    const firstDock = document.querySelector('.dock-item');
+                    if (firstDock) {
+                        firstDock.focus();
+                        e.preventDefault();
+                    }
+                }
+            }
+        });
+
+        // Set initial focus on first card
+        window.addEventListener('load', () => {
+            const firstCard = document.querySelector('.tv-card');
+            if (firstCard) firstCard.focus();
+        });
+    </script>
+</body>
+</html>

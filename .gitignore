@@ -1,0 +1,4 @@
+php_bin/
+.agents/
+*.log
+node_modules/
