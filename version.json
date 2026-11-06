@@ -1,0 +1,14 @@
+{
+  "versionCode": 26,
+  "versionName": "2.5.1",
+  "downloadUrl": "https://raw.githubusercontent.com/Phat20110/mitvpro/main/downloads/MiTV-Pro.apk",
+  "minSupportedVersion": 20,
+  "releaseDate": "2026-11-06",
+  "title": "Bản Nâng Cấp Hệ Thống MiTV Pro",
+  "changelog": [
+    "Sửa triệt để 100% lỗi lệch tâm bong bóng 3D trên thanh Dock",
+    "Tự động mở danh mục đúng dòng kiểu YouTube TV (không cần ấn thêm)",
+    "Loại bỏ hiện tượng nhảy giật màn hình khi bấm nhanh remote D-Pad",
+    "Thanh Dock tự cuộn hiển thị trọn vẹn mục Cài đặt và Nguồn"
+  ]
+}
