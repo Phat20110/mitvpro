@@ -1,0 +1,127 @@
+/* ==========================================================================
+   SMART REMOTE KEYPAD HUD & OVERLAY (LIQUID GLASS)
+   ========================================================================== */
+
+/* 1. Glass Dial Overlay (Badge hiển thị số kênh đang bấm) */
+.glass-dial-overlay {
+    position: fixed;
+    top: 40px;
+    right: 48px;
+    min-width: 130px;
+    padding: 12px 24px;
+    border-radius: var(--radius-lg, 20px);
+    background: var(--glass-bg-strong, rgba(255, 255, 255, 0.14));
+    backdrop-filter: blur(var(--glass-blur, 20px)) saturate(180%);
+    -webkit-backdrop-filter: blur(var(--glass-blur, 20px)) saturate(180%);
+    border: 1px solid var(--glass-border, rgba(255, 255, 255, 0.25));
+    box-shadow: 0 16px 40px rgba(0, 0, 0, 0.6), inset 0 1px 0 rgba(255, 255, 255, 0.4);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 4px;
+    z-index: 9999;
+    opacity: 0;
+    transform: translateY(-20px) scale(0.92);
+    pointer-events: none;
+    transition: opacity 0.22s var(--bezier-tv, cubic-bezier(0.16, 1, 0.3, 1)), transform 0.25s var(--bezier-tv, cubic-bezier(0.16, 1, 0.3, 1));
+}
+
+.glass-dial-overlay.active {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+}
+
+.glass-dial-num {
+    font-size: 2.8rem;
+    font-weight: 800;
+    line-height: 1;
+    letter-spacing: 2px;
+    background: linear-gradient(180deg, #FFFFFF 30%, rgba(255, 255, 255, 0.7) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    filter: drop-shadow(0 2px 8px rgba(255, 122, 26, 0.4));
+}
+
+.glass-dial-name {
+    font-size: 0.95rem;
+    font-weight: 600;
+    color: var(--accent, #FF7A1A);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    white-space: nowrap;
+}
+
+.glass-dial-sub {
+    font-size: 0.72rem;
+    color: rgba(255, 255, 255, 0.6);
+}
+
+/* 2. Diagnostics HUD (Phím 0 - Thống kê kỹ thuật chuẩn CV) */
+.glass-diagnostics-hud {
+    position: fixed;
+    top: 40px;
+    left: 48px;
+    width: 320px;
+    padding: 18px 22px;
+    border-radius: var(--radius-lg, 20px);
+    background: rgba(15, 17, 26, 0.82);
+    backdrop-filter: blur(24px) saturate(180%);
+    -webkit-backdrop-filter: blur(24px) saturate(180%);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.75);
+    z-index: 9999;
+    opacity: 0;
+    transform: translateX(-30px);
+    pointer-events: none;
+    transition: opacity 0.25s ease, transform 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.glass-diagnostics-hud.active {
+    opacity: 1;
+    transform: translateX(0);
+}
+
+.diag-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+    padding-bottom: 8px;
+    margin-bottom: 12px;
+}
+
+.diag-title {
+    font-size: 0.85rem;
+    font-weight: 800;
+    color: var(--accent, #FF7A1A);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.diag-badge {
+    font-size: 0.7rem;
+    background: rgba(0, 200, 83, 0.2);
+    color: #00E676;
+    padding: 2px 8px;
+    border-radius: 999px;
+    font-weight: 700;
+}
+
+.diag-row {
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.8rem;
+    margin-bottom: 6px;
+    color: rgba(255, 255, 255, 0.75);
+}
+
+.diag-val {
+    font-family: monospace;
+    font-weight: 700;
+    color: #FFFFFF;
+}
+
+.diag-val.highlight {
+    color: #00E5FF;
+}
