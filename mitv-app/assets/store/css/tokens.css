@@ -149,3 +149,20 @@ p, .text-secondary, .shelf-subtitle, .card-desc, .hero-desc {
 small, .text-tertiary, .card-app-ver, .dock-brand-sub {
     color: var(--text-tertiary);
 }
+
+/* T9: .glass core class (nền, blur, viền, shadow, highlight) bọc @supports kèm fallback */
+.glass {
+    background: rgba(20, 22, 35, 0.85); /* Fallback khi không hỗ trợ backdrop-filter */
+    border: 1px solid var(--glass-border);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--glass-shadow);
+}
+
+@supports (backdrop-filter: blur(24px)) or (-webkit-backdrop-filter: blur(24px)) {
+    .glass {
+        background: var(--glass-bg);
+        backdrop-filter: blur(var(--glass-blur)) saturate(var(--glass-saturate));
+        -webkit-backdrop-filter: blur(var(--glass-blur)) saturate(var(--glass-saturate));
+        box-shadow: var(--glass-shadow), var(--glass-highlight);
+    }
+}
