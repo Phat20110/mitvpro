@@ -1,74 +1,88 @@
 /* ==========================================================================
-   LEFT VERTICAL CAPSULE LIQUID DOCK WITH BULGING DROPLET BUBBLE
+   LEFT VERTICAL CAPSULE LIQUID DOCK WITH 100% UNBROKEN ORGANIC FLUID BULGE
    ========================================================================== */
 .tv-dock {
-    width: 84px;
+    width: 150px;
     height: 100vh;
     position: fixed;
     left: 0;
     top: 0;
-    background: var(--glass-bg);
-    backdrop-filter: blur(var(--glass-blur)) saturate(var(--glass-saturate));
-    -webkit-backdrop-filter: blur(var(--glass-blur)) saturate(var(--glass-saturate));
-    border-right: 1.5px solid var(--glass-border);
-    box-shadow: var(--glass-shadow);
+    background: var(--glass-bg, rgba(255, 255, 255, 0.045));
+    backdrop-filter: blur(var(--glass-blur, 16px)) saturate(var(--glass-saturate, 220%));
+    -webkit-backdrop-filter: blur(var(--glass-blur, 16px)) saturate(var(--glass-saturate, 220%));
+    border: none !important;
+    box-shadow: none !important;
     display: flex;
     flex-direction: column;
-    align-items: center;
+    align-items: flex-start;
     justify-content: space-between;
-    padding: 24px 0;
+    padding: 24px 0 24px 14px;
     z-index: 100;
     flex-shrink: 0;
+    transition: clip-path 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
+    -webkit-transition: -webkit-clip-path 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
 }
 
-/* Organic 3D Bulging Droplet Bubble */
+/* SVG Contour line tracing the exact fluid rail and droplet */
+.dock-fluid-svg {
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 150px;
+    height: 100vh;
+    pointer-events: none;
+    z-index: 102;
+    overflow: visible;
+}
+
+#fluidRailPath {
+    transition: d 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+/* 3D Liquid Crystal Droplet Lens Effects */
 .droplet-bulge-bubble {
     position: absolute;
-    left: 8px;
-    top: 92px; /* dynamically updated by moveDockBulge */
-    width: 94px;
-    height: 68px;
-    border-radius: 34px 52px 52px 34px;
-    background: rgba(255, 255, 255, 0.08);
-    backdrop-filter: blur(8px) saturate(240%);
-    -webkit-backdrop-filter: blur(8px) saturate(240%);
-    border: 2px solid rgba(255, 255, 255, 0.65);
-    box-shadow: var(--glass-bubble-shadow);
+    left: 10px;
+    top: 108px;
+    width: 114px;
+    height: 90px;
     pointer-events: none;
-    z-index: 3;
-    transition: top 0.42s var(--bezier-bubble), transform 0.2s ease;
+    z-index: 104;
+    border-radius: 45px 55px 55px 45px;
+    box-shadow: 
+        inset 2px 3px 6px rgba(255, 255, 255, 0.95),
+        inset -4px -4px 10px rgba(0, 240, 255, 0.85),
+        inset 4px 4px 14px rgba(255, 20, 140, 0.80),
+        inset 0 -5px 12px rgba(255, 220, 0, 0.70),
+        0 16px 36px rgba(0, 0, 0, 0.45);
+    transition: top 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
 }
 
-/* Rainbow dispersion edge on the bubble */
-.droplet-bulge-bubble::after {
-    content: '';
-    position: absolute;
-    inset: -2px;
-    border-radius: inherit;
-    padding: 2px;
-    background: linear-gradient(135deg, 
-        #ff0055 0%, 
-        #ffe600 28%, 
-        #00e5ff 62%, 
-        #9d00ff 100%);
-    -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
-    -webkit-mask-composite: xor;
-    mask-composite: exclude;
-    pointer-events: none;
-    opacity: 0.9;
-    filter: drop-shadow(0 0 8px rgba(0, 240, 255, 0.7));
-}
-
+/* 3D Specular reflection glint arc */
 .glint-spec {
     position: absolute;
-    top: 6px;
-    left: 14px;
-    width: 26px;
-    height: 10px;
+    top: 8px;
+    left: 18px;
+    width: 40px;
+    height: 18px;
     border-radius: 50%;
-    background: rgba(255, 255, 255, 0.95);
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.98) 0%, rgba(255, 255, 255, 0.0) 100%);
     filter: blur(1.5px);
-    transform: rotate(-30deg);
+    transform: rotate(-32deg);
+    pointer-events: none;
+}
+
+/* Caustic glow on the bulging lens */
+.glint-caustic {
+    position: absolute;
+    bottom: 8px;
+    right: 18px;
+    width: 34px;
+    height: 14px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(0, 240, 255, 0.85) 0%, transparent 80%);
+    filter: blur(2px);
+    pointer-events: none;
 }
 
 .dock-brand {
@@ -77,6 +91,8 @@
     align-items: center;
     gap: 6px;
     margin-bottom: 8px;
+    width: 52px;
+    z-index: 106;
 }
 
 .dock-brand-logo {
@@ -95,74 +111,80 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 14px;
-    width: 100%;
+    gap: 16px;
+    width: 52px;
+    z-index: 106;
 }
 
 .dock-item {
-    width: 52px;
-    height: 52px;
+    width: 48px;
+    height: 48px;
     border-radius: 50%;
+    border: none;
+    background: transparent;
+    color: rgba(255, 255, 255, 0.65);
     display: flex;
     align-items: center;
     justify-content: center;
-    color: rgba(255, 255, 255, 0.85);
     cursor: pointer;
-    transition: all 0.22s ease;
-    position: relative;
-    z-index: 5;
-    background: transparent;
-    border: none;
     outline: none;
+    transition: all 0.25s var(--bezier-tv, cubic-bezier(0.16, 1, 0.3, 1));
+    position: relative;
+    z-index: 106;
 }
 
 .dock-item svg {
-    width: 24px;
-    height: 24px;
-    stroke-width: 1.8;
-    stroke: currentColor;
-    filter: drop-shadow(0 2px 4px rgba(0,0,0,0.4));
-    transition: stroke 0.2s ease, transform 0.2s ease;
+    width: 22px;
+    height: 22px;
+    stroke-width: 2;
+    transition: transform 0.25s var(--bezier-tv, cubic-bezier(0.16, 1, 0.3, 1)), stroke 0.25s ease;
 }
 
-.dock-item .dock-label {
-    display: none;
-}
-
-.dock-item:focus, .dock-item:hover, .dock-item.active {
+.dock-item:hover, .dock-item:focus {
     color: #FFFFFF;
-}
-
-.dock-item:focus svg, .dock-item:hover svg, .dock-item.active svg {
-    stroke: #FFFFFF;
-    transform: scale(1.1);
-}
-
-/* Quick Clean RAM Widget */
-.dock-ram-widget {
-    width: 52px;
-    height: 52px;
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background: rgba(255, 255, 255, 0.05);
-    border: 1px solid rgba(255, 255, 255, 0.35);
-    color: var(--accent);
-    cursor: pointer;
-    outline: none;
-    transition: all 0.22s ease;
-    box-shadow: 0 4px 14px rgba(0,0,0,0.3);
-}
-
-.dock-ram-widget:hover, .dock-ram-widget:focus {
-    background: var(--accent);
-    color: #fff;
-    border-color: #fff;
-    box-shadow: 0 0 20px var(--accent-glow);
     transform: scale(1.08);
 }
 
-.dock-ram-meta {
-    display: none;
+.dock-item.active {
+    color: #FFFFFF;
+    filter: drop-shadow(0 2px 8px rgba(0, 0, 0, 0.9));
+    transform: scale(1.15) translateX(6px);
+}
+
+.dock-item.active svg {
+    stroke-width: 2.2;
+}
+
+/* RAM / Optimizer Quick Widget */
+.dock-ram-widget {
+    width: 50px;
+    height: 50px;
+    border-radius: 16px;
+    background: rgba(255, 255, 255, 0.06);
+    border: 1px solid rgba(255, 255, 255, 0.25);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    outline: none;
+    transition: all 0.25s ease;
+    margin-top: auto;
+    width: 52px;
+    z-index: 106;
+}
+
+.dock-ram-widget svg {
+    width: 22px;
+    height: 22px;
+    stroke: var(--accent);
+}
+
+.dock-ram-widget:focus, .dock-ram-widget:hover {
+    background: var(--accent);
+    box-shadow: 0 0 20px rgba(255, 122, 26, 0.6);
+    transform: scale(1.08);
+}
+
+.dock-ram-widget:focus svg, .dock-ram-widget:hover svg {
+    stroke: #FFFFFF;
 }

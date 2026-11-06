@@ -25,10 +25,31 @@
     <div class="ambient-vignette"></div>
 
     <!-- 1. LEFT VERTICAL CAPSULE LIQUID DOCK -->
+        <!-- SVG Seamless Fluid Rail & Prismatic Contour -->
+    <svg class="dock-fluid-svg" viewBox="0 0 150 1080" preserveAspectRatio="none">
+        <defs>
+            <linearGradient id="prismRail" x1="0%" y1="0%" x2="100%" y2="100%">
+                <stop offset="0%" stop-color="rgba(255,255,255,0.7)" />
+                <stop offset="9%" stop-color="rgba(255,255,255,0.4)" />
+                <stop offset="12%" stop-color="#ff0055" />
+                <stop offset="14%" stop-color="#ffe600" />
+                <stop offset="17%" stop-color="#00e5ff" />
+                <stop offset="20%" stop-color="#ff007f" />
+                <stop offset="23%" stop-color="rgba(255,255,255,0.4)" />
+                <stop offset="100%" stop-color="rgba(255,255,255,0.2)" />
+            </linearGradient>
+            <filter id="railBloom" x="-20%" y="-20%" width="140%" height="140%">
+                <feDropShadow dx="0" dy="0" stdDeviation="2" flood-color="#00e5ff" flood-opacity="0.6"/>
+            </filter>
+        </defs>
+        <path id="fluidRailPath" d="" fill="none" stroke="url(#prismRail)" stroke-width="2" filter="url(#railBloom)" />
+    </svg>
+
     <aside class="tv-dock" id="tvDock">
         <!-- Organic 3D Bulging Droplet Bubble -->
         <div class="droplet-bulge-bubble" id="dropletBulge">
             <div class="glint-spec"></div>
+            <div class="glint-caustic"></div>
         </div>
 
         <div class="dock-brand">
@@ -419,11 +440,35 @@
             if (targetSectionId) jumpSection(targetSectionId);
         }
 
+        function getRailPaths(cy) {
+            const rx = 80;
+            // Closed polygon for dock clip-path
+            const clipD = `M 0,0 L ${rx},0 L ${rx},${cy - 52} C ${rx},${cy - 26} 88,${cy - 18} 104,${cy - 10} C 142,${cy + 6} 142,${cy + 24} 104,${cy + 40} C 88,${cy + 48} ${rx},${cy + 56} ${rx},${cy + 82} L ${rx},1080 L 0,1080 Z`;
+            // Open stroke for the right rail fluid contour
+            const strokeD = `M ${rx},0 L ${rx},${cy - 52} C ${rx},${cy - 26} 88,${cy - 18} 104,${cy - 10} C 142,${cy + 6} 142,${cy + 24} 104,${cy + 40} C 88,${cy + 48} ${rx},${cy + 56} ${rx},${cy + 82} L ${rx},1080`;
+            return { clipD, strokeD };
+        }
+
         function moveDockBulge(btn) {
             const bulge = document.getElementById('dropletBulge');
+            const dock = document.getElementById('tvDock');
+            const pathElem = document.getElementById('fluidRailPath');
             if (!bulge || !btn) return;
-            const topPos = btn.offsetTop - 8;
-            bulge.style.top = `${topPos}px`;
+            const cy = btn.offsetTop + btn.offsetHeight / 2;
+            const { clipD, strokeD } = getRailPaths(cy);
+            
+            if (dock) {
+                dock.style.clipPath = `path('${clipD}')`;
+                dock.style.webkitClipPath = `path('${clipD}')`;
+            }
+            if (pathElem) {
+                pathElem.setAttribute('d', strokeD);
+            }
+            bulge.style.top = `${cy - 45}px`;
+        }px`;
+            if (dock) {
+                dock.style.setProperty('--mask-top', `${topPos}px`);
+            }
         }
 
         function jumpSection(id) {
