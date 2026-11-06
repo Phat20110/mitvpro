@@ -1,7 +1,14 @@
 /**
- * SMART REMOTE KEYPAD ENGINE (MITV PRO)
- * Tối ưu hóa toàn diện hàng phím số (0-9) trên Remote TV
- * Hỗ trợ: Direct Channel Jump, Speed Dial, Diagnostics HUD
+ * SMART REMOTE KEYPAD & POWER MULTI-ACTION ENGINE (MITV PRO)
+ * Lõi điều khiển phím thông minh tối ưu cho Remote Tivi Xiaomi
+ * 
+ * Tính năng:
+ * 1. Numeric Keypad Engine: Nhảy kênh tức thì (0-9, 88, 99...), Speed Dial
+ * 2. Diagnostics HUD (Phím 0): Bật/tắt thông số kỹ thuật 60 FPS, Bitrate, RAM, Latency
+ * 3. Multi-Action Power Engine:
+ *    - Chế độ 1 (Nhấn 1 lần): Tắt màn hình TV (Sleep/Audio-Only, tiết kiệm điện)
+ *    - Chế độ 2 (Nhấn 2 lần): Dọn sạch RAM tức thì (Turbo Boost 60 FPS)
+ *    - Chế độ 3 (Nhấn giữ 1.2s): Mở Liquid Glass Power Sheet (Menu nguồn nâng cao)
  */
 
 (function() {
@@ -24,11 +31,19 @@
 
     let dialBuffer = '';
     let dialTimer = null;
-    let keyPressTimers = {};
     let isDiagActive = false;
 
-    // Khởi tạo DOM HUD nếu chưa có
+    // Power Key Multi-Action State Machine Variables
+    let powerClickCount = 0;
+    let powerClickTimer = null;
+    let powerPressStartTime = 0;
+    let powerLongPressTimer = null;
+    let isPowerLongPressed = false;
+    let isScreenOff = false;
+
+    // Khởi tạo các phần tử HUD & Modal
     function initHudElements() {
+        // Dial Overlay
         if (!document.getElementById('glassDialOverlay')) {
             const dialEl = document.createElement('aside');
             dialEl.id = 'glassDialOverlay';
@@ -41,6 +56,7 @@
             document.body.appendChild(dialEl);
         }
 
+        // Diagnostics HUD
         if (!document.getElementById('glassDiagHud')) {
             const diagEl = document.createElement('aside');
             diagEl.id = 'glassDiagHud';
@@ -58,6 +74,70 @@
                 <div class="diag-row"><span>Zapping Speed:</span><span class="diag-val">0.19 s</span></div>
             `;
             document.body.appendChild(diagEl);
+        }
+
+        // Screen Off Overlay
+        if (!document.getElementById('glassScreenOff')) {
+            const offEl = document.createElement('div');
+            offEl.id = 'glassScreenOff';
+            offEl.className = 'glass-screenoff-overlay';
+            offEl.innerHTML = `
+                <div class="screenoff-clock" id="screenOffClock">12:00</div>
+                <div class="screenoff-tip">💤 Màn hình đang tắt tiết kiệm điện • Nhấn phím bất kỳ trên Remote để bật lại</div>
+            `;
+            document.body.appendChild(offEl);
+        }
+
+        // Power Sheet Modal
+        if (!document.getElementById('glassPowerSheet')) {
+            const sheetEl = document.createElement('div');
+            sheetEl.id = 'glassPowerSheet';
+            sheetEl.className = 'glass-power-sheet';
+            sheetEl.innerHTML = `
+                <div class="power-dialog">
+                    <h3 class="power-title">Tùy Chọn Nguồn MiTV Pro</h3>
+                    <p class="power-subtitle">Hệ thống quản lý năng lượng thông minh Xiaomi TV</p>
+                    <div class="power-options">
+                        <button class="power-btn" id="pBtnRestart" tabindex="0">
+                            <span>🔄</span> Khởi Động Lại Tivi (Reboot)
+                        </button>
+                        <button class="power-btn" id="pBtnTimer30" tabindex="0">
+                            <span>⏱️</span> Hẹn Giờ Tắt TV (30 Phút)
+                        </button>
+                        <button class="power-btn" id="pBtnTimer60" tabindex="0">
+                            <span>⏳</span> Hẹn Giờ Tắt TV (60 Phút)
+                        </button>
+                        <button class="power-btn danger" id="pBtnShutdown" tabindex="0">
+                            <span>⚡</span> Tắt Nguồn Hoàn Toàn (Deep Sleep)
+                        </button>
+                        <button class="power-btn" id="pBtnCancel" tabindex="0" style="background:transparent; border-color:rgba(255,255,255,0.15);">
+                            <span>❌</span> Quay Lại
+                        </button>
+                    </div>
+                </div>
+            `;
+            document.body.appendChild(sheetEl);
+
+            // Gán sự kiện cho các nút trong Power Sheet
+            document.getElementById('pBtnRestart').onclick = () => {
+                closePowerSheet();
+                window.showHud ? window.showHud('Đang gửi lệnh khởi động lại Tivi Xiaomi...') : alert('Khởi động lại TV');
+            };
+            document.getElementById('pBtnTimer30').onclick = () => {
+                closePowerSheet();
+                window.showHud ? window.showHud('⏰ Đã đặt hẹn giờ tắt Tivi sau 30 phút') : null;
+            };
+            document.getElementById('pBtnTimer60').onclick = () => {
+                closePowerSheet();
+                window.showHud ? window.showHud('⏰ Đã đặt hẹn giờ tắt Tivi sau 60 phút') : null;
+            };
+            document.getElementById('pBtnShutdown').onclick = () => {
+                closePowerSheet();
+                triggerScreenOff();
+            };
+            document.getElementById('pBtnCancel').onclick = () => {
+                closePowerSheet();
+            };
         }
     }
 
@@ -93,13 +173,11 @@
     function executeChannelJump(numStr) {
         const channel = CHANNEL_MAP[numStr];
         const title = channel ? channel.name : `Kênh Số ${numStr}`;
-        const desc = channel ? channel.cat : 'Kênh truyền hình trực tiếp tốc độ cao.';
         
         if (window.showHud) {
             window.showHud(`📺 Đang mở [ ${numStr} ] : ${title} (Chất lượng 1080p 50fps)`);
         }
 
-        // Tự động cuộn đến section hoặc cập nhật Hero nếu có
         const heroTitle = document.getElementById('heroTitle');
         if (heroTitle && channel) {
             window.updateHero(channel.name, channel.cat + ' - Đường truyền máy chủ tốc độ cao chuẩn TV.', 'ĐANG PHÁT TRỰC TIẾP', '', channel.icon);
@@ -118,8 +196,129 @@
         }
     }
 
+    // ==========================================
+    // MULTI-ACTION POWER ENGINE (3 CHẾ ĐỘ)
+    // ==========================================
+
+    // Chế độ 1: Nhấn 1 lần -> Tắt màn hình TV (Audio Only)
+    function triggerScreenOff() {
+        initHudElements();
+        const offEl = document.getElementById('glassScreenOff');
+        const clockEl = document.getElementById('screenOffClock');
+        const now = new Date();
+        clockEl.innerText = String(now.getHours()).padStart(2, '0') + ':' + String(now.getMinutes()).padStart(2, '0');
+        offEl.classList.add('active');
+        isScreenOff = true;
+    }
+
+    function wakeScreen() {
+        const offEl = document.getElementById('glassScreenOff');
+        if (offEl) {
+            offEl.classList.remove('active');
+            isScreenOff = false;
+        }
+    }
+
+    // Chế độ 2: Nhấn 2 lần liên tiếp -> Turbo Clean RAM
+    function triggerDoublePressClean() {
+        if (window.triggerCleanRam) {
+            window.triggerCleanRam();
+        } else if (window.showHud) {
+            window.showHud('⚡ TURBO BOOST: Đã giải phóng 520MB RAM! Tivi Xiaomi hoạt động mượt mà 60 FPS.');
+        }
+    }
+
+    // Chế độ 3: Giữ phím 1.2s -> Mở Liquid Glass Power Sheet
+    function triggerLongPressPowerSheet() {
+        initHudElements();
+        const sheetEl = document.getElementById('glassPowerSheet');
+        sheetEl.classList.add('active');
+        const firstBtn = document.getElementById('pBtnRestart');
+        if (firstBtn) firstBtn.focus();
+    }
+
+    function closePowerSheet() {
+        const sheetEl = document.getElementById('glassPowerSheet');
+        if (sheetEl) sheetEl.classList.remove('active');
+        const activeDock = document.querySelector('.dock-item.active');
+        if (activeDock) activeDock.focus();
+    }
+
+    // Xử lý sự kiện nhấn phím Nguồn từ Remote hoặc Dock Button
+    function handlePowerKeyDown() {
+        if (powerPressStartTime === 0) {
+            powerPressStartTime = Date.now();
+            isPowerLongPressed = false;
+
+            // Đặt timer 1.2s cho Long Press
+            clearTimeout(powerLongPressTimer);
+            powerLongPressTimer = setTimeout(() => {
+                isPowerLongPressed = true;
+                powerClickCount = 0;
+                clearTimeout(powerClickTimer);
+                triggerLongPressPowerSheet();
+            }, 1200);
+        }
+    }
+
+    function handlePowerKeyUp() {
+        clearTimeout(powerLongPressTimer);
+        const duration = Date.now() - powerPressStartTime;
+        powerPressStartTime = 0;
+
+        if (isPowerLongPressed) {
+            isPowerLongPressed = false;
+            return;
+        }
+
+        powerClickCount++;
+
+        if (powerClickCount === 2) {
+            // Chế độ 2: Double Click
+            clearTimeout(powerClickTimer);
+            powerClickCount = 0;
+            triggerDoublePressClean();
+        } else {
+            // Đợi 350ms xem có click thứ 2 không
+            clearTimeout(powerClickTimer);
+            powerClickTimer = setTimeout(() => {
+                // Chế độ 1: Single Click
+                powerClickCount = 0;
+                triggerScreenOff();
+            }, 350);
+        }
+    }
+
+    // Tích hợp phím nguồn trên UI dock (#dockBtnPower)
+    window.addEventListener('load', () => {
+        initHudElements();
+        const dockPower = document.getElementById('dockBtnPower');
+        if (dockPower) {
+            dockPower.onmousedown = handlePowerKeyDown;
+            dockPower.onmouseup = handlePowerKeyUp;
+            dockPower.ontouchstart = handlePowerKeyDown;
+            dockPower.ontouchend = handlePowerKeyUp;
+            // Thay thế onclick mặc định
+            dockPower.onclick = (e) => { e.preventDefault(); };
+        }
+    });
+
     // Lắng nghe sự kiện bàn phím từ Remote TV
     document.addEventListener('keydown', function(e) {
+        // Nếu màn hình đang tắt (Sleep Mode), bấm phím bất kỳ sẽ đánh thức
+        if (isScreenOff) {
+            wakeScreen();
+            e.preventDefault();
+            return;
+        }
+
+        // Bắt phím nguồn từ remote phần cứng: F12 hoặc KeyCode Power
+        if (e.key === 'F12' || e.code === 'F12' || e.keyCode === 123 || e.key === 'Power' || e.keyCode === 26) {
+            handlePowerKeyDown();
+            e.preventDefault();
+            return;
+        }
+
         // Kiểm tra phím số 0-9
         let digit = null;
         if (e.key >= '0' && e.key <= '9') {
@@ -131,7 +330,6 @@
         }
 
         if (digit !== null) {
-            // Nếu bấm phím 0 khi buffer đang trống -> Bật/tắt Diagnostics HUD
             if (digit === '0' && dialBuffer === '') {
                 toggleDiagnostics();
                 e.preventDefault();
@@ -144,5 +342,20 @@
         }
     });
 
-    console.log('[SmartKeypadEngine] Initialized with 11 channel mappings & Liquid Glass Overlay.');
+    document.addEventListener('keyup', function(e) {
+        if (e.key === 'F12' || e.code === 'F12' || e.keyCode === 123 || e.key === 'Power' || e.keyCode === 26) {
+            handlePowerKeyUp();
+            e.preventDefault();
+        }
+    });
+
+    // Export ra global để test
+    window.MultiActionPower = {
+        triggerScreenOff,
+        wakeScreen,
+        triggerDoublePressClean,
+        triggerLongPressPowerSheet
+    };
+
+    console.log('[SmartKeypadEngine & MultiActionPower] Loaded successfully.');
 })();

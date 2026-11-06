@@ -125,3 +125,132 @@
 .diag-val.highlight {
     color: #00E5FF;
 }
+
+/* 3. Screen-Off Audio-Only Blackout (Chế độ 1: Nhấn 1 lần phím nguồn) */
+.glass-screenoff-overlay {
+    position: fixed;
+    inset: 0;
+    background: #000000;
+    z-index: 10000;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.4s ease;
+}
+
+.glass-screenoff-overlay.active {
+    opacity: 1;
+    pointer-events: auto;
+}
+
+.screenoff-clock {
+    font-size: 4.5rem;
+    font-weight: 800;
+    color: rgba(255, 255, 255, 0.25);
+    letter-spacing: 4px;
+    font-family: monospace;
+    margin-bottom: 12px;
+}
+
+.screenoff-tip {
+    font-size: 0.95rem;
+    color: rgba(255, 255, 255, 0.45);
+    background: rgba(255, 255, 255, 0.05);
+    padding: 8px 20px;
+    border-radius: 999px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+/* 4. Liquid Glass Power Sheet (Chế độ 3: Giữ phím nguồn 1.2s) */
+.glass-power-sheet {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.65);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    z-index: 9999;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.25s ease;
+}
+
+.glass-power-sheet.active {
+    opacity: 1;
+    pointer-events: auto;
+}
+
+.power-dialog {
+    width: 440px;
+    padding: 28px;
+    border-radius: 28px;
+    background: var(--glass-bg-strong, rgba(255, 255, 255, 0.14));
+    backdrop-filter: blur(28px) saturate(200%);
+    -webkit-backdrop-filter: blur(28px) saturate(200%);
+    border: 1.5px solid rgba(255, 255, 255, 0.35);
+    box-shadow: 0 30px 80px rgba(0, 0, 0, 0.8), inset 0 1px 0 rgba(255, 255, 255, 0.5);
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    transform: scale(0.92);
+    transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.glass-power-sheet.active .power-dialog {
+    transform: scale(1);
+}
+
+.power-title {
+    font-size: 1.3rem;
+    font-weight: 800;
+    text-align: center;
+    color: #FFFFFF;
+    margin: 0;
+}
+
+.power-subtitle {
+    font-size: 0.82rem;
+    text-align: center;
+    color: rgba(255, 255, 255, 0.65);
+    margin-top: -8px;
+    margin-bottom: 8px;
+}
+
+.power-options {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.power-btn {
+    padding: 14px 20px;
+    border-radius: 16px;
+    background: rgba(255, 255, 255, 0.08);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    color: #FFFFFF;
+    font-size: 0.95rem;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    cursor: pointer;
+    transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.power-btn:hover, .power-btn:focus {
+    background: var(--accent, #FF7A1A);
+    border-color: #FFFFFF;
+    transform: scale(1.03);
+    box-shadow: 0 10px 25px rgba(255, 122, 26, 0.4);
+    outline: none;
+}
+
+.power-btn.danger:hover, .power-btn.danger:focus {
+    background: #E53935;
+    box-shadow: 0 10px 25px rgba(229, 57, 53, 0.4);
+}
