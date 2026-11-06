@@ -1,16 +1,95 @@
 /* ==========================================================================
-   TV PERFORMANCE & BROWSER FALLBACKS
+   TV PERFORMANCE & BROWSER FALLBACKS (LIQUID GLASS G10)
    ========================================================================== */
+
+/* T91: Fallback nền cho trình duyệt / WebView TV không hỗ trợ backdrop-filter */
 @supports not (backdrop-filter: blur(10px)) {
-    .tv-dock, .hero-banner, .tv-card, .tv-remote-widget, #tvHud, .droplet-bulge-bubble {
-        background: rgba(18, 20, 32, 0.92) !important;
+    .tv-dock, .hero-banner, .tv-card, .tv-remote-widget, #tvHud, .droplet-bulge-bubble, .shelf-header {
+        background: rgba(20, 22, 35, 0.85) !important;
+        -webkit-backdrop-filter: none !important;
+        backdrop-filter: none !important;
     }
 }
 
-.perf-lite .ambient-backdrop {
+/* T92: Class .perf-lite trên body: blur 8px, tắt orb, noise và animation phụ */
+body.perf-lite {
+    --glass-blur: 8px !important;
+}
+
+body.perf-lite .ambient-backdrop {
     filter: brightness(0.65) !important;
 }
 
-.tv-card, .dock-item, .tv-remote-widget {
+body.perf-lite .orb,
+body.perf-lite .shimmer,
+body.perf-lite .glint-spec {
+    display: none !important;
+    animation: none !important;
+}
+
+body.perf-lite .shelf-rail .tv-card {
+    animation: none !important;
+}
+
+/* T93: Giảm backdrop-filter lồng nhau: thẻ con trong panel kính không dùng blur riêng */
+.tv-card .card-icon-frame,
+.tv-card .card-action,
+.tv-card .card-tag {
+    backdrop-filter: none !important;
+    -webkit-backdrop-filter: none !important;
+}
+
+/* T94: will-change: transform chỉ cho phần tử đang animate/focus */
+.tv-card:focus,
+.dock-item:focus,
+.droplet-bulge-bubble {
     will-change: transform;
+}
+
+/* T95: prefers-reduced-motion: tắt float, shimmer, sweep */
+@media (prefers-reduced-motion: reduce) {
+    *, ::before, ::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+    }
+}
+
+/* T96 & T97: Responsive & TV Overscan (3-5% margin an toàn) */
+.tv-app-shell {
+    padding: clamp(16px, 3.5vw, 40px) clamp(20px, 4.5vw, 60px);
+    box-sizing: border-box;
+}
+
+@media (max-width: 1280px) {
+    .tv-card {
+        flex: 0 0 210px;
+        height: 145px;
+    }
+    .hero-banner {
+        min-height: 200px;
+    }
+}
+
+@media (max-width: 768px) {
+    .tv-dock {
+        display: none;
+    }
+    .tv-remote-widget {
+        display: none;
+    }
+    .main-viewport {
+        margin-left: 0 !important;
+    }
+}
+
+/* T98: Đảm bảo tương phản tối thiểu 4.5:1 */
+.card-app-title, .hero-title, .shelf-title {
+    color: var(--text-primary, #FFFFFF);
+    text-shadow: 0 1px 3px rgba(0, 0, 0, 0.6);
+}
+
+.card-app-ver, .shelf-subtitle {
+    color: var(--text-secondary, rgba(255, 255, 255, 0.82));
 }

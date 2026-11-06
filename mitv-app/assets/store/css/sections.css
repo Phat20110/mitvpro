@@ -1,16 +1,38 @@
 /* ==========================================================================
-   SHELVES & HORIZONTAL CAROUSELS
+   SHELVES & HORIZONTAL CAROUSELS (LIQUID GLASS G6)
    ========================================================================== */
 .shelf-block {
-    margin-bottom: 34px;
+    margin-bottom: var(--space-32, 32px);
     position: relative;
 }
 
+/* T53: Gradient mờ phân tách nhẹ giữa các section */
+.shelf-block::after {
+    content: '';
+    position: absolute;
+    bottom: -16px;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: linear-gradient(90deg, transparent 0%, rgba(255, 255, 255, 0.08) 30%, rgba(255, 255, 255, 0.08) 70%, transparent 100%);
+    pointer-events: none;
+}
+
+/* T56: Tiêu đề section sticky dạng thanh kính mỏng khi cuộn dọc */
 .shelf-header {
     display: flex;
-    align-items: baseline;
+    align-items: center;
     gap: 12px;
     margin-bottom: 14px;
+    position: sticky;
+    top: 0;
+    z-index: 20;
+    padding: 6px 12px;
+    border-radius: var(--radius-md, 14px);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    background: rgba(12, 14, 24, 0.25);
+    border: 1px solid rgba(255, 255, 255, 0.08);
 }
 
 .shelf-title {
@@ -35,15 +57,99 @@
     font-weight: 500;
 }
 
+/* T52: Chip cạnh tiêu đề (Logo gốc 100%, Dolby Atmos, v.v.): pill kính nhỏ, chữ --text-secondary */
+.shelf-chip {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    font-size: 0.68rem;
+    font-weight: 700;
+    color: var(--text-secondary);
+    background: rgba(255, 255, 255, 0.06);
+    border: 1px solid rgba(255, 255, 255, 0.18);
+    border-radius: var(--radius-pill);
+    padding: 3px 9px;
+    backdrop-filter: blur(6px);
+    -webkit-backdrop-filter: blur(6px);
+    letter-spacing: 0.02em;
+}
+
+/* T54: Hàng cuộn ngang có mask-image làm mờ 2 mép */
 .shelf-rail {
     display: flex;
     gap: 20px;
     overflow-x: auto;
     overflow-y: visible;
-    padding: 10px 4px 18px;
+    padding: 12px 6px 20px;
     scroll-behavior: smooth;
+    mask-image: linear-gradient(to right, transparent 0%, black 20px, black calc(100% - 20px), transparent 100%);
+    -webkit-mask-image: linear-gradient(to right, transparent 0%, black 20px, black calc(100% - 20px), transparent 100%);
 }
 
+/* T55: Ẩn thanh cuộn mặc định, thanh mảnh dạng kính khi focus */
 .shelf-rail::-webkit-scrollbar {
-    display: none;
+    height: 4px;
+    background: transparent;
+}
+
+.shelf-rail::-webkit-scrollbar-thumb {
+    background: rgba(255, 255, 255, 0.15);
+    border-radius: var(--radius-pill);
+    backdrop-filter: blur(4px);
+}
+
+/* T57: Thẻ xuất hiện fade-in và translateY 12px stagger 40ms chạy 1 lần */
+@keyframes cardAppear {
+    from {
+        opacity: 0;
+        transform: translateY(12px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.shelf-rail .tv-card {
+    animation: cardAppear 0.35s var(--bezier-tv) backwards;
+}
+.shelf-rail .tv-card:nth-child(1) { animation-delay: 40ms; }
+.shelf-rail .tv-card:nth-child(2) { animation-delay: 80ms; }
+.shelf-rail .tv-card:nth-child(3) { animation-delay: 120ms; }
+.shelf-rail .tv-card:nth-child(4) { animation-delay: 160ms; }
+.shelf-rail .tv-card:nth-child(5) { animation-delay: 200ms; }
+.shelf-rail .tv-card:nth-child(6) { animation-delay: 240ms; }
+
+/* T58: Skeleton shimmer kiểu kính cho thẻ khi đang tải */
+.tv-card.is-skeleton {
+    pointer-events: none;
+    position: relative;
+    overflow: hidden;
+}
+
+.tv-card.is-skeleton::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    transform: translateX(-100%);
+    background: linear-gradient(90deg, transparent 0%, rgba(255, 255, 255, 0.12) 50%, transparent 100%);
+    animation: skeletonShimmer 1.4s infinite;
+}
+
+@keyframes skeletonShimmer {
+    100% {
+        transform: translateX(100%);
+    }
+}
+
+/* T59: Logo lỗi tải: placeholder kính với chữ cái đầu tên app */
+.card-icon-frame.fallback-icon {
+    background: rgba(255, 255, 255, 0.1);
+    color: #FFFFFF;
+    font-weight: 800;
+    font-size: 1.2rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid rgba(255, 255, 255, 0.3);
 }

@@ -108,6 +108,7 @@
                     Ứng Dụng Khuyên Dùng
                 </h2>
                 <span class="shelf-subtitle">Bộ ứng dụng chuẩn nhận diện thương hiệu gốc</span>
+                <span class="shelf-chip">Logo gốc 100%</span>
             </div>
             <div class="shelf-rail">
                 <!-- SmartTube -->
@@ -116,7 +117,7 @@
                     onclick="triggerInstall('SmartTube Next 4K', 'https://raw.githubusercontent.com/Phat20110/mitvpro/main/downloads/SmartTube-Stable.apk')">
                     <div class="card-top">
                         <div class="card-icon-frame">
-                            <img src="img/smarttube_icon.png" alt="SmartTube">
+                            <img src="img/smarttube_icon.png" alt="SmartTube" onerror="this.style.display=\'none\'; this.parentElement.classList.add(\'fallback-icon\'); this.parentElement.innerText=\'SmartTube\'[0];">
                         </div>
                         <div class="card-info">
                             <div class="card-app-title">SmartTube 4K</div>
@@ -136,7 +137,7 @@
                     onclick="triggerInstall('VTV Go TV', 'https://raw.githubusercontent.com/Phat20110/mitvpro/main/downloads/SmartTube-Stable.apk')">
                     <div class="card-top">
                         <div class="card-icon-frame">
-                            <img src="img/vtvgo.png" alt="VTV Go">
+                            <img src="img/vtvgo.png" alt="VTV Go" onerror="this.style.display=\'none\'; this.parentElement.classList.add(\'fallback-icon\'); this.parentElement.innerText=\'VTV Go\'[0];">
                         </div>
                         <div class="card-info">
                             <div class="card-app-title">VTV Go TV</div>
@@ -156,7 +157,7 @@
                     onclick="triggerInstall('TiviMate IPTV Pro', 'https://raw.githubusercontent.com/Phat20110/mitvpro/main/downloads/SmartTube-Stable.apk')">
                     <div class="card-top">
                         <div class="card-icon-frame">
-                            <img src="img/tivimate.png" alt="TiviMate">
+                            <img src="img/tivimate.png" alt="TiviMate" onerror="this.style.display=\'none\'; this.parentElement.classList.add(\'fallback-icon\'); this.parentElement.innerText=\'TiviMate\'[0];">
                         </div>
                         <div class="card-info">
                             <div class="card-app-title">TiviMate Pro</div>
@@ -180,6 +181,7 @@
                     Thể Thao & Bóng Đá Trực Tiếp
                 </h2>
                 <span class="shelf-subtitle">Trọn vẹn Ngoại Hạng Anh, Cúp C1 tốc độ cao</span>
+                <span class="shelf-chip">60 FPS Siêu Mượt</span>
             </div>
             <div class="shelf-rail">
                 <!-- Monster TV -->
@@ -188,7 +190,7 @@
                     onclick="triggerInstall('Monster TV Sports', 'https://raw.githubusercontent.com/Phat20110/mitvpro/main/downloads/SmartTube-Stable.apk')">
                     <div class="card-top">
                         <div class="card-icon-frame">
-                            <img src="img/monstertv.png" alt="Monster TV">
+                            <img src="img/monstertv.png" alt="Monster TV" onerror="this.style.display=\'none\'; this.parentElement.classList.add(\'fallback-icon\'); this.parentElement.innerText=\'Monster TV\'[0];">
                         </div>
                         <div class="card-info">
                             <div class="card-app-title">Monster TV</div>
@@ -208,7 +210,7 @@
                     onclick="triggerInstall('Xôi Lạc TV', 'https://raw.githubusercontent.com/Phat20110/mitvpro/main/downloads/SmartTube-Stable.apk')">
                     <div class="card-top">
                         <div class="card-icon-frame">
-                            <img src="img/xoilactv.png" alt="Xôi Lạc">
+                            <img src="img/xoilactv.png" alt="Xôi Lạc" onerror="this.style.display=\'none\'; this.parentElement.classList.add(\'fallback-icon\'); this.parentElement.innerText=\'Xôi Lạc\'[0];">
                         </div>
                         <div class="card-info">
                             <div class="card-app-title">Xôi Lạc TV</div>
@@ -232,6 +234,7 @@
                     Rạp Phim 4K & Dolby Vision
                 </h2>
                 <span class="shelf-subtitle">Phim chiếu rạp bom tấn quốc tế và phụ đề tiếng Việt</span>
+                <span class="shelf-chip">Dolby Atmos • 4K HDR</span>
             </div>
             <div class="shelf-rail">
                 <!-- Stremio -->
@@ -240,7 +243,7 @@
                     onclick="triggerInstall('Stremio 4K Cinema', 'https://raw.githubusercontent.com/Phat20110/mitvpro/main/downloads/SmartTube-Stable.apk')">
                     <div class="card-top">
                         <div class="card-icon-frame">
-                            <img src="img/stremio.png" alt="Stremio">
+                            <img src="img/stremio.png" alt="Stremio" onerror="this.style.display=\'none\'; this.parentElement.classList.add(\'fallback-icon\'); this.parentElement.innerText=\'Stremio\'[0];">
                         </div>
                         <div class="card-info">
                             <div class="card-app-title">Stremio 4K</div>
@@ -327,6 +330,17 @@
     <div id="tvHud"></div>
 
     <script>
+        // Performance check for weak TV hardware (T92)
+        if ((navigator.hardwareConcurrency && navigator.hardwareConcurrency <= 4) || 
+            (navigator.deviceMemory && navigator.deviceMemory <= 2)) {
+            document.body.classList.add('perf-lite');
+        }
+
+        // Tab focus memory (T68)
+        const tabFocusMemory = {};
+        let currentTab = 'shelf-fav';
+        let isInstalling = false;
+
         let currentInstallUrl = 'https://raw.githubusercontent.com/Phat20110/mitvpro/main/downloads/SmartTube-Stable.apk';
         let currentAppName = 'SmartTube Next 4K';
 
@@ -346,13 +360,35 @@
             triggerInstall(currentAppName, currentInstallUrl);
         }
 
-        function triggerInstall(name, url) {
+        function triggerInstall(name, url, cardElem) {
+            if (isInstalling) {
+                showHud('Đang tiến hành cài đặt ứng dụng khác, vui lòng đợi...');
+                return;
+            }
+            isInstalling = true;
+            if (cardElem) {
+                cardElem.classList.add('is-installing');
+                const actionBtn = cardElem.querySelector('.card-action');
+                if (actionBtn) {
+                    actionBtn.innerHTML = '<span class="install-spinner"></span> Đang tải...';
+                }
+            }
             showHud(`Đang gửi lệnh tải & cài đặt [${name}] vào Tivi Xiaomi...`);
             if (window.AndroidBridge && window.AndroidBridge.installApp) {
                 window.AndroidBridge.installApp(url || currentInstallUrl, name);
             } else {
                 window.location.href = url || currentInstallUrl;
             }
+            setTimeout(() => {
+                isInstalling = false;
+                if (cardElem) {
+                    cardElem.classList.remove('is-installing');
+                    const actionBtn = cardElem.querySelector('.card-action');
+                    if (actionBtn) {
+                        actionBtn.innerHTML = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg> Cài Đặt';
+                    }
+                }
+            }, 6000);
         }
 
         function triggerCleanRam() {
@@ -474,7 +510,18 @@
                         }
                     }
                 } else if (e.key === 'Enter') {
+                    active.classList.add('pulse-active');
+                    setTimeout(() => active.classList.remove('pulse-active'), 260);
                     active.click();
+                } else if (e.key === 'Escape' || e.key === 'Backspace' || e.key === 'GoBack') {
+                    // T67: Phím Back/Esc đóng toast và trả focus về sidebar
+                    const hud = document.getElementById('tvHud');
+                    if (hud && hud.style.display !== 'none') {
+                        hud.style.display = 'none';
+                    }
+                    const activeDock = document.querySelector('.dock-item.active') || document.querySelector('.dock-item');
+                    if (activeDock) activeDock.focus();
+                    e.preventDefault();
                 }
             } else if (active.classList.contains('dock-item')) {
                 moveDockBulge(active);
@@ -501,7 +548,18 @@
                         e.preventDefault();
                     }
                 } else if (e.key === 'Enter') {
+                    active.classList.add('pulse-active');
+                    setTimeout(() => active.classList.remove('pulse-active'), 260);
                     active.click();
+                } else if (e.key === 'Escape' || e.key === 'Backspace' || e.key === 'GoBack') {
+                    // T67: Phím Back/Esc đóng toast và trả focus về sidebar
+                    const hud = document.getElementById('tvHud');
+                    if (hud && hud.style.display !== 'none') {
+                        hud.style.display = 'none';
+                    }
+                    const activeDock = document.querySelector('.dock-item.active') || document.querySelector('.dock-item');
+                    if (activeDock) activeDock.focus();
+                    e.preventDefault();
                 }
             } else if (active.classList.contains('dock-ram-widget')) {
                 if (e.key === 'ArrowUp') {
@@ -516,7 +574,18 @@
                     if (firstCard) firstCard.focus();
                     e.preventDefault();
                 } else if (e.key === 'Enter') {
+                    active.classList.add('pulse-active');
+                    setTimeout(() => active.classList.remove('pulse-active'), 260);
                     active.click();
+                } else if (e.key === 'Escape' || e.key === 'Backspace' || e.key === 'GoBack') {
+                    // T67: Phím Back/Esc đóng toast và trả focus về sidebar
+                    const hud = document.getElementById('tvHud');
+                    if (hud && hud.style.display !== 'none') {
+                        hud.style.display = 'none';
+                    }
+                    const activeDock = document.querySelector('.dock-item.active') || document.querySelector('.dock-item');
+                    if (activeDock) activeDock.focus();
+                    e.preventDefault();
                 }
             } else if (active.id === 'heroActionBtn') {
                 if (e.key === 'ArrowDown') {

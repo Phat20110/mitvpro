@@ -1,11 +1,97 @@
 /* ==========================================================================
-   D-PAD REMOTE FOCUS NAVIGATION
+   D-PAD REMOTE FOCUS NAVIGATION (LIQUID GLASS G7)
    ========================================================================== */
-:focus-visible {
+
+/* T61: :focus-visible cho mọi phần tử tương tác: viền kính sáng 2px và glow cam, không làm mất focus ring */
+:focus-visible, .tv-card:focus, .dock-item:focus, .dock-ram-widget:focus, .hero-action-btn:focus, .remote-btn:focus {
     outline: none;
+    box-shadow: 
+        0 0 0 2px rgba(255, 255, 255, 0.85),
+        0 0 22px var(--accent-glow, rgba(255, 122, 26, 0.65)),
+        inset 0 1px 1px rgba(255, 255, 255, 0.9) !important;
 }
 
-/* TV active glow */
-*:focus {
-    outline: none;
+/* T62: Khi focus: thẻ scale 1.04 và translateY(-2px), nút icon scale 1.08, transition 200ms */
+.tv-card {
+    transition: transform 200ms var(--bezier-tv, cubic-bezier(0.16, 1, 0.3, 1)),
+                box-shadow 200ms ease,
+                border-color 200ms ease;
+}
+
+.tv-card:focus {
+    transform: scale3d(1.04, 1.04, 1) translateY(-2px) !important;
+    z-index: 50;
+}
+
+.dock-item, .remote-btn {
+    transition: transform 200ms var(--bezier-tv, cubic-bezier(0.16, 1, 0.3, 1)),
+                background-color 200ms ease,
+                box-shadow 200ms ease;
+}
+
+.dock-item:focus, .remote-btn:focus {
+    transform: scale(1.08) !important;
+}
+
+/* T64: Focus glow lớn sau thẻ đang focus (pseudo-element radial-gradient, opacity chuyển mượt) */
+.tv-card::after {
+    content: '';
+    position: absolute;
+    inset: -12px;
+    background: radial-gradient(circle at center, rgba(255, 122, 26, 0.35) 0%, transparent 70%);
+    border-radius: inherit;
+    opacity: 0;
+    pointer-events: none;
+    z-index: -1;
+    transition: opacity 250ms ease;
+}
+
+.tv-card:focus::after {
+    opacity: 1;
+}
+
+/* T65: Nhấn OK/Enter: pulse (scale 0.98 về 1.0) và vệt sáng ngang 250ms */
+.tv-card.pulse-active, .dock-item.pulse-active, .hero-action-btn.pulse-active, .remote-btn.pulse-active {
+    animation: tvPulseClick 250ms ease forwards;
+}
+
+@keyframes tvPulseClick {
+    0% {
+        transform: scale(0.98);
+        filter: brightness(1.25);
+    }
+    50% {
+        transform: scale(1.05);
+        filter: brightness(1.4);
+    }
+    100% {
+        transform: scale(1.04) translateY(-2px);
+        filter: brightness(1.0);
+    }
+}
+
+/* T69: Trạng thái đang cài: nút kính mờ và spinner nhỏ, không nhận thao tác trùng */
+.is-installing {
+    pointer-events: none !important;
+    opacity: 0.75 !important;
+    position: relative;
+}
+
+.is-installing .card-action {
+    background: rgba(255, 122, 26, 0.3) !important;
+    border-color: rgba(255, 255, 255, 0.4) !important;
+}
+
+.install-spinner {
+    display: inline-block;
+    width: 12px;
+    height: 12px;
+    border: 2px solid rgba(255, 255, 255, 0.3);
+    border-top-color: #FFFFFF;
+    border-radius: 50%;
+    animation: spin 0.7s linear infinite;
+}
+
+@keyframes spin {
+    to { transform: rotate(360deg); }
 }
