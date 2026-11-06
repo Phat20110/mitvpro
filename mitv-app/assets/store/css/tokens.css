@@ -117,3 +117,10 @@ body {
     font-family: var(--font-family-tv);
     font-size: var(--font-tv-body);
 }
+
+/* T6: Section Title Typography */
+h1, h2, h3, .shelf-title {
+    font-weight: 700;
+    letter-spacing: 0.02em;
+    text-shadow: 0 2px 10px rgba(0, 0, 0, 0.45);
+}
