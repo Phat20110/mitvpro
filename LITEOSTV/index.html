@@ -549,6 +549,24 @@
             </div>
           </div>
         </section>
+
+        <!-- Trợ Lý Giọng Nói LiteVoice Agent (Vượt trội Google Assistant) -->
+        <section class="glass glass--strong glass-sheen" style="padding: 24px 32px; display: flex; flex-direction: column; gap: 16px;">
+          <div class="section-header">
+            <div>
+              <h3 class="section-title">🎙️ LiteVoice Agent — Trợ Lý Giọng Nói Nhận Thức Ngữ Cảnh</h3>
+              <p style="font-size: 14px; color: var(--text-secondary); margin-top: 4px;">
+                Vượt trội Google Assistant: Tự động hiểu chủ nhà về nhà, nhận diện gu âm nhạc và tự bật nhạc YouTube không cần bấm remote.
+              </p>
+            </div>
+            <button class="btn-primary focusable" tabindex="0" id="btn-trigger-voice" style="background: linear-gradient(135deg, #FF7A1A 0%, #D500F9 100%);">
+              <span>🗣️ Thử nói: "Mở YouTube"</span>
+            </button>
+          </div>
+          <div id="voice-console" style="background: rgba(0, 0, 0, 0.45); border: 1px solid var(--glass-border); border-radius: var(--radius-md); padding: 16px; font-family: monospace; font-size: 14px; min-height: 90px; color: #00E5FF; display: flex; flex-direction: column; gap: 6px;">
+            <div style="color: var(--text-tertiary);">[Trực chiến] Đang lắng nghe âm thanh từ microphone... Bấm nút trên hoặc điều khiển D-Pad để trải nghiệm mô phỏng.</div>
+          </div>
+        </section>
       </main>
     </div>
 
@@ -567,10 +585,36 @@
   <script type="module">
     import { ThemeEngine } from './src/core/ThemeEngine.js';
     import { RemoteNavigator } from './src/core/RemoteNavigator.js';
+    import { VoiceAgent } from './src/core/VoiceAgent.js';
 
     // Khởi tạo các bộ máy cốt lõi
     const themeEngine = new ThemeEngine();
     const navigator = new RemoteNavigator({ focusSelector: '.focusable' });
+    const voiceAgent = new VoiceAgent();
+
+    // Console logs cho Voice Agent
+    const voiceConsole = document.getElementById('voice-console');
+    voiceAgent.onLog(({ step, message }) => {
+      const line = document.createElement('div');
+      line.style.marginTop = '4px';
+      line.innerHTML = `<span style="color: #FF7A1A; font-weight: bold;">[${step}]</span> ${message}`;
+      voiceConsole.appendChild(line);
+      voiceConsole.scrollTop = voiceConsole.scrollHeight;
+    });
+
+    document.getElementById('btn-trigger-voice').addEventListener('click', async () => {
+      voiceConsole.innerHTML = '';
+      const result = await voiceAgent.processCommand('Mở YouTube');
+      const finalMsg = document.createElement('div');
+      finalMsg.style.marginTop = '8px';
+      finalMsg.style.padding = '8px 12px';
+      finalMsg.style.background = 'rgba(0, 230, 118, 0.15)';
+      finalMsg.style.border = '1px solid #00E676';
+      finalMsg.style.borderRadius = '8px';
+      finalMsg.style.color = '#FFFFFF';
+      finalMsg.innerHTML = `✨ <strong>HÀNH ĐỘNG TỰ ĐỘNG:</strong> ${result.message} <br/><code style="color:#00E5FF; font-size:12px;">Intent: ${result.deepLink}</code>`;
+      voiceConsole.appendChild(finalMsg);
+    });
 
     // Đăng ký các theme chuẩn
     themeEngine.registerTheme({
