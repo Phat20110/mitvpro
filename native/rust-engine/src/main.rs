@@ -2,6 +2,9 @@ use std::time::{Duration, Instant};
 use std::thread;
 use std::net::TcpStream;
 
+pub mod key_engine;
+pub mod dns_sinkhole;
+
 struct SystemMemory {
     total_mb: u64,
     free_mb: u64,
