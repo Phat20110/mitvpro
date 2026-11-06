@@ -124,3 +124,16 @@ h1, h2, h3, .shelf-title {
     letter-spacing: 0.02em;
     text-shadow: 0 2px 10px rgba(0, 0, 0, 0.45);
 }
+
+/* T7: Text Color Tokens applied to all text */
+body, h1, h2, h3, h4, h5, h6, .text-primary {
+    color: var(--text-primary);
+}
+
+p, .text-secondary, .shelf-subtitle, .card-desc, .hero-desc {
+    color: var(--text-secondary);
+}
+
+small, .text-tertiary, .card-app-ver, .dock-brand-sub {
+    color: var(--text-tertiary);
+}
