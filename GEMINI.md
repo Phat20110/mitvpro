@@ -29,8 +29,9 @@ Token: --glass-bg: rgba(255,255,255,0.08); --glass-bg-strong: rgba(255,255,255,0
 - Màu, bo góc, bóng, khoảng cách luôn lấy từ token.
 
 ## PHỤ LỤC D. QUY ĐỊNH VĨNH VIỄN VỀ MULTI-TASK & XỬ LÝ DỨT ĐIỂM
-1. Tận dụng xử lý đa nhiệm (Multi-task / Multi-agent / song song): Chủ động phân chia đều các luồng việc (UI, backend, build APK, audit, git), xử lý nhanh, dứt khoát, không chờ đợi đơn luồng.
+1. Phân chia 93 Agent: Khi nhận việc, không bao giờ ôm tất cả một mình mà tự động phân chia việc cho 93 agent / luồng độc lập xử lý song song.
 2. Tuyệt đối không bật widget điều khiển ảo trên màn hình ứng dụng TV (người dùng dùng remote vật lý).
 3. Chuẩn hóa 100% mã Downloader AFTVnews thành 6372800 và shortlink is.gd/mitv25 trên toàn bộ tài liệu và mã nguồn.
 4. Kiểm tra kỹ lỗi cú pháp JavaScript/PHP trước khi xuất xưởng, đảm bảo APK build sạch và ký số chuẩn.
-5. Luôn tự động commit và đẩy mã nguồn sạch lên GitHub branch main ngay sau khi hoàn thành.
+5. Tuyệt đối không bao giờ hỏi người dùng có muốn kết thúc hay dừng lại hay không.
+6. Luôn tự động commit và đẩy mã nguồn sạch lên GitHub branch main ngay sau khi hoàn thành.

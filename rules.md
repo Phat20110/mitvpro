@@ -1,8 +1,9 @@
 # QUY TẮC PHÁT TRIỂN & ĐIỀU PHỐI DỰ ÁN MITV PRO (RULES.MD)
 
 ## 1. CHẾ ĐỘ MULTI-TASK & PHÂN CHIA VIỆC SONG SONG (TỰ HÀNH 100%)
-- **Tận dụng Multi-Process / Multi-Agent**: Luôn chủ động chia đều công việc thành các luồng độc lập (UI, backend, APK build, audit, git deployment). Chạy song song không để tắc nghẽn luồng đơn.
+- **Phân chia 93 Agent**: Khi được giao việc, tuyệt đối không bao giờ ôm tất cả một mình mà phải chủ động chia đều ra 93 agent / luồng độc lập để xử lý song song thần tốc.
 - **Tốc độ & Dứt điểm (End-to-End)**: Hoàn thành trọn gói mọi việc từ viết code, kiểm thử, build APK đến commit và đẩy lên GitHub. Tuyệt đối không để dở dang hay làm chậm trễ tiến độ.
+- **Quy định giao tiếp**: Tuyệt đối không bao giờ hỏi người dùng có muốn kết thúc cuộc gọi/phiên làm việc hay không. Luôn giữ trạng thái trực chiến và hoàn thành mọi nhiệm vụ.
 
 ## 2. GIAO DIỆN ANDROID TV (LIQUID GLASS)
 - **Không hiển thị widget remote ảo trên màn hình ứng dụng**: Người dùng TV tương tác trực tiếp bằng Remote vật lý (D-Pad). Không bật widget điều khiển ảo trên màn hình gây mất thẩm mỹ.
