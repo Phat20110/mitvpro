@@ -64,3 +64,22 @@ body {
 .tv-canvas::-webkit-scrollbar {
     display: none;
 }
+
+/* T11: TV Bezel frame using .glass, bo xl, giu kich thuoc */
+.tv-bezel {
+    border-radius: var(--radius-xl);
+    padding: var(--space-12);
+    background: var(--glass-bg);
+    border: 1px solid var(--glass-border);
+    box-shadow: var(--glass-shadow);
+    position: relative;
+    box-sizing: border-box;
+}
+
+@supports (backdrop-filter: blur(24px)) or (-webkit-backdrop-filter: blur(24px)) {
+    .tv-bezel {
+        backdrop-filter: blur(var(--glass-blur)) saturate(var(--glass-saturate));
+        -webkit-backdrop-filter: blur(var(--glass-blur)) saturate(var(--glass-saturate));
+        box-shadow: var(--glass-shadow), var(--glass-highlight);
+    }
+}
