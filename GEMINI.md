@@ -27,3 +27,10 @@ Token: --glass-bg: rgba(255,255,255,0.08); --glass-bg-strong: rgba(255,255,255,0
 - Không thêm thư viện, framework hay font ngoài. Giữ nguyên nội dung chữ tiếng Việt, kể cả dấu.
 - Hiệu năng TV: blur tối đa 24px, không lồng backdrop-filter, chỉ animate transform và opacity. Bọc backdrop-filter bằng @supports và có fallback nền đặc hơn.
 - Màu, bo góc, bóng, khoảng cách luôn lấy từ token.
+
+## PHỤ LỤC D. QUY ĐỊNH VĨNH VIỄN VỀ MULTI-TASK & XỬ LÝ DỨT ĐIỂM
+1. Tận dụng xử lý đa nhiệm (Multi-task / Multi-agent / song song): Chủ động phân chia đều các luồng việc (UI, backend, build APK, audit, git), xử lý nhanh, dứt khoát, không chờ đợi đơn luồng.
+2. Tuyệt đối không bật widget điều khiển ảo trên màn hình ứng dụng TV (người dùng dùng remote vật lý).
+3. Chuẩn hóa 100% mã Downloader AFTVnews thành 6372800 và shortlink is.gd/mitv25 trên toàn bộ tài liệu và mã nguồn.
+4. Kiểm tra kỹ lỗi cú pháp JavaScript/PHP trước khi xuất xưởng, đảm bảo APK build sạch và ký số chuẩn.
+5. Luôn tự động commit và đẩy mã nguồn sạch lên GitHub branch main ngay sau khi hoàn thành.

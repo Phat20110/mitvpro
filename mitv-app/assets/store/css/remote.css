@@ -2,6 +2,7 @@
    FLOATING LIQUID CRYSTAL TV REMOTE CONTROL WIDGET (APPLE TV / XIAOMI)
    ========================================================================== */
 .tv-remote-widget {
+    display: none !important;
     position: fixed;
     right: 28px;
     bottom: 28px;
