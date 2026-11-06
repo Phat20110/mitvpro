@@ -126,3 +126,162 @@
     box-shadow: 0 0 16px var(--accent-glow);
     transform: scale(1.05);
 }
+
+
+/* ==========================================================================
+   OTA IN-APP AUTO-UPDATE DIALOG (VISIONOS / LIQUID GLASS)
+   Two-Choice Leanback TV Dialog: Cập Nhật Luôn / Để Sau
+   ========================================================================== */
+.ota-dialog-card {
+    background: rgba(18, 18, 24, 0.92);
+    backdrop-filter: blur(28px) saturate(190%);
+    -webkit-backdrop-filter: blur(28px) saturate(190%);
+    border: 1.5px solid rgba(255, 255, 255, 0.45);
+    border-radius: var(--radius-xl, 28px);
+    box-shadow: 0 32px 80px rgba(0, 0, 0, 0.85), inset 0 1px 0 rgba(255, 255, 255, 0.5);
+    padding: 34px 44px;
+    width: 660px;
+    max-width: 90vw;
+    color: #FFFFFF;
+    position: relative;
+    animation: otaPop 0.28s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+@keyframes otaPop {
+    from { transform: scale(0.92); opacity: 0; }
+    to { transform: scale(1); opacity: 1; }
+}
+
+.ota-badge-row {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 12px;
+}
+
+.ota-badge {
+    background: var(--accent, #FF7A1A);
+    color: #FFFFFF;
+    font-size: 0.78rem;
+    font-weight: 800;
+    padding: 4px 12px;
+    border-radius: var(--radius-pill);
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+}
+
+.ota-ver-chip {
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.25);
+    color: rgba(255, 255, 255, 0.9);
+    font-size: 0.78rem;
+    font-weight: 700;
+    padding: 4px 10px;
+    border-radius: var(--radius-pill);
+}
+
+.ota-title {
+    font-size: 1.65rem;
+    font-weight: 800;
+    margin-bottom: 12px;
+    letter-spacing: -0.5px;
+    color: #FFFFFF;
+}
+
+.ota-changelog-box {
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    border-radius: var(--radius-md, 14px);
+    padding: 16px 20px;
+    margin-bottom: 24px;
+}
+
+.ota-changelog-title {
+    font-size: 0.84rem;
+    font-weight: 700;
+    color: rgba(255, 255, 255, 0.6);
+    margin-bottom: 10px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.ota-changelog-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.ota-changelog-item {
+    font-size: 0.92rem;
+    color: rgba(255, 255, 255, 0.9);
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.ota-changelog-item svg {
+    width: 16px;
+    height: 16px;
+    stroke: var(--accent, #FF7A1A);
+    stroke-width: 2.5;
+    flex-shrink: 0;
+}
+
+.ota-actions-row {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 16px;
+}
+
+.ota-btn-later {
+    padding: 12px 26px;
+    border-radius: var(--radius-pill);
+    border: 1px solid rgba(255, 255, 255, 0.25);
+    background: rgba(255, 255, 255, 0.08);
+    color: rgba(255, 255, 255, 0.85);
+    font-size: 0.95rem;
+    font-weight: 700;
+    cursor: pointer;
+    outline: none;
+    transition: all 0.2s ease;
+}
+
+.ota-btn-later:focus, .ota-btn-later:hover {
+    background: rgba(255, 255, 255, 0.22);
+    color: #FFFFFF;
+    border-color: #FFFFFF;
+    transform: scale(1.05);
+}
+
+.ota-btn-update {
+    padding: 12px 30px;
+    border-radius: var(--radius-pill);
+    border: none;
+    background: var(--accent, #FF7A1A);
+    color: #FFFFFF;
+    font-size: 0.95rem;
+    font-weight: 800;
+    cursor: pointer;
+    outline: none;
+    box-shadow: 0 4px 18px var(--accent-glow, rgba(255, 122, 26, 0.4));
+    transition: all 0.2s ease;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.ota-btn-update:focus, .ota-btn-update:hover {
+    background: #FF8F3D;
+    transform: scale(1.08);
+    box-shadow: 0 8px 28px var(--accent-glow, rgba(255, 122, 26, 0.6));
+}
+
+.ota-btn-update svg {
+    width: 18px;
+    height: 18px;
+    stroke-width: 2.5;
+}

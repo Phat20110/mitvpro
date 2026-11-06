@@ -413,6 +413,47 @@
     <!-- TV HUD Notification -->
     <div id="tvHud"></div>
 
+    
+    <!-- Liquid Glass OTA In-App Update Modal (2 Choices: Cập nhật luôn / Để sau) -->
+    <div class="glass-modal" id="otaUpdateModal">
+        <div class="ota-dialog-card" id="otaDialogCard">
+            <div class="ota-badge-row">
+                <span class="ota-badge">BẢN CẬP NHẬT MỚI</span>
+                <span class="ota-ver-chip" id="otaVerChip">v2.5.1</span>
+                <span class="ota-ver-chip">CHÍNH HÃNG</span>
+            </div>
+            <h2 class="ota-title" id="otaTitle">Phát hiện bản cập nhật mới!</h2>
+            <div class="ota-changelog-box">
+                <div class="ota-changelog-title">Chi tiết nâng cấp hệ thống:</div>
+                <ul class="ota-changelog-list" id="otaChangelogList">
+                    <li class="ota-changelog-item">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                        <span>Sửa triệt để lỗi lệch tâm bong bóng kính 3D trên thanh Dock</span>
+                    </li>
+                    <li class="ota-changelog-item">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                        <span>Tự động mở danh mục đúng dòng kiểu YouTube TV (không cần ấn thêm)</span>
+                    </li>
+                    <li class="ota-changelog-item">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                        <span>Loại bỏ hiện tượng rung lắc giật lag màn hình khi thao tác nhanh D-Pad</span>
+                    </li>
+                    <li class="ota-changelog-item">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                        <span>Thanh Dock tự cuộn để hiển thị trọn vẹn mục Cài đặt và Nguồn</span>
+                    </li>
+                </ul>
+            </div>
+            <div class="ota-actions-row">
+                <button class="ota-btn-later" id="otaBtnLater" tabindex="0" onclick="dismissOtaUpdate()">Để Sau</button>
+                <button class="ota-btn-update" id="otaBtnUpdate" tabindex="0" onclick="acceptOtaUpdate()">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
+                    <span>Cập Nhật Luôn</span>
+                </button>
+            </div>
+        </div>
+    </div>
+
     <!-- Liquid Glass Settings Sheet Modal -->
     <div class="glass-modal" id="glassSettingsSheet">
         <div class="glass-dialog-card" id="settingsDialogCard">
@@ -604,6 +645,94 @@
         }
 
         // Open/Close Liquid Glass Settings Sheet
+        
+        // ==========================================
+        // OTA AUTO-UPDATE ENGINE (CẬP NHẬT LUÔN / ĐỂ SAU)
+        // ==========================================
+        let otaDownloadUrl = 'https://raw.githubusercontent.com/Phat20110/mitvpro/main/downloads/MiTV-Pro.apk';
+        let otaTargetVersion = '2.5.1';
+        let otaVersionCode = 26;
+        const CURRENT_BUILTIN_VERSION = 25;
+
+        function checkOTAUpdateOnLaunch() {
+            // First check if user dismissed this session
+            if (sessionStorage.getItem('ota_dismissed_' + otaVersionCode)) {
+                return;
+            }
+
+            // Fetch live remote version.json with cache bust
+            fetch('https://raw.githubusercontent.com/Phat20110/mitvpro/main/version.json?t=' + Date.now())
+                .then(res => res.json())
+                .then(data => {
+                    if (data && data.versionCode && data.versionCode > CURRENT_BUILTIN_VERSION) {
+                        otaDownloadUrl = data.downloadUrl || otaDownloadUrl;
+                        otaTargetVersion = data.versionName || otaTargetVersion;
+                        otaVersionCode = data.versionCode;
+
+                        if (sessionStorage.getItem('ota_dismissed_' + otaVersionCode)) {
+                            return;
+                        }
+                        showOtaDialog(data);
+                    }
+                })
+                .catch(err => {
+                    console.log('OTA network check deferred:', err);
+                });
+        }
+
+        function showOtaDialog(data) {
+            const modal = document.getElementById('otaUpdateModal');
+            if (!modal) return;
+
+            if (data) {
+                const verChip = document.getElementById('otaVerChip');
+                if (verChip) verChip.innerText = 'v' + (data.versionName || '2.5.1');
+                const title = document.getElementById('otaTitle');
+                if (title) title.innerText = 'Có bản cập nhật mới: MiTV Pro v' + (data.versionName || '2.5.1');
+
+                if (Array.isArray(data.changelog) && data.changelog.length > 0) {
+                    const list = document.getElementById('otaChangelogList');
+                    if (list) {
+                        list.innerHTML = data.changelog.map(item => `
+                            <li class="ota-changelog-item">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                                <span>${item}</span>
+                            </li>
+                        `).join('');
+                    }
+                }
+            }
+
+            modal.classList.add('active');
+            // Focus on "Cập Nhật Luôn" by default so user can press OK immediately!
+            setTimeout(() => {
+                const btnUpdate = document.getElementById('otaBtnUpdate');
+                if (btnUpdate) btnUpdate.focus();
+            }, 100);
+        }
+
+        function acceptOtaUpdate() {
+            const btn = document.getElementById('otaBtnUpdate');
+            if (btn) {
+                btn.innerHTML = '<span class="install-spinner"></span> Đang tải bản cập nhật...';
+            }
+            showHud('Đang tải bản cập nhật MiTV Pro v' + otaTargetVersion + '... Vui lòng đợi trong giây lát!');
+            triggerInstall('MiTV Pro v' + otaTargetVersion, otaDownloadUrl);
+            setTimeout(() => {
+                dismissOtaUpdate(false);
+            }, 2500);
+        }
+
+        function dismissOtaUpdate(remember = true) {
+            const modal = document.getElementById('otaUpdateModal');
+            if (modal) modal.classList.remove('active');
+            if (remember) {
+                sessionStorage.setItem('ota_dismissed_' + otaVersionCode, 'true');
+            }
+            const firstCard = document.querySelector('.tv-card');
+            if (firstCard) firstCard.focus();
+        }
+
         function openSettingsSheet() {
             const sheet = document.getElementById('glassSettingsSheet');
             if (sheet) {
@@ -658,6 +787,36 @@
                     return;
                 }
                 lastNavTimestamp = now;
+            }
+
+            
+            // OTA UPDATE MODAL D-PAD NAVIGATION (2 CHOICES)
+            const otaModal = document.getElementById('otaUpdateModal');
+            if (otaModal && otaModal.classList.contains('active')) {
+                if (e.key === 'Escape' || e.key === 'Backspace' || e.key === 'GoBack') {
+                    dismissOtaUpdate();
+                    e.preventDefault();
+                    return;
+                }
+                if (e.key === 'ArrowLeft') {
+                    const btnLater = document.getElementById('otaBtnLater');
+                    if (btnLater) btnLater.focus();
+                    e.preventDefault();
+                    return;
+                }
+                if (e.key === 'ArrowRight') {
+                    const btnUpdate = document.getElementById('otaBtnUpdate');
+                    if (btnUpdate) btnUpdate.focus();
+                    e.preventDefault();
+                    return;
+                }
+                if (e.key === 'Enter') {
+                    active.click();
+                    e.preventDefault();
+                    return;
+                }
+                e.preventDefault();
+                return;
             }
 
             // A. INSIDE SETTINGS SHEET MODAL
@@ -859,6 +1018,7 @@
 
         // Initialize active state on page load
         window.addEventListener('load', () => {
+            checkOTAUpdateOnLaunch();
             const activeDock = document.querySelector('.dock-item.active') || document.querySelector('.dock-item');
             if (activeDock) {
                 moveDockBulge(activeDock);
