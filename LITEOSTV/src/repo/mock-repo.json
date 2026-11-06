@@ -1,0 +1,55 @@
+{
+  "repo": {
+    "name": "LITEOSTV Official Community Source",
+    "id": "org.liteostv.official",
+    "description": "Kho tweak và theme mã nguồn mở chính thức, hỗ trợ cài đặt qua Downloader 6372800.",
+    "website": "https://is.gd/mitv25",
+    "updated_at": "2026-11-06T16:00:00Z"
+  },
+  "packages": [
+    {
+      "id": "theme.liquid-glass.orange",
+      "name": "Liquid Glass Orange",
+      "category": "Theme",
+      "version": "1.0.0",
+      "author": "MiTV Pro Team",
+      "downloads": 128450,
+      "rating": 5.0,
+      "badge": "Chính thức",
+      "description": "Chuẩn mực Liquid Glass với phản xạ viền sáng 1px và màu cam ấm."
+    },
+    {
+      "id": "theme.hyper-cyan.oled",
+      "name": "Hyper Cyber OLED",
+      "category": "Theme",
+      "version": "1.1.0",
+      "author": "CyberX Modder",
+      "downloads": 76200,
+      "rating": 4.9,
+      "badge": "Tiết kiệm OLED",
+      "description": "Nền đen thuần khiết phối neon Cyan, tối ưu tương phản vô cực."
+    },
+    {
+      "id": "tweak.dock.bottom-floating",
+      "name": "HyperOS Floating Pill Dock",
+      "category": "Tweak",
+      "version": "2.0.4",
+      "author": "SileoTV Master",
+      "downloads": 93100,
+      "rating": 4.8,
+      "badge": "Hot Mod",
+      "description": "Thanh dock kính nổi hình viên thuốc lơ lửng ở đáy màn hình TV."
+    },
+    {
+      "id": "sound.xiaomi.nature",
+      "name": "Mi Nature Soundpack",
+      "category": "Sound",
+      "version": "1.0.2",
+      "author": "Xiaomi Audio Lab",
+      "downloads": 48900,
+      "rating": 4.9,
+      "badge": "Âm thanh",
+      "description": "Âm thanh giọt nước và phím gõ gỗ siêu thư giãn khi bấm remote."
+    }
+  ]
+}
