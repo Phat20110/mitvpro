@@ -456,13 +456,9 @@
           <span class="icon">🏠</span>
           <span>Trang Chủ</span>
         </button>
-        <button class="nav-btn focusable" tabindex="0" data-page="store">
-          <span class="icon">🛒</span>
-          <span>Kho Theme (Sileo)</span>
-        </button>
-        <button class="nav-btn focusable" tabindex="0" data-page="tweaks">
-          <span class="icon">⚡</span>
-          <span>HyperOS Tweaks</span>
+        <button class="nav-btn focusable" tabindex="0" data-page="theme-studio">
+          <span class="icon">🎨</span>
+          <span>Đổi Theme HyperOS</span>
         </button>
         <button class="nav-btn focusable" tabindex="0" data-page="apps">
           <span class="icon">📱</span>
@@ -470,7 +466,7 @@
         </button>
         <button class="nav-btn focusable" tabindex="0" data-page="settings">
           <span class="icon">⚙️</span>
-          <span>Cài Đặt Hệ Thống</span>
+          <span>Cài Đặt Nhanh</span>
         </button>
       </aside>
 
@@ -479,15 +475,12 @@
         <!-- Hero Banner Kính Lớn -->
         <section class="glass glass--strong glass-sheen hero-banner">
           <div class="hero-content">
-            <span class="hero-tag">ĐỘC QUYỀN TRÊN LITEOSTV</span>
-            <h2>Theme Engine Đổi Màu Tức Thì Như HyperOS & Cydia</h2>
-            <p>Xóa sạch bloatware Google, tối ưu ZRAM cho TV cấu hình thấp, hỗ trợ kho mod cộng đồng phi tập trung với hàng trăm giao diện Liquid Glass.</p>
+            <span class="hero-tag">THUẦN HIỆU NĂNG • 0% QUẢNG CÁO</span>
+            <h2>Giao Diện Liquid Glass Siêu Mượt & Đổi Theme Tức Thì</h2>
+            <p>Loại bỏ hoàn toàn rác nền, tối ưu bộ nhớ chỉ 25MB RAM. Hỗ trợ chuyển đổi màu sắc phong cách Xiaomi HyperOS ngay trên remote mà không cần khởi động lại máy.</p>
             <div class="hero-actions">
               <button class="btn-primary focusable" tabindex="0" id="btn-quick-theme">
-                <span>✨ Đổi Theme Thử Nghiệm</span>
-              </button>
-              <button class="btn-secondary focusable" tabindex="0" id="btn-open-sileo">
-                <span>📦 Mở Kho Mod Sileo</span>
+                <span>✨ Đổi Theme Kế Tiếp</span>
               </button>
             </div>
           </div>
@@ -496,27 +489,40 @@
           </div>
         </section>
 
-        <!-- Thanh Chọn Nhanh Theme HyperOS (Hot Reload) -->
-        <section class="content-section">
+        <!-- Bảng Điều Khiển Đổi Theme HyperOS (Trọng tâm cốt lõi) -->
+        <section class="glass glass--strong glass-sheen" style="padding: 24px 32px; display: flex; flex-direction: column; gap: 16px;">
           <div class="section-header">
-            <h3 class="section-title">🎨 Bảng Tùy Biến Giao Diện Tức Thì (Hot-Reload)</h3>
+            <div>
+              <h3 class="section-title">🎨 Bộ Sưu Tập Theme HyperOS & Liquid Glass</h3>
+              <p style="font-size: 14px; color: var(--text-secondary); margin-top: 4px;">
+                Bấm chọn bằng remote để đổi màu kính, viền highlight và độ mờ trong 0.05 giây.
+              </p>
+            </div>
           </div>
           <div class="theme-selector">
             <button class="theme-chip focusable" tabindex="0" data-theme="orange">
               <span class="color-dot" style="background: #FF7A1A;"></span>
-              <span>Liquid Glass Orange</span>
+              <span>Liquid Glass Orange (Mặc định Xiaomi)</span>
             </button>
             <button class="theme-chip focusable" tabindex="0" data-theme="cyan">
               <span class="color-dot" style="background: #00E5FF;"></span>
-              <span>Hyper Cyber OLED</span>
+              <span>Hyper Cyber OLED (Đen Tiết Kiệm Pin)</span>
             </button>
             <button class="theme-chip focusable" tabindex="0" data-theme="emerald">
               <span class="color-dot" style="background: #00E676;"></span>
-              <span>Emerald Forest Glass</span>
+              <span>Emerald Forest Glass (Xanh Dịu Mắt)</span>
             </button>
             <button class="theme-chip focusable" tabindex="0" data-theme="purple">
               <span class="color-dot" style="background: #D500F9;"></span>
-              <span>Neon Purple Hyper</span>
+              <span>Neon Purple Hyper (Tím Sang Trọng)</span>
+            </button>
+            <button class="theme-chip focusable" tabindex="0" data-theme="ruby">
+              <span class="color-dot" style="background: #FF1744;"></span>
+              <span>Ruby Cinema Glass (Đỏ Điện Ảnh)</span>
+            </button>
+            <button class="theme-chip focusable" tabindex="0" data-theme="arctic">
+              <span class="color-dot" style="background: #E0F7FA;"></span>
+              <span>Arctic Frost (Băng Tuyết Tối Giản)</span>
             </button>
           </div>
         </section>
@@ -661,6 +667,29 @@
       }
     });
 
+    themeEngine.registerTheme({
+      id: 'ruby',
+      name: 'Ruby Cinema Glass',
+      tokens: {
+        '--accent': '#FF1744',
+        '--accent-glow': 'rgba(255, 23, 68, 0.50)',
+        '--glass-border': 'rgba(255, 23, 68, 0.35)',
+        '--bg-mesh': 'radial-gradient(circle at 20% 20%, rgba(255, 23, 68, 0.22) 0%, transparent 45%), radial-gradient(circle at 80% 80%, rgba(255, 145, 0, 0.15) 0%, transparent 50%), #140508'
+      }
+    });
+
+    themeEngine.registerTheme({
+      id: 'arctic',
+      name: 'Arctic Frost',
+      tokens: {
+        '--accent': '#00E5FF',
+        '--accent-glow': 'rgba(0, 229, 255, 0.40)',
+        '--glass-border': 'rgba(255, 255, 255, 0.45)',
+        '--glass-bg': 'rgba(255, 255, 255, 0.15)',
+        '--bg-mesh': 'radial-gradient(circle at 50% 10%, rgba(178, 235, 242, 0.25) 0%, transparent 50%), radial-gradient(circle at 50% 90%, rgba(128, 222, 234, 0.15) 0%, transparent 50%), #0a1318'
+      }
+    });
+
     // Bắt sự kiện chọn theme
     document.querySelectorAll('.theme-chip').forEach(chip => {
       chip.addEventListener('click', () => {
@@ -670,15 +699,11 @@
     });
 
     // Nút đổi nhanh
-    const themesList = ['orange', 'cyan', 'emerald', 'purple'];
+    const themesList = ['orange', 'cyan', 'emerald', 'purple', 'ruby', 'arctic'];
     let themeIdx = 0;
     document.getElementById('btn-quick-theme').addEventListener('click', () => {
       themeIdx = (themeIdx + 1) % themesList.length;
       themeEngine.applyTheme(themesList[themeIdx]);
-    });
-
-    document.getElementById('btn-open-sileo').addEventListener('click', () => {
-      alert('🛒 [Sileo TV Mod Store] Kết nối tới kho repo cộng đồng mở! Mã tải nhanh: 6372800 | Shortlink: is.gd/mitv25');
     });
 
     // Tự động focus phần tử đầu tiên khi khởi động TV
