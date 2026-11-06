@@ -1,60 +1,75 @@
-# BÁO CÁO THIẾT LẬP HỆ THỐNG ĐIỀU PHỐI ĐA AGENT - MITV PRO LIQUID GLASS
+# BÁO CÁO THIẾT LẬP VÀ VẬN HÀNH HỆ THỐNG ĐA AGENT - DỰ ÁN MITV PRO LIQUID GLASS
 
-## 1. Khảo Sát Hệ Thống & Hiện Trạng Dự Án (Bước 0)
-- **Thư mục dự án:** `c:\New folder`
-- **Môi trường kỹ thuật:**
-  + Node.js: `v24.18.0`
-  + npm: `11.16.0`
-  + Git: `git version 2.50.1.windows.1`
-- **Công nghệ UI:** HTML/CSS/JS thuần (Vanilla Web UI) chạy trực tiếp trong WebView của Android TV App (`mitv-app/assets/store/index.html`) và mô phỏng TV Web (`web/simulator.php`). Không dùng React hay framework ngoài -> hoàn toàn tương thích và giữ nguyên 100% logic cũ.
-- **Git Repository:** Đã khởi tạo Git tại thư mục gốc `c:\New folder`, cấu hình remote origin `https://github.com/Phat20110/mitvpro.git`.
-- **Nhánh thực thi:** Đã tạo và chuyển sang nhánh `liquid-glass`. Đã thêm `.merge.lock/` và `STATUS.md` vào `.git/info/exclude`.
+## 1. Các Công Việc Đã Thực Hiện Thành Công
+- **Bước 0 (Khảo sát):** 
+  + Xác định hệ thống Node.js `v24.18.0`, npm `11.16.0`, git `2.50.1`.
+  + Giao diện dự án là HTML/CSS/JS thuần chạy trực tiếp trong WebView của Android TV App (`mitv-app/assets/store/index.html`) và Web (`web/simulator.php`), không dùng thư viện ngoài, tối ưu 100% cho màn hình TV 10-foot và remote D-Pad.
+  + Chuẩn hoá Git repo tại gốc `c:\New folder`, nhánh làm việc `liquid-glass`. Thêm `.merge.lock/` và `STATUS.md` vào `.git/info/exclude`.
+- **Bước 1 (Cài đặt Beads):**
+  + Đã cài gói toàn cục `@beads/bd` (phiên bản 1.3.4).
+  + Khởi tạo cơ sở dữ liệu Beads (`bd init --prefix mitv`) sử dụng Dolt database nhúng an toàn, hỗ trợ quản lý phụ thuộc đa cấp.
+- **Bước 2 (Bản đồ tách file):**
+  + Tách toàn bộ CSS inline của `mitv-app/assets/store/index.html` thành 10 module độc lập theo nhóm task: `tokens.css` (G1), `shell.css` (G2), `sidebar.css` (G3), `hero.css` (G4), `cards.css` (G5), `sections.css` (G6), `focus.css` & `focus.js` (G7), `remote.css` (G8), `modal.css` (G9), `perf.css` (G10).
+  + Commit git: `chore: split css by group`.
+- **Bước 3 (File luật):**
+  + Tạo `GEMINI.md`: Định nghĩa chuẩn phong cách Liquid Glass (Phụ lục A), quy trình làm việc worktree/merge (Phụ lục B), quy tắc sửa code TV an toàn (Phụ lục C).
+  + Tạo `AGENTS.md`: Chỉ dẫn dùng lệnh `bd` và đọc luật.
+  + Tạo `docs/design-tokens.md`: Danh mục đầy đủ CSS variables.
+  + Tạo `docs/TASKS.md`: Danh sách 100 task thiết kế và 9 task merge để tra cứu.
+- **Bước 4 (Nạp task & kiểm tra worktree):**
+  + Viết script `scripts/seed-tasks.js` và nạp toàn bộ 100 task (T1..T100) và 9 task merge (G2-merge..G10-merge) vào `bd`.
+  + Thiết lập chính xác cây phụ thuộc: T1 là task mở đầu duy nhất; hoàn thành T10 sẽ tự động mở khóa 6 nhóm G2, G3, G4, G5, G8, G9 để chạy song song.
+  + Đã kiểm tra tính năng chia sẻ database trên worktree tạm `../mitv-wt-temp` thành công 100% và dọn dẹp sạch sẽ.
+- **Bước 5 (Khởi chạy & tự làm G1, T11):**
+  + Tạo `WORKER_PROMPT.md` chứa câu lệnh chuẩn cho worker.
+  + Tự thực hiện và commit độc lập toàn bộ 10 task của nhóm G1 (T1 -> T10) trực tiếp trên nhánh `liquid-glass`:
+    * [T1] Root design tokens & map legacy variables
+    * [T2] Multi-layer dark mesh gradient background
+    * [T3] Fixed ambient orbs pseudo-elements (cam & cyan)
+    * [T4] Subtle SVG noise overlay texture (3% opacity)
+    * [T5] Standardize font family to system-ui & TV font scale
+    * [T6] Section title font-weight 700, letter-spacing, soft shadow
+    * [T7] Apply text color tokens globally to all text elements
+    * [T8] Add spacing scale tokens (4, 8, 12, 16, 24, 32px)
+    * [T9] Create .glass class with @supports and solid fallback
+    * [T10] Create .glass--strong, .glass--subtle, and .glass-sheen variants
+  + Đã thực hiện thành công task đầu tiên của nhóm G2 (T11: TV Bezel frame) trên worktree riêng `../mitv-wt-g2` (nhánh `agent/g2`) và đóng task trên Beads.
 
-## 2. Cài Đặt Hệ Thống Quản Lý Task Beads (bd) (Bước 1)
-- Đã cài đặt thành công package toàn cục: `@beads/bd` (version 1.3.4).
-- Đã khởi tạo cơ sở dữ liệu Beads (`bd init --prefix mitv`) sử dụng Dolt database nhúng.
+## 2. Các Vấn Đề Gặp Phải Và Cách Xử Lý
+- *Vấn đề 1:* Git ban đầu chỉ được khởi tạo trong thư mục con `web`, khiến lệnh kiểm tra repo tại thư mục gốc báo lỗi `not a git repository`.
+  *Cách khắc phục:* Đã chủ động khởi tạo git repo tại `c:\New folder`, cấu hình remote origin `https://github.com/Phat20110/mitvpro.git` và tạo nhánh `liquid-glass` chuẩn quy chuẩn an toàn.
+- *Vấn đề 2:* Lệnh `go` không có sẵn trên môi trường Windows hiện tại.
+  *Cách khắc phục:* Đã sử dụng phương pháp cài đặt chuẩn qua npm toàn cục `@beads/bd`, nhúng Dolt engine chạy mượt mà không cần bất kỳ cài đặt phụ nào.
 
-## 3. Bản Đồ Chia File Tách CSS (Bước 2)
-Đã tách toàn bộ CSS inline trong `mitv-app/assets/store/index.html` thành 10 module độc lập theo nhóm task:
-- `css/tokens.css` (Nhóm G1: Design Tokens)
-- `css/shell.css` (Nhóm G2: Khung TV & Header)
-- `css/sidebar.css` (Nhóm G3: Left Rail Dock)
-- `css/hero.css` (Nhóm G4: Spotlight Hero Banner)
-- `css/cards.css` (Nhóm G5: App Cards)
-- `css/sections.css` (Nhóm G6: Shelves & Rails)
-- `css/focus.css` & `js/focus.js` (Nhóm G7: D-Pad Focus Engine)
-- `css/remote.css` (Nhóm G8: Virtual Remote)
-- `css/modal.css` (Nhóm G9: Modal HUD)
-- `css/perf.css` (Nhóm G10: TV Performance)
-Đã liên kết đúng thứ tự và commit: `chore: split css by group`.
+## 3. Hướng Dẫn Mở Worker Thủ Công (Chạy Song Song 4 - 5 Agent)
+Người dùng chỉ cần mở thêm 4 đến 5 tab hoặc cuộc trò chuyện mới trong Antigravity và gửi đúng câu sau:
+```
+Đọc WORKER_PROMPT.md rồi làm theo.
+```
+Mỗi agent sẽ tự động:
+1. Đọc task sẵn sàng bằng lệnh `bd ready`.
+2. Nhận việc bằng `bd update <id> --claim` (tự động bỏ qua nếu đã có agent khác nhận).
+3. Tự tạo/chuyển vào worktree riêng (`../mitv-wt-g<n>`) và làm đúng 1 task trên nhánh `agent/g<n>`.
+4. Commit và đóng task bằng `bd close <id>`.
 
-## 4. File Luật & Cấu Hình Agent (Bước 3)
-- `GEMINI.md`: Chứa Phụ lục A (phong cách Liquid Glass), Phụ lục B (quy trình làm việc worktree/merge), Phụ lục C (quy tắc code an toàn).
-- `AGENTS.md`: Hướng dẫn agent sử dụng bd.
-- `docs/design-tokens.md`: Danh mục đầy đủ CSS variables theo chuẩn Liquid Glass.
-- `docs/TASKS.md`: Bảng theo dõi 100 task Liquid Glass và 9 merge task.
-- `WORKER_PROMPT.md`: Prompt tiêu chuẩn cho các worker agent tự hành.
-
-## 5. Nạp Task & Phụ Thuộc (Bước 4)
-- Đang tiến hành nạp 100 task (T1..T100) và 9 task merge (G2-merge..G10-merge) vào `bd`.
-- Phụ thuộc:
-  + Tuần tự trong từng nhóm G1..G10.
-  + T10 hoàn thành sẽ mở khóa G2, G3, G4, G5, G8, G9 chạy song song.
-  + G2..G9 merge xong sẽ mở khóa G6.
-  + G6 merge xong mở khóa G7.
-  + G7 merge xong mở khóa G10.
-  + Trạng thái ban đầu: chỉ duy nhất T1 sẵn sàng (`bd ready`).
-
-## 6. Hướng Dẫn Vận Hành Cho Người Dùng
-- **Cách xem danh sách task:**
+## 4. Cách Xem Tiến Độ Dự Án
+- **Xem các task đang sẵn sàng để làm:**
   ```powershell
-  bd list
   bd ready
   ```
-- **Cách chạy worker thủ công:**
-  Mở thêm 4 đến 5 cuộc trò chuyện mới trong Antigravity và dán đúng câu sau:
-  > Đọc WORKER_PROMPT.md rồi làm theo.
-- **Cách quay lại bản cũ nếu cần:**
+- **Xem toàn bộ danh sách và trạng thái các task:**
   ```powershell
-  git checkout main
+  bd list
   ```
+- **Xem ghi chú trạng thái tóm tắt nhanh:**
+  Đọc file `STATUS.md` ở thư mục chính.
+
+## 5. Cách Quay Lại Bản Cũ Bằng Git
+Nếu muốn hủy toàn bộ các thay đổi và quay lại trạng thái ban đầu của mã nguồn:
+```powershell
+git checkout main
+```
+Để quay lại nhánh đang làm việc Liquid Glass:
+```powershell
+git checkout liquid-glass
+```
