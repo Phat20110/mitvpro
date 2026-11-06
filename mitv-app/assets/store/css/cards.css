@@ -1,24 +1,26 @@
 /* ==========================================================================
-   SQUIRCLE LIQUID GLASS APP CARDS
+   SQUIRCLE LIQUID GLASS APP CARDS (APPLE TV HIG STANDARD)
+   Pure Clear Glass • High Contrast • 60 FPS TV Hardware Acceleration
    ========================================================================== */
 .tv-card {
     flex: 0 0 250px;
-    height: 165px;
+    height: 160px;
     border-radius: var(--radius-lg);
     background: var(--glass-bg);
     backdrop-filter: blur(var(--glass-blur)) saturate(var(--glass-saturate));
     -webkit-backdrop-filter: blur(var(--glass-blur)) saturate(var(--glass-saturate));
-    border: 1.5px solid var(--glass-border);
+    border: 1px solid var(--glass-border);
     box-shadow: var(--glass-shadow);
-    padding: 18px;
+    padding: 16px;
     cursor: pointer;
     outline: none;
-    transition: transform 0.28s var(--bezier-tv), box-shadow 0.28s ease, border-color 0.28s ease;
+    transition: transform 0.22s var(--bezier-tv), box-shadow 0.22s ease, border-color 0.22s ease;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
     position: relative;
     overflow: hidden;
+    will-change: transform;
 }
 
 /* Curved top glass glint */
@@ -26,22 +28,21 @@
     content: '';
     position: absolute;
     top: 0; left: 0; right: 0;
-    height: 48%;
-    background: linear-gradient(180deg, rgba(255, 255, 255, 0.35) 0%, rgba(255, 255, 255, 0.02) 100%);
+    height: 44%;
+    background: linear-gradient(180deg, rgba(255, 255, 255, 0.25) 0%, rgba(255, 255, 255, 0.0) 100%);
     border-radius: inherit;
     pointer-events: none;
 }
 
-/* Focused / Hover D-Pad State */
+/* Focused / Hover D-Pad State (Crisp, High-Contrast & Fast) */
 .tv-card:focus, .tv-card:hover {
-    transform: scale3d(1.08, 1.08, 1) translateY(-6px);
-    border-color: rgba(255, 255, 255, 0.85);
+    transform: scale3d(1.06, 1.06, 1) translateY(-4px);
+    border-color: #FFFFFF;
+    background: rgba(255, 255, 255, 0.12);
     box-shadow: 
-        inset 2px 3px 6px rgba(255, 255, 255, 1),
-        inset -3px -3px 10px rgba(0, 240, 255, 0.9),
-        inset 4px 4px 14px rgba(255, 20, 140, 0.85),
-        0 25px 65px rgba(0, 0, 0, 0.7),
-        0 0 30px rgba(255, 122, 26, 0.55);
+        inset 0 1px 2px rgba(255, 255, 255, 0.6),
+        0 16px 36px rgba(0, 0, 0, 0.6),
+        0 0 20px var(--accent-glow);
     z-index: 50;
 }
 
@@ -54,14 +55,14 @@
 }
 
 .card-icon-frame {
-    width: 48px;
-    height: 48px;
-    border-radius: 14px;
+    width: 46px;
+    height: 46px;
+    border-radius: 12px;
     flex-shrink: 0;
     background: rgba(255, 255, 255, 0.08);
-    border: 1px solid rgba(255, 255, 255, 0.35);
+    border: 1px solid rgba(255, 255, 255, 0.25);
     padding: 5px;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.35);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -79,60 +80,48 @@
 }
 
 .card-app-title {
-    font-size: 1.02rem;
-    font-weight: 800;
-    color: #FFFFFF;
-    letter-spacing: -0.02em;
-    margin-bottom: 2px;
-    line-height: 1.2;
+    font-size: 1rem;
+    font-weight: 700;
+    color: var(--text-pure);
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
+    margin-bottom: 2px;
 }
 
 .card-app-ver {
-    font-size: 0.72rem;
-    color: var(--text-secondary);
-    font-weight: 600;
+    font-size: 0.75rem;
+    color: var(--text-tertiary);
+    font-weight: 500;
 }
 
 .card-tag {
     display: inline-block;
     align-self: flex-start;
     font-size: 0.65rem;
-    font-weight: 800;
-    letter-spacing: 0.04em;
-    padding: 2.5px 8px;
+    font-weight: 700;
+    padding: 2px 8px;
     border-radius: var(--radius-pill);
+    letter-spacing: 0.4px;
     z-index: 2;
-    position: relative;
 }
 
 .card-action {
     display: flex;
     align-items: center;
-    justify-content: center;
     gap: 6px;
-    font-size: 0.75rem;
+    font-size: 0.78rem;
     font-weight: 700;
-    color: rgba(255, 255, 255, 0.9);
-    background: rgba(255, 255, 255, 0.08);
-    border: 1px solid rgba(255, 255, 255, 0.25);
-    border-radius: var(--radius-pill);
-    padding: 6px 12px;
-    transition: all 0.2s ease;
+    color: var(--text-secondary);
     z-index: 2;
-    position: relative;
-}
-
-.tv-card:focus .card-action, .tv-card:hover .card-action {
-    background: var(--accent);
-    color: #FFFFFF;
-    border-color: #FFFFFF;
+    transition: color 0.2s ease;
 }
 
 .card-action svg {
     width: 14px;
     height: 14px;
-    stroke-width: 2.2;
+}
+
+.tv-card:focus .card-action, .tv-card:hover .card-action {
+    color: var(--accent);
 }

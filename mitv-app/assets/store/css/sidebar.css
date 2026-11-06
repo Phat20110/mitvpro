@@ -1,88 +1,69 @@
 /* ==========================================================================
-   LEFT VERTICAL CAPSULE LIQUID DOCK WITH 100% UNBROKEN ORGANIC FLUID BULGE
+   LEFT VERTICAL CAPSULE LIQUID DOCK (APPLE TV / VISIONOS PRISTINE GLASS)
+   High-Precision Droplet Alignment • 60 FPS Hardware Acceleration
    ========================================================================== */
 .tv-dock {
-    width: 150px;
+    width: 130px;
     height: 100vh;
     position: fixed;
     left: 0;
     top: 0;
-    background: var(--glass-bg, rgba(255, 255, 255, 0.045));
-    backdrop-filter: blur(var(--glass-blur, 16px)) saturate(var(--glass-saturate, 220%));
-    -webkit-backdrop-filter: blur(var(--glass-blur, 16px)) saturate(var(--glass-saturate, 220%));
-    border: none !important;
-    box-shadow: none !important;
+    background: var(--glass-bg, rgba(255, 255, 255, 0.05));
+    backdrop-filter: blur(var(--glass-blur, 14px)) saturate(var(--glass-saturate, 160%));
+    -webkit-backdrop-filter: blur(var(--glass-blur, 14px)) saturate(var(--glass-saturate, 160%));
+    border-right: 1px solid var(--glass-border, rgba(255, 255, 255, 0.18));
     display: flex;
     flex-direction: column;
-    align-items: flex-start;
-    justify-content: space-between;
-    padding: 24px 0 24px 14px;
+    align-items: center;
+    padding: 24px 0 60px 0;
     z-index: 100;
     flex-shrink: 0;
-    transition: clip-path 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
-    -webkit-transition: -webkit-clip-path 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
+    overflow-y: auto;
+    overflow-x: hidden;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
 }
 
-/* SVG Contour line tracing the exact fluid rail and droplet */
-.dock-fluid-svg {
-    position: fixed;
-    left: 0;
-    top: 0;
-    width: 150px;
-    height: 100vh;
-    pointer-events: none;
-    z-index: 102;
-    overflow: visible;
+.tv-dock::-webkit-scrollbar {
+    display: none;
 }
 
-#fluidRailPath {
-    transition: d 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
-}
-
-/* 3D Liquid Crystal Droplet Lens Effects */
+/* 3D Liquid Crystal Droplet Bubble (Accurate Centered Alignment & Zero Rainbow Lag) */
 .droplet-bulge-bubble {
     position: absolute;
-    left: 10px;
-    top: 108px;
-    width: 114px;
-    height: 90px;
+    left: calc(50% - 48px);
+    top: 0;
+    width: 96px;
+    height: 72px;
     pointer-events: none;
     z-index: 104;
-    border-radius: 45px 55px 55px 45px;
-    box-shadow: 
-        inset 2px 3px 6px rgba(255, 255, 255, 0.95),
-        inset -4px -4px 10px rgba(0, 240, 255, 0.85),
-        inset 4px 4px 14px rgba(255, 20, 140, 0.80),
-        inset 0 -5px 12px rgba(255, 220, 0, 0.70),
-        0 16px 36px rgba(0, 0, 0, 0.45);
-    transition: top 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
+    border-radius: 36px;
+    background: rgba(255, 255, 255, 0.08);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid rgba(255, 255, 255, 0.45);
+    box-shadow: var(--glass-bubble-shadow, 0 12px 32px rgba(0, 0, 0, 0.4));
+    transform: translate3d(0, 0, 0);
+    transition: transform 0.22s cubic-bezier(0.16, 1, 0.3, 1);
+    will-change: transform;
 }
 
-/* 3D Specular reflection glint arc */
+/* Pure Specular glint arc */
 .glint-spec {
     position: absolute;
-    top: 8px;
-    left: 18px;
-    width: 40px;
-    height: 18px;
+    top: 6px;
+    left: 14px;
+    width: 32px;
+    height: 14px;
     border-radius: 50%;
-    background: linear-gradient(135deg, rgba(255, 255, 255, 0.98) 0%, rgba(255, 255, 255, 0.0) 100%);
-    filter: blur(1.5px);
-    transform: rotate(-32deg);
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.75) 0%, rgba(255, 255, 255, 0.0) 100%);
+    filter: blur(1px);
+    transform: rotate(-25deg);
     pointer-events: none;
 }
 
-/* Caustic glow on the bulging lens */
 .glint-caustic {
-    position: absolute;
-    bottom: 8px;
-    right: 18px;
-    width: 34px;
-    height: 14px;
-    border-radius: 50%;
-    background: radial-gradient(circle, rgba(0, 240, 255, 0.85) 0%, transparent 80%);
-    filter: blur(2px);
-    pointer-events: none;
+    display: none; /* Removed garish neon blur for clean performance */
 }
 
 .dock-brand {
@@ -90,30 +71,28 @@
     flex-direction: column;
     align-items: center;
     gap: 6px;
-    margin-bottom: 8px;
+    margin-bottom: 16px;
     width: 52px;
     z-index: 106;
+    flex-shrink: 0;
 }
 
 .dock-brand-logo {
-    width: 44px;
-    height: 44px;
+    width: 42px;
+    height: 42px;
     border-radius: 12px;
-    box-shadow: 0 4px 14px rgba(255, 122, 26, 0.4);
-    border: 1px solid rgba(255, 255, 255, 0.4);
-}
-
-.dock-brand-meta {
-    display: none;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+    border: 1px solid rgba(255, 255, 255, 0.3);
 }
 
 .dock-menu {
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 16px;
+    gap: 12px;
     width: 52px;
     z-index: 106;
+    flex-grow: 1;
 }
 
 .dock-item {
@@ -122,66 +101,68 @@
     border-radius: 50%;
     border: none;
     background: transparent;
-    color: rgba(255, 255, 255, 0.65);
+    color: rgba(255, 255, 255, 0.6);
     display: flex;
     align-items: center;
     justify-content: center;
     cursor: pointer;
     outline: none;
-    transition: all 0.25s var(--bezier-tv, cubic-bezier(0.16, 1, 0.3, 1));
+    transition: color 0.2s ease, transform 0.2s cubic-bezier(0.16, 1, 0.3, 1);
     position: relative;
     z-index: 106;
+    flex-shrink: 0;
 }
 
 .dock-item svg {
     width: 22px;
     height: 22px;
     stroke-width: 2;
-    transition: transform 0.25s var(--bezier-tv, cubic-bezier(0.16, 1, 0.3, 1)), stroke 0.25s ease;
+    transition: transform 0.2s ease;
 }
 
 .dock-item:hover, .dock-item:focus {
     color: #FFFFFF;
-    transform: scale(1.08);
+    transform: scale(1.1);
 }
 
 .dock-item.active {
     color: #FFFFFF;
-    filter: drop-shadow(0 2px 8px rgba(0, 0, 0, 0.9));
-    transform: scale(1.15) translateX(6px);
+    transform: scale(1.15) translateX(4px);
+    filter: drop-shadow(0 2px 8px rgba(255, 122, 26, 0.5));
 }
 
 .dock-item.active svg {
     stroke-width: 2.2;
+    stroke: var(--accent);
 }
 
-/* RAM / Optimizer Quick Widget */
+/* RAM Quick Cleaner at bottom */
 .dock-ram-widget {
-    width: 50px;
-    height: 50px;
+    width: 48px;
+    height: 48px;
     border-radius: 16px;
     background: rgba(255, 255, 255, 0.06);
-    border: 1px solid rgba(255, 255, 255, 0.25);
+    border: 1px solid rgba(255, 255, 255, 0.2);
     display: flex;
     align-items: center;
     justify-content: center;
     cursor: pointer;
     outline: none;
-    transition: all 0.25s ease;
-    margin-top: auto;
-    width: 52px;
+    transition: all 0.2s ease;
+    margin-top: 14px;
     z-index: 106;
+    flex-shrink: 0;
 }
 
 .dock-ram-widget svg {
-    width: 22px;
-    height: 22px;
+    width: 20px;
+    height: 20px;
     stroke: var(--accent);
 }
 
 .dock-ram-widget:focus, .dock-ram-widget:hover {
     background: var(--accent);
-    box-shadow: 0 0 20px rgba(255, 122, 26, 0.6);
+    box-shadow: 0 0 16px var(--accent-glow);
     transform: scale(1.08);
 }
 

@@ -350,11 +350,16 @@
     });
 
     // Export ra global để test
+    window.openPowerSheet = triggerLongPressPowerSheet;
+    window.closePowerSheet = closePowerSheet;
+    window.toggleDiagnostics = toggleDiagnostics;
+
     window.MultiActionPower = {
         triggerScreenOff,
         wakeScreen,
         triggerDoublePressClean,
-        triggerLongPressPowerSheet
+        triggerLongPressPowerSheet,
+        closePowerSheet
     };
 
     console.log('[SmartKeypadEngine & MultiActionPower] Loaded successfully.');

@@ -1,26 +1,26 @@
 /* ==========================================================================
-   POPUP, MODAL, NOTIFICATIONS & TOAST HUD
+   POPUP, MODAL, NOTIFICATIONS & TOAST HUD (PURE LIQUID GLASS)
+   Zero Rainbow Neon • High-Contrast Leanback 10-foot UI
    ========================================================================== */
 #tvHud {
     position: fixed;
     bottom: 32px;
     left: 50%;
     transform: translateX(-50%);
-    background: rgba(255, 255, 255, 0.08);
-    backdrop-filter: blur(16px) saturate(220%);
-    -webkit-backdrop-filter: blur(16px) saturate(220%);
-    border: 1.5px solid rgba(255, 255, 255, 0.55);
+    background: rgba(255, 255, 255, 0.10);
+    backdrop-filter: blur(16px) saturate(180%);
+    -webkit-backdrop-filter: blur(16px) saturate(180%);
+    border: 1px solid rgba(255, 255, 255, 0.45);
     padding: 14px 34px;
     border-radius: var(--radius-pill);
     font-size: 0.95rem;
-    font-weight: 800;
+    font-weight: 700;
     color: #FFFFFF;
     display: none;
     z-index: 99999;
     box-shadow: 
-        inset 1px 2px 4px #fff,
-        inset -2px -2px 8px rgba(0, 240, 255, 0.7),
-        0 18px 45px rgba(0, 0, 0, 0.7);
+        inset 0 1px 0 rgba(255, 255, 255, 0.5),
+        0 14px 40px rgba(0, 0, 0, 0.65);
     letter-spacing: 0.01em;
 }
 
@@ -28,10 +28,101 @@
     position: fixed;
     inset: 0;
     background: rgba(0, 0, 0, 0.65);
-    backdrop-filter: blur(12px);
-    -webkit-backdrop-filter: blur(12px);
-    display: flex;
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+    display: none;
     align-items: center;
     justify-content: center;
     z-index: 10000;
+}
+
+.glass-modal.active {
+    display: flex;
+}
+
+.glass-dialog-card {
+    background: rgba(255, 255, 255, 0.08);
+    backdrop-filter: blur(24px) saturate(180%);
+    -webkit-backdrop-filter: blur(24px) saturate(180%);
+    border: 1px solid rgba(255, 255, 255, 0.35);
+    border-radius: var(--radius-xl, 28px);
+    box-shadow: 0 24px 60px rgba(0, 0, 0, 0.65);
+    padding: 32px 40px;
+    width: 620px;
+    max-width: 90vw;
+    color: #FFFFFF;
+}
+
+.glass-dialog-title {
+    font-size: 1.5rem;
+    font-weight: 800;
+    margin-bottom: 8px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.glass-dialog-desc {
+    color: rgba(255, 255, 255, 0.7);
+    font-size: 0.95rem;
+    margin-bottom: 24px;
+}
+
+.glass-setting-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 14px 18px;
+    margin-bottom: 10px;
+    background: rgba(255, 255, 255, 0.04);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    border-radius: var(--radius-md, 14px);
+    cursor: pointer;
+    outline: none;
+    transition: all 0.2s ease;
+}
+
+.glass-setting-row:focus, .glass-setting-row:hover {
+    background: rgba(255, 122, 26, 0.18);
+    border-color: var(--accent, #FF7A1A);
+    box-shadow: 0 0 16px rgba(255, 122, 26, 0.3);
+    transform: scale(1.02);
+}
+
+.glass-setting-label {
+    font-size: 1rem;
+    font-weight: 600;
+}
+
+.glass-setting-val {
+    font-size: 0.9rem;
+    color: var(--accent, #FF7A1A);
+    font-weight: 700;
+}
+
+.glass-dialog-actions {
+    margin-top: 24px;
+    display: flex;
+    justify-content: flex-end;
+    gap: 12px;
+}
+
+.glass-btn {
+    padding: 12px 24px;
+    border-radius: var(--radius-pill);
+    border: 1px solid rgba(255, 255, 255, 0.25);
+    background: rgba(255, 255, 255, 0.1);
+    color: #FFFFFF;
+    font-size: 0.95rem;
+    font-weight: 700;
+    cursor: pointer;
+    outline: none;
+    transition: all 0.2s ease;
+}
+
+.glass-btn:focus, .glass-btn:hover {
+    background: var(--accent, #FF7A1A);
+    border-color: var(--accent, #FF7A1A);
+    box-shadow: 0 0 16px var(--accent-glow);
+    transform: scale(1.05);
 }

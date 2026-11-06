@@ -18,7 +18,6 @@
     <link rel="stylesheet" href="css/modal.css">
     <link rel="stylesheet" href="css/perf.css">
     <link rel="stylesheet" href="css/keypad.css">
-
 </head>
 <body>
 
@@ -27,31 +26,10 @@
     <div class="ambient-vignette"></div>
 
     <!-- 1. LEFT VERTICAL CAPSULE LIQUID DOCK -->
-        <!-- SVG Seamless Fluid Rail & Prismatic Contour -->
-    <svg class="dock-fluid-svg" viewBox="0 0 150 1080" preserveAspectRatio="none">
-        <defs>
-            <linearGradient id="prismRail" x1="0%" y1="0%" x2="100%" y2="100%">
-                <stop offset="0%" stop-color="rgba(255,255,255,0.7)" />
-                <stop offset="9%" stop-color="rgba(255,255,255,0.4)" />
-                <stop offset="12%" stop-color="#ff0055" />
-                <stop offset="14%" stop-color="#ffe600" />
-                <stop offset="17%" stop-color="#00e5ff" />
-                <stop offset="20%" stop-color="#ff007f" />
-                <stop offset="23%" stop-color="rgba(255,255,255,0.4)" />
-                <stop offset="100%" stop-color="rgba(255,255,255,0.2)" />
-            </linearGradient>
-            <filter id="railBloom" x="-20%" y="-20%" width="140%" height="140%">
-                <feDropShadow dx="0" dy="0" stdDeviation="2" flood-color="#00e5ff" flood-opacity="0.6"/>
-            </filter>
-        </defs>
-        <path id="fluidRailPath" d="" fill="none" stroke="url(#prismRail)" stroke-width="2" filter="url(#railBloom)" />
-    </svg>
-
     <aside class="tv-dock" id="tvDock">
-        <!-- Organic 3D Bulging Droplet Bubble -->
+        <!-- Organic 3D Specular Glass Droplet Bubble -->
         <div class="droplet-bulge-bubble" id="dropletBulge">
             <div class="glint-spec"></div>
-            <div class="glint-caustic"></div>
         </div>
 
         <div class="dock-brand">
@@ -59,42 +37,42 @@
         </div>
 
         <nav class="dock-menu">
-            <!-- 1. Home / Recommended (Star) -->
-            <button class="dock-item" id="dockBtnHome" tabindex="0" onclick="selectDock(this, 'sec-recommended')">
+            <!-- 1. Home / Khuyên Dùng (Star) -->
+            <button class="dock-item" id="dockBtnHome" tabindex="0" data-section="sec-recommended" title="Khuyên Dùng" onfocus="activateDock(this, true)" onclick="activateDock(this, true)">
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
             </button>
-            <!-- 2. Football / Thể Thao (Active Bulging Bubble by Default!) -->
-            <button class="dock-item active" id="dockBtnSports" tabindex="0" onclick="selectDock(this, 'sec-sports')">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><circle cx="12" cy="12" r="10"></circle><path d="M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20"></path><path d="M2 12h20"></path></svg>
-            </button>
-            <!-- 3. Satellite / TV Channels -->
-            <button class="dock-item" id="dockBtnTv" tabindex="0" onclick="selectDock(this, 'sec-recommended')">
+            <!-- 2. Satellite / TV & IPTV (Active default) -->
+            <button class="dock-item active" id="dockBtnTv" tabindex="0" data-section="sec-tv" title="Truyền Hình & IPTV" onfocus="activateDock(this, true)" onclick="activateDock(this, true)">
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M4 11a9 9 0 0 1 9 9"></path><path d="M4 4a16 16 0 0 1 16 16"></path><circle cx="5" cy="19" r="1"></circle></svg>
             </button>
+            <!-- 3. Football / Thể Thao -->
+            <button class="dock-item" id="dockBtnSports" tabindex="0" data-section="sec-sports" title="Thể Thao & Bóng Đá" onfocus="activateDock(this, true)" onclick="activateDock(this, true)">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><circle cx="12" cy="12" r="10"></circle><path d="M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20"></path><path d="M2 12h20"></path></svg>
+            </button>
             <!-- 4. Clapperboard / 4K Cinema -->
-            <button class="dock-item" id="dockBtnCinema" tabindex="0" onclick="selectDock(this, 'sec-cinema')">
+            <button class="dock-item" id="dockBtnCinema" tabindex="0" data-section="sec-cinema" title="Rạp Phim 4K" onfocus="activateDock(this, true)" onclick="activateDock(this, true)">
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><rect x="2" y="2" width="20" height="20" rx="2.18" ry="2.18"></rect><line x1="7" y1="2" x2="7" y2="22"></line><line x1="17" y1="17" x2="22" y2="17"></line><line x1="2" y1="12" x2="22" y2="12"></line></svg>
             </button>
-            <!-- 5. Download Arrow -->
-            <button class="dock-item" id="dockBtnDownload" tabindex="0" onclick="selectDock(this, 'sec-recommended')">
+            <!-- 5. Downloads / Kho Tải 6372800 -->
+            <button class="dock-item" id="dockBtnDownload" tabindex="0" data-section="sec-downloads" title="Kho Tải Nhanh (AFTV 6372800)" onfocus="activateDock(this, true)" onclick="activateDock(this, true)">
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
             </button>
             <!-- 6. History Clock -->
-            <button class="dock-item" id="dockBtnHistory" tabindex="0" onclick="selectDock(this, 'sec-sports')">
+            <button class="dock-item" id="dockBtnHistory" tabindex="0" data-section="sec-cinema" title="Xem Gần Đây" onfocus="activateDock(this, true)" onclick="activateDock(this, true)">
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
             </button>
             <!-- 7. Settings Cog -->
-            <button class="dock-item" id="dockBtnSettings" tabindex="0" onclick="showHud('Cài đặt hệ thống Tivi Xiaomi MiTV Pro')">
+            <button class="dock-item" id="dockBtnSettings" tabindex="0" data-action="settings" title="Cài Đặt Hệ Thống" onfocus="activateDock(this, false)" onclick="openSettingsSheet()">
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><circle cx="12" cy="12" r="3"></circle><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"></path></svg>
             </button>
             <!-- 8. Power -->
-            <button class="dock-item" id="dockBtnPower" tabindex="0" onclick="showHud('Nhấn giữ nút nguồn remote để tắt Tivi Xiaomi')">
+            <button class="dock-item" id="dockBtnPower" tabindex="0" data-action="power" title="Tùy Chọn Nguồn & Tắt Màn Hình" onfocus="activateDock(this, false)" onclick="openPowerSheetAction()">
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M18.36 6.64a9 9 0 1 1-12.73 0"></path><line x1="12" y1="2" x2="12" y2="12"></line></svg>
             </button>
         </nav>
 
         <!-- Quick RAM Clean -->
-        <button class="dock-ram-widget" id="dockRamBtn" tabindex="0" onclick="triggerCleanRam()" title="Dọn Bộ Nhớ RAM">
+        <button class="dock-ram-widget" id="dockRamBtn" tabindex="0" onclick="triggerCleanRam()" title="Dọn Bộ Nhớ RAM Turbo">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon></svg>
         </button>
     </aside>
@@ -113,13 +91,15 @@
                 </div>
                 <h1 class="hero-title" id="heroTitle">SmartTube Next 4K</h1>
                 <p class="hero-desc" id="heroDesc">Xem YouTube 4K HDR tuyệt đối không có quảng cáo, tự động bỏ qua intro tài trợ, hỗ trợ tài khoản Google và điều khiển Remote D-Pad mượt mà 60 FPS.</p>
-                <button class="hero-cta" id="heroActionBtn" tabindex="0" onclick="installActiveHero()">
+                <button class="hero-action-btn" id="heroActionBtn" tabindex="0" onclick="installActiveHero()">
                     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
                     <span>CÀI ĐẶT 1-CHẠM</span>
                 </button>
             </div>
-            <div class="hero-visual">
-                <img id="heroLogo" src="img/smarttube_icon.png" alt="App Logo">
+            <div class="hero-preview">
+                <div class="hero-art-frame">
+                    <img id="heroLogo" src="img/smarttube_icon.png" alt="App Logo">
+                </div>
             </div>
         </section>
 
@@ -137,10 +117,10 @@
                 <!-- SmartTube -->
                 <article class="tv-card" tabindex="0"
                     onfocus="updateHero('SmartTube Next 4K', 'Xem YouTube 4K HDR tuyệt đối không có quảng cáo, tự động bỏ qua intro tài trợ, hỗ trợ tài khoản Google và điều khiển Remote D-Pad mượt mà 60 FPS.', 'KHUYÊN DÙNG #1', 'https://raw.githubusercontent.com/Phat20110/mitvpro/main/downloads/SmartTube-Stable.apk', 'img/smarttube_icon.png')"
-                    onclick="triggerInstall('SmartTube Next 4K', 'https://raw.githubusercontent.com/Phat20110/mitvpro/main/downloads/SmartTube-Stable.apk')">
+                    onclick="triggerInstall('SmartTube Next 4K', 'https://raw.githubusercontent.com/Phat20110/mitvpro/main/downloads/SmartTube-Stable.apk', this)">
                     <div class="card-top">
                         <div class="card-icon-frame">
-                            <img src="img/smarttube_icon.png" alt="SmartTube" onerror="this.style.display=\'none\'; this.parentElement.classList.add(\'fallback-icon\'); this.parentElement.innerText=\'SmartTube\'[0];">
+                            <img src="img/smarttube_icon.png" alt="SmartTube" onerror="this.style.display='none'; this.parentElement.classList.add('fallback-icon'); this.parentElement.innerText='SmartTube'[0];">
                         </div>
                         <div class="card-info">
                             <div class="card-app-title">SmartTube 4K</div>
@@ -154,33 +134,13 @@
                     </div>
                 </article>
 
-                <!-- VTV Go -->
-                <article class="tv-card" tabindex="0"
-                    onfocus="updateHero('VTV Go TV (Chính Chủ)', 'Xem Thời sự 19h VTV1, giải trí VTV3, thể thao VTV5 bản quyền của Đài Truyền Hình Việt Nam. Xem lại 6 tháng không bỏ lỡ.', 'ĐÀI THVN CHÍNH THỐNG', 'https://raw.githubusercontent.com/Phat20110/mitvpro/main/downloads/SmartTube-Stable.apk', 'img/vtvgo.png')"
-                    onclick="triggerInstall('VTV Go TV', 'https://raw.githubusercontent.com/Phat20110/mitvpro/main/downloads/SmartTube-Stable.apk')">
-                    <div class="card-top">
-                        <div class="card-icon-frame">
-                            <img src="img/vtvgo.png" alt="VTV Go" onerror="this.style.display=\'none\'; this.parentElement.classList.add(\'fallback-icon\'); this.parentElement.innerText=\'VTV Go\'[0];">
-                        </div>
-                        <div class="card-info">
-                            <div class="card-app-title">VTV Go TV</div>
-                            <div class="card-app-ver">Đài THVN &bull; HD</div>
-                        </div>
-                    </div>
-                    <span class="card-tag" style="background: rgba(6, 182, 212, 0.2); color: #22D3EE; border: 1px solid rgba(6, 182, 212, 0.4);">VTV1 - VTV9 HD</span>
-                    <div class="card-action">
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
-                        <span>Cài Đặt Ngay</span>
-                    </div>
-                </article>
-
                 <!-- TiviMate -->
                 <article class="tv-card" tabindex="0"
                     onfocus="updateHero('TiviMate IPTV Player Pro', 'Trình xem truyền hình số 1 trên Android TV: 250+ kênh HD/FHD trong nước & quốc tế (K+ Sport, HBO, Discovery).', 'IPTV SỐ 1', 'https://raw.githubusercontent.com/Phat20110/mitvpro/main/downloads/SmartTube-Stable.apk', 'img/tivimate.png')"
-                    onclick="triggerInstall('TiviMate IPTV Pro', 'https://raw.githubusercontent.com/Phat20110/mitvpro/main/downloads/SmartTube-Stable.apk')">
+                    onclick="triggerInstall('TiviMate IPTV Pro', 'https://raw.githubusercontent.com/Phat20110/mitvpro/main/downloads/SmartTube-Stable.apk', this)">
                     <div class="card-top">
                         <div class="card-icon-frame">
-                            <img src="img/tivimate.png" alt="TiviMate" onerror="this.style.display=\'none\'; this.parentElement.classList.add(\'fallback-icon\'); this.parentElement.innerText=\'TiviMate\'[0];">
+                            <img src="img/tivimate.png" alt="TiviMate" onerror="this.style.display='none'; this.parentElement.classList.add('fallback-icon'); this.parentElement.innerText='TiviMate'[0];">
                         </div>
                         <div class="card-info">
                             <div class="card-app-title">TiviMate Pro</div>
@@ -193,10 +153,83 @@
                         <span>Cài Đặt Ngay</span>
                     </div>
                 </article>
+
+                <!-- Monster TV -->
+                <article class="tv-card" tabindex="0"
+                    onfocus="updateHero('Monster TV Sports Live', 'Trực tiếp trọn vẹn Ngoại Hạng Anh, Cúp C1 Champions League, La Liga, Serie A với bình luận viên tiếng Việt chuyên nghiệp.', 'BÓNG ĐÁ TRỰC TIẾP', 'https://raw.githubusercontent.com/Phat20110/mitvpro/main/downloads/SmartTube-Stable.apk', 'img/monstertv.png')"
+                    onclick="triggerInstall('Monster TV Sports', 'https://raw.githubusercontent.com/Phat20110/mitvpro/main/downloads/SmartTube-Stable.apk', this)">
+                    <div class="card-top">
+                        <div class="card-icon-frame">
+                            <img src="img/monstertv.png" alt="Monster TV" onerror="this.style.display='none'; this.parentElement.classList.add('fallback-icon'); this.parentElement.innerText='Monster TV'[0];">
+                        </div>
+                        <div class="card-info">
+                            <div class="card-app-title">Monster TV</div>
+                            <div class="card-app-ver">v3.8.2 &bull; Thể Thao</div>
+                        </div>
+                    </div>
+                    <span class="card-tag" style="background: rgba(239, 68, 68, 0.2); color: #F87171; border: 1px solid rgba(239, 68, 68, 0.4);">NGOẠI HẠNG ANH</span>
+                    <div class="card-action">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
+                        <span>Cài Đặt Ngay</span>
+                    </div>
+                </article>
             </div>
         </section>
 
-        <!-- Shelf 2: Thể Thao & Bóng Đá Trực Tiếp -->
+        <!-- Shelf 2: Truyền Hình & IPTV Trực Tuyến -->
+        <section class="shelf-block" id="sec-tv">
+            <div class="shelf-header">
+                <h2 class="shelf-title">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M4 11a9 9 0 0 1 9 9"></path><path d="M4 4a16 16 0 0 1 16 16"></path><circle cx="5" cy="19" r="1"></circle></svg>
+                    Truyền Hình & IPTV Trực Tuyến
+                </h2>
+                <span class="shelf-subtitle">250+ Kênh VTV, HTV, VTC và Quốc Tế HD/4K</span>
+                <span class="shelf-chip">Chuẩn Tivi Xiaomi</span>
+            </div>
+            <div class="shelf-rail">
+                <!-- TiviMate -->
+                <article class="tv-card" tabindex="0"
+                    onfocus="updateHero('TiviMate IPTV Player Pro', 'Trình xem truyền hình số 1 trên Android TV: Hỗ trợ playlist M3U, EPG lịch phát sóng, bắt luồng 60 FPS.', 'IPTV SỐ 1', 'https://raw.githubusercontent.com/Phat20110/mitvpro/main/downloads/SmartTube-Stable.apk', 'img/tivimate.png')"
+                    onclick="triggerInstall('TiviMate IPTV Pro', 'https://raw.githubusercontent.com/Phat20110/mitvpro/main/downloads/SmartTube-Stable.apk', this)">
+                    <div class="card-top">
+                        <div class="card-icon-frame">
+                            <img src="img/tivimate.png" alt="TiviMate">
+                        </div>
+                        <div class="card-info">
+                            <div class="card-app-title">TiviMate Pro</div>
+                            <div class="card-app-ver">v4.7.0 &bull; 14 MB</div>
+                        </div>
+                    </div>
+                    <span class="card-tag" style="background: rgba(139, 92, 246, 0.2); color: #C084FC; border: 1px solid rgba(139, 92, 246, 0.4);">250+ KÊNH HD</span>
+                    <div class="card-action">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
+                        <span>Cài Đặt Ngay</span>
+                    </div>
+                </article>
+
+                <!-- VTV Go -->
+                <article class="tv-card" tabindex="0"
+                    onfocus="updateHero('VTV Go TV (Chính Chủ)', 'Xem Thời sự 19h VTV1, giải trí VTV3, thể thao VTV5 bản quyền của Đài Truyền Hình Việt Nam. Xem lại 6 tháng không bỏ lỡ.', 'ĐÀI THVN CHÍNH THỐNG', 'https://raw.githubusercontent.com/Phat20110/mitvpro/main/downloads/SmartTube-Stable.apk', 'img/vtvgo.png')"
+                    onclick="triggerInstall('VTV Go TV', 'https://raw.githubusercontent.com/Phat20110/mitvpro/main/downloads/SmartTube-Stable.apk', this)">
+                    <div class="card-top">
+                        <div class="card-icon-frame">
+                            <img src="img/vtvgo.png" alt="VTV Go">
+                        </div>
+                        <div class="card-info">
+                            <div class="card-app-title">VTV Go TV</div>
+                            <div class="card-app-ver">Đài THVN &bull; HD</div>
+                        </div>
+                    </div>
+                    <span class="card-tag" style="background: rgba(6, 182, 212, 0.2); color: #22D3EE; border: 1px solid rgba(6, 182, 212, 0.4);">VTV1 - VTV9 HD</span>
+                    <div class="card-action">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
+                        <span>Cài Đặt Ngay</span>
+                    </div>
+                </article>
+            </div>
+        </section>
+
+        <!-- Shelf 3: Thể Thao & Bóng Đá Trực Tiếp -->
         <section class="shelf-block" id="sec-sports">
             <div class="shelf-header">
                 <h2 class="shelf-title">
@@ -210,10 +243,10 @@
                 <!-- Monster TV -->
                 <article class="tv-card" tabindex="0"
                     onfocus="updateHero('Monster TV Sports Live', 'Trực tiếp trọn vẹn Ngoại Hạng Anh, Cúp C1 Champions League, La Liga, Serie A với bình luận viên tiếng Việt chuyên nghiệp.', 'BÓNG ĐÁ TRỰC TIẾP', 'https://raw.githubusercontent.com/Phat20110/mitvpro/main/downloads/SmartTube-Stable.apk', 'img/monstertv.png')"
-                    onclick="triggerInstall('Monster TV Sports', 'https://raw.githubusercontent.com/Phat20110/mitvpro/main/downloads/SmartTube-Stable.apk')">
+                    onclick="triggerInstall('Monster TV Sports', 'https://raw.githubusercontent.com/Phat20110/mitvpro/main/downloads/SmartTube-Stable.apk', this)">
                     <div class="card-top">
                         <div class="card-icon-frame">
-                            <img src="img/monstertv.png" alt="Monster TV" onerror="this.style.display=\'none\'; this.parentElement.classList.add(\'fallback-icon\'); this.parentElement.innerText=\'Monster TV\'[0];">
+                            <img src="img/monstertv.png" alt="Monster TV">
                         </div>
                         <div class="card-info">
                             <div class="card-app-title">Monster TV</div>
@@ -230,10 +263,10 @@
                 <!-- Xôi Lạc TV -->
                 <article class="tv-card" tabindex="0"
                     onfocus="updateHero('Xôi Lạc TV Live', 'Kênh thể thao trực tiếp tốc độ cao, hỗ trợ Remote Tivi Xiaomi mượt mà, tự động chuyển luồng dự phòng chống lag.', 'XÔI LẠC OFFICIAL', 'https://raw.githubusercontent.com/Phat20110/mitvpro/main/downloads/SmartTube-Stable.apk', 'img/xoilactv.png')"
-                    onclick="triggerInstall('Xôi Lạc TV', 'https://raw.githubusercontent.com/Phat20110/mitvpro/main/downloads/SmartTube-Stable.apk')">
+                    onclick="triggerInstall('Xôi Lạc TV', 'https://raw.githubusercontent.com/Phat20110/mitvpro/main/downloads/SmartTube-Stable.apk', this)">
                     <div class="card-top">
                         <div class="card-icon-frame">
-                            <img src="img/xoilactv.png" alt="Xôi Lạc" onerror="this.style.display=\'none\'; this.parentElement.classList.add(\'fallback-icon\'); this.parentElement.innerText=\'Xôi Lạc\'[0];">
+                            <img src="img/xoilactv.png" alt="Xôi Lạc">
                         </div>
                         <div class="card-info">
                             <div class="card-app-title">Xôi Lạc TV</div>
@@ -249,7 +282,7 @@
             </div>
         </section>
 
-        <!-- Shelf 3: Rạp Phim Điện Ảnh 4K HDR -->
+        <!-- Shelf 4: Rạp Phim Điện Ảnh 4K HDR -->
         <section class="shelf-block" id="sec-cinema">
             <div class="shelf-header">
                 <h2 class="shelf-title">
@@ -263,10 +296,10 @@
                 <!-- Stremio -->
                 <article class="tv-card" tabindex="0"
                     onfocus="updateHero('Stremio 4K Cinema', 'Kho phim điện ảnh bom tấn Netflix, HBO, Disney+. Chất lượng 4K Dolby Vision, tự động kéo phụ đề tiếng Việt chuẩn xác.', 'STREMIO CINEMA', 'https://raw.githubusercontent.com/Phat20110/mitvpro/main/downloads/SmartTube-Stable.apk', 'img/stremio.png')"
-                    onclick="triggerInstall('Stremio 4K Cinema', 'https://raw.githubusercontent.com/Phat20110/mitvpro/main/downloads/SmartTube-Stable.apk')">
+                    onclick="triggerInstall('Stremio 4K Cinema', 'https://raw.githubusercontent.com/Phat20110/mitvpro/main/downloads/SmartTube-Stable.apk', this)">
                     <div class="card-top">
                         <div class="card-icon-frame">
-                            <img src="img/stremio.png" alt="Stremio" onerror="this.style.display=\'none\'; this.parentElement.classList.add(\'fallback-icon\'); this.parentElement.innerText=\'Stremio\'[0];">
+                            <img src="img/stremio.png" alt="Stremio">
                         </div>
                         <div class="card-info">
                             <div class="card-app-title">Stremio 4K</div>
@@ -283,7 +316,7 @@
                 <!-- Cinema 4K -->
                 <article class="tv-card" tabindex="0"
                     onfocus="updateHero('Kho Phim 4K HDR Vietsub', 'Tuyển tập phim chiếu rạp bom tấn thế giới, âm thanh vòm Dolby Atmos 7.1, tự động đồng bộ phụ đề tiếng Việt chuẩn điện ảnh.', 'DOLBY CINEMA', 'https://raw.githubusercontent.com/Phat20110/mitvpro/main/downloads/SmartTube-Stable.apk', 'img/cinema_4k.png')"
-                    onclick="triggerInstall('Kho Phim 4K', 'https://raw.githubusercontent.com/Phat20110/mitvpro/main/downloads/SmartTube-Stable.apk')">
+                    onclick="triggerInstall('Kho Phim 4K', 'https://raw.githubusercontent.com/Phat20110/mitvpro/main/downloads/SmartTube-Stable.apk', this)">
                     <div class="card-top">
                         <div class="card-icon-frame">
                             <img src="img/cinema_4k.png" alt="Cinema 4K" style="object-fit:cover;">
@@ -302,68 +335,104 @@
             </div>
         </section>
 
+        <!-- Shelf 5: Tải Nhanh Downloader 6372800 & Tiện Ích -->
+        <section class="shelf-block" id="sec-downloads">
+            <div class="shelf-header">
+                <h2 class="shelf-title">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
+                    Tải Nhanh Downloader 6372800 & Tiện Ích
+                </h2>
+                <span class="shelf-subtitle">Cài ứng dụng nhanh qua mã 6372800 hoặc link is.gd/mitv25</span>
+                <span class="shelf-chip">Mã Gốc AFTVnews</span>
+            </div>
+            <div class="shelf-rail">
+                <!-- Downloader AFTVnews Card -->
+                <article class="tv-card" tabindex="0"
+                    onfocus="updateHero('Downloader by AFTVnews (Mã 6372800)', 'Nhập mã 6372800 vào ứng dụng Downloader trên Tivi để tải trọn bộ kho ứng dụng MiTV Pro siêu tốc. Hoặc truy cập shortlink is.gd/mitv25 trên trình duyệt.', 'MÃ GỐC 6372800', 'https://raw.githubusercontent.com/Phat20110/mitvpro/main/downloads/SmartTube-Stable.apk', 'img/smarttube_icon.png')"
+                    onclick="triggerInstall('Kho Ứng Dụng MiTV Pro', 'https://raw.githubusercontent.com/Phat20110/mitvpro/main/downloads/SmartTube-Stable.apk', this)">
+                    <div class="card-top">
+                        <div class="card-icon-frame" style="background: rgba(255, 122, 26, 0.2);">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="#FF7A1A" stroke-width="2.2" style="width:28px;height:28px;"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
+                        </div>
+                        <div class="card-info">
+                            <div class="card-app-title">AFTV 6372800</div>
+                            <div class="card-app-ver">Shortlink: is.gd/mitv25</div>
+                        </div>
+                    </div>
+                    <span class="card-tag" style="background: rgba(255, 122, 26, 0.2); color: #FFA05C; border: 1px solid rgba(255, 122, 26, 0.4);">MÃ TẢI 6372800</span>
+                    <div class="card-action">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
+                        <span>Tải Trọn Bộ APK</span>
+                    </div>
+                </article>
+
+                <!-- RAM Cleaner Card -->
+                <article class="tv-card" tabindex="0"
+                    onfocus="updateHero('Dọn Dẹp Bộ Nhớ Turbo TV', 'Giải phóng tức thì hơn 500MB bộ nhớ RAM, xóa cache tạm thời và tăng tốc độ xử lý của Xiaomi TV lên 60 FPS mượt mà.', 'TỐI ƯU HỆ THỐNG', '', 'img/monstertv.png')"
+                    onclick="triggerCleanRam()">
+                    <div class="card-top">
+                        <div class="card-icon-frame" style="background: rgba(16, 185, 129, 0.2);">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="#34D399" stroke-width="2.2" style="width:28px;height:28px;"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon></svg>
+                        </div>
+                        <div class="card-info">
+                            <div class="card-app-title">Turbo Clean RAM</div>
+                            <div class="card-app-ver">Giải phóng ~500MB RAM</div>
+                        </div>
+                    </div>
+                    <span class="card-tag" style="background: rgba(16, 185, 129, 0.2); color: #34D399; border: 1px solid rgba(16, 185, 129, 0.4);">60 FPS BOOST</span>
+                    <div class="card-action">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon></svg>
+                        <span>Tăng Tốc Ngay</span>
+                    </div>
+                </article>
+            </div>
+        </section>
+
     </main>
-
-    <!-- 3. FLOATING LIQUID CRYSTAL REMOTE CONTROL WIDGET -->
-    <aside class="tv-remote-widget" id="remoteWidget">
-        <div class="remote-gloss-sheen"></div>
-        
-        <!-- Top bar: Mute & Power -->
-        <div class="remote-top-bar">
-            <div class="remote-mini-btn" onclick="showHud('Tắt tiếng (Mute)')" title="Tắt tiếng">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="1" y1="1" x2="23" y2="23"></line><path d="M9 9v3a3 3 0 0 0 5.12 2.12M15 9.34V4a3 3 0 0 0-5.94-.6"></path><path d="M17 16.95A7 7 0 0 1 5 12v-2m14 0v2a7 7 0 0 1-.11 1.23"></path></svg>
-            </div>
-            <div class="remote-mini-btn" onclick="showHud('Tắt màn hình Tivi')" title="Nguồn">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18.36 6.64a9 9 0 1 1-12.73 0"></path><line x1="12" y1="2" x2="12" y2="12"></line></svg>
-            </div>
-        </div>
-
-        <!-- D-Pad Navigation Disc -->
-        <div class="remote-dpad-circle">
-            <div class="dpad-arrow up" onclick="remoteDpad('Up')">&#9650;</div>
-            <div class="dpad-arrow down" onclick="remoteDpad('Down')">&#9660;</div>
-            <div class="dpad-arrow left" onclick="remoteDpad('Left')">&#9664;</div>
-            <div class="dpad-arrow right" onclick="remoteDpad('Right')">&#9654;</div>
-            <div class="dpad-center-btn" onclick="remoteClick()">OK</div>
-        </div>
-
-        <!-- Middle Controls: Back, Home, Menu -->
-        <div class="remote-btn-row">
-            <div class="remote-mini-btn" onclick="remoteBack()" title="Quay lại">&#8592;</div>
-            <div class="remote-mini-btn" onclick="selectDock(document.getElementById('dockBtnHome'), 'sec-recommended')" title="Trang chủ">&#8962;</div>
-            <div class="remote-mini-btn" onclick="showHud('Menu tùy chọn MiTV Pro')" title="Menu">&#9776;</div>
-        </div>
-
-        <!-- Bottom Controls: Mic, Vol Pill -->
-        <div class="remote-btn-row" style="align-items: center;">
-            <div class="remote-mini-btn" onclick="showHud('Tìm kiếm bằng giọng nói tiếng Việt')" title="Voice Search">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"></path><path d="M19 10v2a7 7 0 0 1-14 0v-2"></path><line x1="12" y1="19" x2="12" y2="23"></line><line x1="8" y1="23" x2="16" y2="23"></line></svg>
-            </div>
-            <div class="remote-vol-pill">
-                <span class="vol-btn" onclick="showHud('Âm lượng: +')">+</span>
-                <span class="vol-btn" onclick="showHud('Âm lượng: -')">&minus;</span>
-            </div>
-            <div class="remote-mini-btn" onclick="triggerCleanRam()" title="Dọn RAM">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon></svg>
-            </div>
-        </div>
-    </aside>
 
     <!-- TV HUD Notification -->
     <div id="tvHud"></div>
 
+    <!-- Liquid Glass Settings Sheet Modal -->
+    <div class="glass-modal" id="glassSettingsSheet">
+        <div class="glass-dialog-card" id="settingsDialogCard">
+            <h2 class="glass-dialog-title">
+                <svg viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="2" style="width:26px;height:26px;"><circle cx="12" cy="12" r="3"></circle><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"></path></svg>
+                Cài Đặt Hệ Thống MiTV Pro
+            </h2>
+            <p class="glass-dialog-desc">Tối ưu hóa phần cứng hiển thị & bộ giải mã cho Tivi Xiaomi</p>
+
+            <div class="glass-setting-row" tabindex="0" onclick="showHud('Độ phân giải: 4K HDR 60Hz Chuẩn Điện Ảnh')">
+                <span class="glass-setting-label">Độ phân giải TV</span>
+                <span class="glass-setting-val">4K HDR (3840 &times; 2160)</span>
+            </div>
+            <div class="glass-setting-row" tabindex="0" onclick="showHud('Âm thanh: Dolby Atmos / Digital Plus Passthrough Đã Kích Hoạt')">
+                <span class="glass-setting-label">Âm thanh vòm</span>
+                <span class="glass-setting-val">Dolby Atmos Passthrough</span>
+            </div>
+            <div class="glass-setting-row" tabindex="0" onclick="triggerCleanRam()">
+                <span class="glass-setting-label">Bộ nhớ tạm & Cache</span>
+                <span class="glass-setting-val">Làm sạch ngay (~500MB)</span>
+            </div>
+            <div class="glass-setting-row" tabindex="0" onclick="showHud('Mã Downloader AFTVnews: 6372800 • Shortlink: is.gd/mitv25')">
+                <span class="glass-setting-label">Mã Tải Downloader</span>
+                <span class="glass-setting-val">6372800 (is.gd/mitv25)</span>
+            </div>
+
+            <div class="glass-dialog-actions">
+                <button class="glass-btn" id="settingsCloseBtn" tabindex="0" onclick="closeSettingsSheet()">Đóng (Back / Esc)</button>
+            </div>
+        </div>
+    </div>
+
     <script>
-        // Performance check for weak TV hardware (T92)
+        // Performance check for TV hardware
         if ((navigator.hardwareConcurrency && navigator.hardwareConcurrency <= 4) || 
             (navigator.deviceMemory && navigator.deviceMemory <= 2)) {
             document.body.classList.add('perf-lite');
         }
 
-        // Tab focus memory (T68)
-        const tabFocusMemory = {};
-        let currentTab = 'shelf-fav';
         let isInstalling = false;
-
         let currentInstallUrl = 'https://raw.githubusercontent.com/Phat20110/mitvpro/main/downloads/SmartTube-Stable.apk';
         let currentAppName = 'SmartTube Next 4K';
 
@@ -373,9 +442,8 @@
             document.getElementById('heroBadge').innerText = badge;
             if (imgPath) {
                 document.getElementById('heroLogo').src = imgPath;
-                // Retain vibrant pink lily background
             }
-            currentInstallUrl = url;
+            if (url) currentInstallUrl = url;
             currentAppName = title;
         }
 
@@ -423,7 +491,7 @@
                     showHud('Đã tối ưu hóa bộ nhớ RAM thành công!');
                 }
             } else {
-                showHud('Đã giải phóng ~480MB RAM! Xiaomi TV hoạt động siêu mượt 60 FPS.');
+                showHud('⚡ TURBO BOOST: Đã giải phóng ~520MB RAM! Tivi Xiaomi hoạt động mượt mà 60 FPS.');
             }
         }
 
@@ -435,76 +503,236 @@
             window.hudTimer = setTimeout(() => { hud.style.display = 'none'; }, 3400);
         }
 
-        function selectDock(btn, targetSectionId) {
-            document.querySelectorAll('.dock-item').forEach(b => b.classList.remove('active'));
-            btn.classList.add('active');
-            moveDockBulge(btn);
-            if (targetSectionId) jumpSection(targetSectionId);
+        // ==========================================
+        // DOCK NAVIGATION & AUTO-SCROLL ENGINE
+        // ==========================================
+
+        let canvasScrollAnimation = null;
+        function smoothScrollCanvas(targetY, duration = 240) {
+            const canvas = document.getElementById('tvCanvas');
+            if (!canvas) return;
+            if (canvasScrollAnimation) cancelAnimationFrame(canvasScrollAnimation);
+
+            const startY = canvas.scrollTop;
+            const distance = targetY - startY;
+            if (Math.abs(distance) < 2) return;
+
+            const startTime = performance.now();
+            function step(now) {
+                const elapsed = now - startTime;
+                const progress = Math.min(elapsed / duration, 1);
+                // Ease out cubic for crisp TV leanback feel
+                const ease = 1 - Math.pow(1 - progress, 3);
+                canvas.scrollTop = Math.round(startY + distance * ease);
+                if (progress < 1) {
+                    canvasScrollAnimation = requestAnimationFrame(step);
+                } else {
+                    canvasScrollAnimation = null;
+                }
+            }
+            canvasScrollAnimation = requestAnimationFrame(step);
         }
 
-        function getRailPaths(cy) {
-            const rx = 80;
-            // Closed polygon for dock clip-path
-            const clipD = `M 0,0 L ${rx},0 L ${rx},${cy - 52} C ${rx},${cy - 26} 88,${cy - 18} 104,${cy - 10} C 142,${cy + 6} 142,${cy + 24} 104,${cy + 40} C 88,${cy + 48} ${rx},${cy + 56} ${rx},${cy + 82} L ${rx},1080 L 0,1080 Z`;
-            // Open stroke for the right rail fluid contour
-            const strokeD = `M ${rx},0 L ${rx},${cy - 52} C ${rx},${cy - 26} 88,${cy - 18} 104,${cy - 10} C 142,${cy + 6} 142,${cy + 24} 104,${cy + 40} C 88,${cy + 48} ${rx},${cy + 56} ${rx},${cy + 82} L ${rx},1080`;
-            return { clipD, strokeD };
+        function scrollToSection(secId) {
+            if (!secId) return;
+            const canvas = document.getElementById('tvCanvas');
+            const sec = document.getElementById(secId);
+            if (!canvas || !sec) return;
+
+            const canvasRect = canvas.getBoundingClientRect();
+            const secRect = sec.getBoundingClientRect();
+            const targetY = canvas.scrollTop + (secRect.top - canvasRect.top) - 16;
+            smoothScrollCanvas(Math.max(0, targetY), 240);
         }
 
+        // Move 3D droplet bubble with sub-pixel exact alignment relative to tvDock
         function moveDockBulge(btn) {
             const bulge = document.getElementById('dropletBulge');
             const dock = document.getElementById('tvDock');
-            const pathElem = document.getElementById('fluidRailPath');
-            if (!bulge || !btn) return;
-            const cy = btn.offsetTop + btn.offsetHeight / 2;
-            const { clipD, strokeD } = getRailPaths(cy);
-            
-            if (dock) {
-                dock.style.clipPath = `path('${clipD}')`;
-                dock.style.webkitClipPath = `path('${clipD}')`;
+            if (!bulge || !btn || !dock) return;
+
+            const dockRect = dock.getBoundingClientRect();
+            const btnRect = btn.getBoundingClientRect();
+
+            // Accurate center-to-center coordinate calculation in dock scroll space
+            const btnCenterY = (btnRect.top - dockRect.top) + dock.scrollTop + (btnRect.height / 2);
+            const targetY = btnCenterY - (bulge.offsetHeight / 2);
+
+            bulge.style.transform = `translate3d(0, ${Math.round(targetY)}px, 0)`;
+        }
+
+        // YouTube-like dock behavior: on focus/click, instantly activate and preview section
+        function activateDock(btn, autoScrollMain = true) {
+            if (!btn) return;
+
+            document.querySelectorAll('.dock-item').forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
+
+            moveDockBulge(btn);
+
+            // Ensure dock button is never clipped (smoothly scroll sidebar if needed)
+            btn.scrollIntoView({ block: 'nearest', behavior: 'smooth' });
+
+            const secId = btn.getAttribute('data-section');
+            if (autoScrollMain && secId) {
+                scrollToSection(secId);
             }
-            if (pathElem) {
-                pathElem.setAttribute('d', strokeD);
-            }
-            bulge.style.top = `${cy - 45}px`;
         }
 
-        function jumpSection(id) {
-            const sec = document.getElementById(id);
-            if (sec) {
-                sec.scrollIntoView({ behavior: 'smooth', block: 'center' });
-                const firstCard = sec.querySelector('.tv-card');
-                if (firstCard) firstCard.focus();
+        // Open/Close Liquid Glass Settings Sheet
+        function openSettingsSheet() {
+            const sheet = document.getElementById('glassSettingsSheet');
+            if (sheet) {
+                sheet.classList.add('active');
+                const firstRow = sheet.querySelector('.glass-setting-row');
+                if (firstRow) firstRow.focus();
             }
         }
 
-        // Virtual Remote Action Handlers
-        function remoteDpad(direction) {
-            const active = document.activeElement;
-            const event = new KeyboardEvent('keydown', { key: `Arrow${direction}` });
-            document.dispatchEvent(event);
+        function closeSettingsSheet() {
+            const sheet = document.getElementById('glassSettingsSheet');
+            if (sheet) sheet.classList.remove('active');
+            const settingsBtn = document.getElementById('dockBtnSettings');
+            if (settingsBtn) settingsBtn.focus();
         }
 
-        function remoteClick() {
-            const active = document.activeElement;
-            if (active && active.click) active.click();
-        }
-
-        function remoteBack() {
-            const active = document.activeElement;
-            if (active && active.classList.contains('tv-card')) {
-                const activeDock = document.querySelector('.dock-item.active');
-                if (activeDock) activeDock.focus();
+        function openPowerSheetAction() {
+            if (window.openPowerSheet) {
+                window.openPowerSheet();
             } else {
-                showHud('Nhấn Back lần nữa để thoát ứng dụng');
+                showHud('Nhấn giữ nút nguồn remote 1.2s để mở bảng điều khiển nguồn');
             }
         }
 
-        // TV Remote D-Pad Navigation Engine
+        // Listen for dock scrolling to update bubble position
+        const dockEl = document.getElementById('tvDock');
+        if (dockEl) {
+            dockEl.addEventListener('scroll', () => {
+                const activeBtn = document.querySelector('.dock-item.active') || document.activeElement;
+                if (activeBtn && activeBtn.classList.contains('dock-item')) {
+                    moveDockBulge(activeBtn);
+                }
+            }, { passive: true });
+        }
+
+        // ==========================================
+        // D-PAD REMOTE CONTROLLER (ANTI-BOUNCE & THROTTLE)
+        // ==========================================
+
+        let lastNavTimestamp = 0;
+        const D_PAD_THROTTLE_MS = 85;
+
         document.addEventListener('keydown', function(e) {
             const active = document.activeElement;
             if (!active) return;
 
+            // Throttle rapid directional navigation to prevent scroll animation collision & oscillation
+            if (['ArrowUp', 'ArrowDown', 'ArrowLeft', 'ArrowRight'].includes(e.key)) {
+                const now = performance.now();
+                if (now - lastNavTimestamp < D_PAD_THROTTLE_MS) {
+                    e.preventDefault();
+                    return;
+                }
+                lastNavTimestamp = now;
+            }
+
+            // A. INSIDE SETTINGS SHEET MODAL
+            const settingsModal = document.getElementById('glassSettingsSheet');
+            if (settingsModal && settingsModal.classList.contains('active')) {
+                if (e.key === 'Escape' || e.key === 'Backspace' || e.key === 'GoBack') {
+                    closeSettingsSheet();
+                    e.preventDefault();
+                    return;
+                }
+                if (e.key === 'ArrowDown') {
+                    const next = active.nextElementSibling;
+                    if (next && (next.classList.contains('glass-setting-row') || next.id === 'settingsCloseBtn')) {
+                        next.focus();
+                    } else if (active.classList.contains('glass-setting-row')) {
+                        const closeBtn = document.getElementById('settingsCloseBtn');
+                        if (closeBtn) closeBtn.focus();
+                    }
+                    e.preventDefault();
+                    return;
+                }
+                if (e.key === 'ArrowUp') {
+                    const prev = active.previousElementSibling;
+                    if (prev && prev.classList.contains('glass-setting-row')) {
+                        prev.focus();
+                    } else if (active.id === 'settingsCloseBtn') {
+                        const rows = settingsModal.querySelectorAll('.glass-setting-row');
+                        if (rows.length > 0) rows[rows.length - 1].focus();
+                    }
+                    e.preventDefault();
+                    return;
+                }
+                if (e.key === 'Enter') {
+                    active.click();
+                    e.preventDefault();
+                    return;
+                }
+            }
+
+            // B. ON DOCK ITEMS
+            if (active.classList.contains('dock-item')) {
+                if (e.key === 'ArrowRight') {
+                    // Navigate to the first card of current section
+                    const secId = active.getAttribute('data-section');
+                    let targetCard = null;
+                    if (secId) {
+                        const sec = document.getElementById(secId);
+                        if (sec) targetCard = sec.querySelector('.tv-card');
+                    }
+                    if (!targetCard) targetCard = document.querySelector('.tv-card');
+                    if (targetCard) targetCard.focus();
+                    e.preventDefault();
+                } else if (e.key === 'ArrowDown') {
+                    const next = active.nextElementSibling;
+                    if (next && next.classList.contains('dock-item')) {
+                        next.focus();
+                        activateDock(next, true);
+                    } else {
+                        const ramBtn = document.getElementById('dockRamBtn');
+                        if (ramBtn) ramBtn.focus();
+                    }
+                    e.preventDefault();
+                } else if (e.key === 'ArrowUp') {
+                    const prev = active.previousElementSibling;
+                    if (prev && prev.classList.contains('dock-item')) {
+                        prev.focus();
+                        activateDock(prev, true);
+                    }
+                    e.preventDefault();
+                } else if (e.key === 'Enter') {
+                    active.classList.add('pulse-active');
+                    setTimeout(() => active.classList.remove('pulse-active'), 200);
+                    active.click();
+                    e.preventDefault();
+                }
+                return;
+            }
+
+            // C. ON DOCK RAM WIDGET
+            if (active.id === 'dockRamBtn') {
+                if (e.key === 'ArrowUp') {
+                    const lastDock = document.querySelector('.dock-menu .dock-item:last-child');
+                    if (lastDock) {
+                        lastDock.focus();
+                        activateDock(lastDock, false);
+                    }
+                    e.preventDefault();
+                } else if (e.key === 'ArrowRight') {
+                    const firstCard = document.querySelector('.tv-card');
+                    if (firstCard) firstCard.focus();
+                    e.preventDefault();
+                } else if (e.key === 'Enter') {
+                    triggerCleanRam();
+                    e.preventDefault();
+                }
+                return;
+            }
+
+            // D. ON TV CARDS
             if (active.classList.contains('tv-card')) {
                 if (e.key === 'ArrowRight') {
                     const next = active.nextElementSibling;
@@ -518,8 +746,17 @@
                         prev.focus();
                         e.preventDefault();
                     } else {
-                        const link = document.querySelector('.dock-item.active') || document.querySelector('.dock-item');
-                        if (link) link.focus();
+                        // Return to corresponding active dock item
+                        const curShelf = active.closest('.shelf-block');
+                        let dockMatch = null;
+                        if (curShelf) {
+                            dockMatch = document.querySelector(`.dock-item[data-section="${curShelf.id}"]`);
+                        }
+                        const targetDock = dockMatch || document.querySelector('.dock-item.active') || document.querySelector('.dock-item');
+                        if (targetDock) {
+                            targetDock.focus();
+                            activateDock(targetDock, false);
+                        }
                         e.preventDefault();
                     }
                 } else if (e.key === 'ArrowDown') {
@@ -530,7 +767,7 @@
                             const target = nextShelf.querySelector('.tv-card');
                             if (target) {
                                 target.focus();
-                                target.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                                scrollToSection(nextShelf.id);
                                 e.preventDefault();
                             }
                         }
@@ -543,119 +780,71 @@
                             const target = prevShelf.querySelector('.tv-card');
                             if (target) {
                                 target.focus();
-                                target.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                                scrollToSection(prevShelf.id);
                                 e.preventDefault();
                             }
                         } else {
-                            const cta = document.getElementById('heroActionBtn');
-                            if (cta) cta.focus();
-                            e.preventDefault();
+                            const heroBtn = document.getElementById('heroActionBtn');
+                            if (heroBtn) {
+                                heroBtn.focus();
+                                smoothScrollCanvas(0, 200);
+                                e.preventDefault();
+                            }
                         }
                     }
                 } else if (e.key === 'Enter') {
                     active.classList.add('pulse-active');
-                    setTimeout(() => active.classList.remove('pulse-active'), 260);
+                    setTimeout(() => active.classList.remove('pulse-active'), 220);
                     active.click();
+                    e.preventDefault();
                 } else if (e.key === 'Escape' || e.key === 'Backspace' || e.key === 'GoBack') {
-                    // T67: Phím Back/Esc đóng toast và trả focus về sidebar
-                    const hud = document.getElementById('tvHud');
-                    if (hud && hud.style.display !== 'none') {
-                        hud.style.display = 'none';
+                    const curShelf = active.closest('.shelf-block');
+                    let dockMatch = null;
+                    if (curShelf) {
+                        dockMatch = document.querySelector(`.dock-item[data-section="${curShelf.id}"]`);
                     }
-                    const activeDock = document.querySelector('.dock-item.active') || document.querySelector('.dock-item');
-                    if (activeDock) activeDock.focus();
+                    const targetDock = dockMatch || document.querySelector('.dock-item.active') || document.querySelector('.dock-item');
+                    if (targetDock) {
+                        targetDock.focus();
+                        activateDock(targetDock, false);
+                    }
                     e.preventDefault();
                 }
-            } else if (active.classList.contains('dock-item')) {
-                moveDockBulge(active);
-                if (e.key === 'ArrowRight') {
-                    const firstCard = document.querySelector('.tv-card');
-                    if (firstCard) firstCard.focus();
-                    e.preventDefault();
-                } else if (e.key === 'ArrowDown') {
-                    const next = active.nextElementSibling;
-                    if (next && next.classList.contains('dock-item')) {
-                        next.focus();
-                        moveDockBulge(next);
-                        e.preventDefault();
-                    } else {
-                        const ramBtn = document.querySelector('.dock-ram-widget');
-                        if (ramBtn) ramBtn.focus();
-                        e.preventDefault();
-                    }
-                } else if (e.key === 'ArrowUp') {
-                    const prev = active.previousElementSibling;
-                    if (prev && prev.classList.contains('dock-item')) {
-                        prev.focus();
-                        moveDockBulge(prev);
-                        e.preventDefault();
-                    }
-                } else if (e.key === 'Enter') {
-                    active.classList.add('pulse-active');
-                    setTimeout(() => active.classList.remove('pulse-active'), 260);
-                    active.click();
-                } else if (e.key === 'Escape' || e.key === 'Backspace' || e.key === 'GoBack') {
-                    // T67: Phím Back/Esc đóng toast và trả focus về sidebar
-                    const hud = document.getElementById('tvHud');
-                    if (hud && hud.style.display !== 'none') {
-                        hud.style.display = 'none';
-                    }
-                    const activeDock = document.querySelector('.dock-item.active') || document.querySelector('.dock-item');
-                    if (activeDock) activeDock.focus();
-                    e.preventDefault();
-                }
-            } else if (active.classList.contains('dock-ram-widget')) {
-                if (e.key === 'ArrowUp') {
-                    const lastItem = document.querySelector('.dock-item:last-of-type');
-                    if (lastItem) {
-                        lastItem.focus();
-                        moveDockBulge(lastItem);
-                    }
-                    e.preventDefault();
-                } else if (e.key === 'ArrowRight') {
-                    const firstCard = document.querySelector('.tv-card');
-                    if (firstCard) firstCard.focus();
-                    e.preventDefault();
-                } else if (e.key === 'Enter') {
-                    active.classList.add('pulse-active');
-                    setTimeout(() => active.classList.remove('pulse-active'), 260);
-                    active.click();
-                } else if (e.key === 'Escape' || e.key === 'Backspace' || e.key === 'GoBack') {
-                    // T67: Phím Back/Esc đóng toast và trả focus về sidebar
-                    const hud = document.getElementById('tvHud');
-                    if (hud && hud.style.display !== 'none') {
-                        hud.style.display = 'none';
-                    }
-                    const activeDock = document.querySelector('.dock-item.active') || document.querySelector('.dock-item');
-                    if (activeDock) activeDock.focus();
-                    e.preventDefault();
-                }
-            } else if (active.id === 'heroActionBtn') {
+                return;
+            }
+
+            // E. ON HERO BUTTON
+            if (active.id === 'heroActionBtn') {
                 if (e.key === 'ArrowDown') {
                     const firstCard = document.querySelector('.tv-card');
                     if (firstCard) {
                         firstCard.focus();
+                        scrollToSection('sec-recommended');
                         e.preventDefault();
                     }
                 } else if (e.key === 'ArrowLeft') {
-                    const firstDock = document.querySelector('.dock-item.active') || document.querySelector('.dock-item');
-                    if (firstDock) {
-                        firstDock.focus();
-                        moveDockBulge(firstDock);
+                    const dockHome = document.getElementById('dockBtnHome') || document.querySelector('.dock-item');
+                    if (dockHome) {
+                        dockHome.focus();
+                        activateDock(dockHome, false);
                         e.preventDefault();
                     }
                 }
             }
         });
 
-        // Initialize active bulge position and first card focus
+        // Initialize active state on page load
         window.addEventListener('load', () => {
-            const activeDock = document.querySelector('.dock-item.active');
-            if (activeDock) moveDockBulge(activeDock);
+            const activeDock = document.querySelector('.dock-item.active') || document.querySelector('.dock-item');
+            if (activeDock) {
+                moveDockBulge(activeDock);
+            }
             const firstCard = document.querySelector('.tv-card');
             if (firstCard) firstCard.focus();
         });
     </script>
+
+    <!-- Smart Remote Keypad & 3-Mode Power Engine -->
     <script src="js/smart_keypad.js"></script>
 </body>
 </html>
