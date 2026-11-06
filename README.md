@@ -29,7 +29,7 @@
 Thay vì bắt người dùng phải mở trình duyệt web trên TV (vốn rất khó điều khiển bằng remote), hệ thống MiTV Pro áp dụng giải pháp **GitHub Raw / GitHub Release Direct Stream**:
 
 ```
-[Remote TV: Nhập Mã 6789 trên Downloader]
+[Remote TV: Nhập Mã 6372800 trên Downloader]
                    │
                    ▼
       [go.aftvnews.com Redirect]
@@ -161,7 +161,7 @@ Chặn sạch quảng cáo banner, quảng cáo ứng dụng và các trình the
 
 ### ⚠️ 2. Khi cài xong tivi báo *"Lỗi cú pháp (Parse Error)"*?
 * **Nguyên nhân:** File APK tải về bị đứt gãy do mạng Wi-Fi yếu, hoặc phiên bản Android TV quá cũ (Android 4.4, 5.0).
-* **Cách khắc phục:** Mở Downloader, bấm nút **Delete** để xóa file lỗi tải dở, sau đó kiểm tra lại kết nối mạng và nhập lại mã `6789` để tải lại.
+* **Cách khắc phục:** Mở Downloader, bấm nút **Delete** để xóa file lỗi tải dở, sau đó kiểm tra lại kết nối mạng và nhập lại mã `6372800` để tải lại.
 
 ### ⚠️ 3. Tivi bị mất tiếng khi xem các ứng dụng bên ngoài?
 * **Cách khắc phục:** Vào **Cài đặt** ➜ **Âm thanh (Sound)** ➜ **Đầu ra âm thanh kỹ thuật số (Digital Audio Output)** ➜ Đổi từ *Auto/Dolby* sang chế độ **PCM**.
@@ -207,7 +207,7 @@ mitvpro/
 ├── community.php              # Diễn đàn & bài viết chia sẻ mẹo dùng TV
 ├── config.php                 # Bộ lọc bảo mật OWASP, CSP, Headers, CSRF
 ├── disclaimer.php             # Tuyên bố miễn trừ trách nhiệm
-├── downloader.php             # Cổng thông tin mã Downloader độc quyền (6789)
+├── downloader.php             # Cổng thông tin mã Downloader độc quyền (6372800)
 ├── guide-adblock.php          # Hướng dẫn chặn quảng cáo Xiaomi TV
 ├── index.php                  # Trang chủ giới thiệu dịch vụ & công cụ
 ├── optimizer.php              # Giới thiệu & hướng dẫn dùng app MiTV Optimizer

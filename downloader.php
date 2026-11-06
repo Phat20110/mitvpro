@@ -286,7 +286,7 @@ require_once __DIR__ . '/header.php';
                     </div>
                     <div style="background:rgba(255,255,255,0.03); padding:16px; border-radius:10px; border-left:3px solid #00B4D8;">
                         <strong style="color:#00B4D8; display:block; margin-bottom:6px;">Bước 3: Nhập Mã Tải</strong>
-                        <span style="font-size:0.88rem; color:var(--text-muted);">Mở Downloader, gõ mã số tương ứng (ví dụ: <strong>6789</strong> hoặc <strong>28544</strong>) vào ô URL rồi bấm <strong>Go</strong>.</span>
+                        <span style="font-size:0.88rem; color:var(--text-muted);">Mở Downloader, gõ mã số tương ứng (ví dụ: <strong>6372800</strong> hoặc <strong>28544</strong>) vào ô URL rồi bấm <strong>Go</strong>.</span>
                     </div>
                     <div style="background:rgba(255,255,255,0.03); padding:16px; border-radius:10px; border-left:3px solid #AB47BC;">
                         <strong style="color:#AB47BC; display:block; margin-bottom:6px;">Bước 4: Bấm Cài Đặt</strong>

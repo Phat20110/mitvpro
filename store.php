@@ -225,7 +225,7 @@ require_once __DIR__ . '/header.php';
                         Trực tiếp toàn bộ các trận đấu bóng đá đỉnh cao: Ngoại Hạng Anh, C1 Champions League, La Liga, Serie A, V-League với đội ngũ bình luận viên tiếng Việt chuyên nghiệp, nhiều link dự phòng chống nghẽn.
                     </p>
                 </div>
-                <button class="tv-install-btn btn-primary" onclick="installAppDirect('Monster TV Sports', 'https://raw.githubusercontent.com/Phat20110/mitvpro/main/downloads/MiTV-Optimizer-v2.5.apk')">
+                <button class="tv-install-btn btn-primary" onclick="installAppDirect('Monster TV Sports', 'downloads/MiTV-Pro.apk')">
                     <i class="fas fa-cloud-arrow-down"></i> Cài Đặt Trực Tiếp (1 Chạm)
                 </button>
             </div>
@@ -250,7 +250,7 @@ require_once __DIR__ . '/header.php';
                         Bản thiết kế tối ưu riêng biệt cho điều khiển Remote Tivi Xiaomi. Hỗ trợ xem trực tiếp các môn thể thao, tự động bắt luồng máy chủ tốc độ cao nhất gần vị trí của bạn.
                     </p>
                 </div>
-                <button class="tv-install-btn btn-primary" onclick="installAppDirect('Xôi Lạc TV', 'https://raw.githubusercontent.com/Phat20110/mitvpro/main/downloads/MiTV-Optimizer-v2.5.apk')">
+                <button class="tv-install-btn btn-primary" onclick="installAppDirect('Xôi Lạc TV', 'downloads/MiTV-Pro.apk')">
                     <i class="fas fa-cloud-arrow-down"></i> Cài Đặt Trực Tiếp (1 Chạm)
                 </button>
             </div>
@@ -276,7 +276,7 @@ require_once __DIR__ . '/header.php';
                         Ứng dụng bản quyền của Đài Truyền Hình Việt Nam: Xem Thời sự 19h VTV1 HD, thể thao VTV5/VTV Cần Thơ, giải trí VTV3. Tích hợp lịch phát sóng và tính năng xem lại chương trình yêu thích.
                     </p>
                 </div>
-                <button class="tv-install-btn btn-primary" onclick="installAppDirect('VTV Go TV', 'https://raw.githubusercontent.com/Phat20110/mitvpro/main/downloads/MiTV-Optimizer-v2.5.apk')">
+                <button class="tv-install-btn btn-primary" onclick="installAppDirect('VTV Go TV', 'downloads/MiTV-Pro.apk')">
                     <i class="fas fa-cloud-arrow-down"></i> Cài Đặt Trực Tiếp (1 Chạm)
                 </button>
             </div>
@@ -302,7 +302,7 @@ require_once __DIR__ . '/header.php';
                         Trình phát truyền hình số 1 cho Android TV: Đầy đủ các đài VTV, HTV, THVL Vĩnh Long, VTC và các kênh quốc tế chọn lọc có lồng tiếng/thuyết minh tiếng Việt. Chuyển kênh siêu tốc dưới 0.3s.
                     </p>
                 </div>
-                <button class="tv-install-btn btn-primary" onclick="installAppDirect('TiviMate IPTV Pro', 'https://raw.githubusercontent.com/Phat20110/mitvpro/main/downloads/MiTV-Optimizer-v2.5.apk')">
+                <button class="tv-install-btn btn-primary" onclick="installAppDirect('TiviMate IPTV Pro', 'downloads/MiTV-Pro.apk')">
                     <i class="fas fa-cloud-arrow-down"></i> Cài Đặt Trực Tiếp (1 Chạm)
                 </button>
             </div>
@@ -385,7 +385,7 @@ require_once __DIR__ . '/header.php';
                         Kho phim chiếu rạp bom tấn Netflix, HBO, Disney+, Apple TV+. Xem phim chất lượng nguyên bản 4K Dolby Vision, tự động kéo phụ đề tiếng Việt chuẩn điện ảnh.
                     </p>
                 </div>
-                <button class="tv-install-btn btn-primary" onclick="installAppDirect('Stremio 4K TV', 'https://raw.githubusercontent.com/Phat20110/mitvpro/main/downloads/MiTV-Optimizer-v2.5.apk')">
+                <button class="tv-install-btn btn-primary" onclick="installAppDirect('Stremio 4K TV', 'downloads/MiTV-Pro.apk')">
                     <i class="fas fa-cloud-arrow-down"></i> Cài Đặt Trực Tiếp (1 Chạm)
                 </button>
             </div>
@@ -411,7 +411,7 @@ require_once __DIR__ . '/header.php';
                         Launcher màn hình chính siêu sạch thay thế giao diện PatchWall đầy quảng cáo của Xiaomi TV. Đóng băng các tiến trình ngầm, đo độ trễ IPTV và tăng tốc tivi mượt như mới.
                     </p>
                 </div>
-                <button class="tv-install-btn btn-primary" onclick="installAppDirect('MiTV Clean Launcher', 'https://raw.githubusercontent.com/Phat20110/mitvpro/main/downloads/MiTV-Optimizer-v2.5.apk')">
+                <button class="tv-install-btn btn-primary" onclick="installAppDirect('MiTV Clean Launcher', 'downloads/MiTV-Pro.apk')">
                     <i class="fas fa-cloud-arrow-down"></i> Cài Đặt Trực Tiếp (1 Chạm)
                 </button>
             </div>
