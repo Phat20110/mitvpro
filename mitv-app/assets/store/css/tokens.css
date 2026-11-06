@@ -1,6 +1,6 @@
 /* ==========================================================================
    UI/UX PRO MAX - LIQUID GLASS DESIGN SYSTEM
-   G1: Tokens (T1, T2)
+   G1: Tokens (T1, T2, T3)
    ========================================================================== */
 :root {
     /* Liquid Glass Core Tokens */
@@ -49,7 +49,7 @@
     --font-title: 28px;
     --font-hero: 40px;
 
-    /* T2: Dark Mesh Gradient (tím than, xanh đen, chút cam ấm) */
+    /* T2: Dark Mesh Gradient */
     --bg-mesh: radial-gradient(circle at 15% 15%, rgba(26, 18, 54, 0.95) 0%, transparent 55%),
                radial-gradient(circle at 85% 20%, rgba(12, 28, 48, 0.90) 0%, transparent 50%),
                radial-gradient(circle at 50% 90%, rgba(45, 22, 14, 0.65) 0%, transparent 55%),
@@ -63,4 +63,33 @@
     --glass-surface: var(--glass-bg-strong);
     --glass-focus: rgba(42, 42, 68, 0.95);
     --bezier-tv: cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* T3: Blurred Ambient Orbs (cam & cyan, đậm thấp, cố định phía sau) */
+body::before {
+    content: '';
+    position: fixed;
+    top: -120px;
+    right: 8%;
+    width: 520px;
+    height: 520px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(255, 122, 26, 0.12) 0%, transparent 70%);
+    filter: blur(40px);
+    pointer-events: none;
+    z-index: 0;
+}
+
+body::after {
+    content: '';
+    position: fixed;
+    bottom: -140px;
+    left: 12%;
+    width: 580px;
+    height: 580px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(6, 182, 212, 0.08) 0%, transparent 70%);
+    filter: blur(50px);
+    pointer-events: none;
+    z-index: 0;
 }
