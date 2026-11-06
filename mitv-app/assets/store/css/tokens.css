@@ -1,6 +1,6 @@
 /* ==========================================================================
    UI/UX PRO MAX - LIQUID GLASS DESIGN SYSTEM
-   G1: Tokens (T1)
+   G1: Tokens (T1, T2)
    ========================================================================== */
 :root {
     /* Liquid Glass Core Tokens */
@@ -49,8 +49,12 @@
     --font-title: 28px;
     --font-hero: 40px;
 
-    /* Backgrounds & Base */
-    --bg-void: #050508;
+    /* T2: Dark Mesh Gradient (tím than, xanh đen, chút cam ấm) */
+    --bg-mesh: radial-gradient(circle at 15% 15%, rgba(26, 18, 54, 0.95) 0%, transparent 55%),
+               radial-gradient(circle at 85% 20%, rgba(12, 28, 48, 0.90) 0%, transparent 50%),
+               radial-gradient(circle at 50% 90%, rgba(45, 22, 14, 0.65) 0%, transparent 55%),
+               linear-gradient(180deg, #07070D 0%, #050508 100%);
+    --bg-void: var(--bg-mesh);
     --bg-canvas: #090912;
     --border-subtle: rgba(255, 255, 255, 0.08);
     --border-glass: var(--glass-border);
