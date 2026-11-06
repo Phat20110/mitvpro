@@ -114,6 +114,26 @@
                 <span class="shelf-chip">Logo gốc 100%</span>
             </div>
             <div class="shelf-rail">
+                <!-- Direct In-App APK Updater -->
+                <article class="tv-card" tabindex="0"
+                    onfocus="updateHero('MiTV Pro v2.5.1 Update', 'Cập nhật trực tiếp phiên bản mới nhất: Đã sửa triệt để lỗi lệch bong bóng 3D, thanh dock tự cuộn tới Cài đặt, loại bỏ giật lag GPU và hỗ trợ Remote siêu mượt 60 FPS.', 'BẢN MỚI v2.5.1', 'https://raw.githubusercontent.com/Phat20110/mitvpro/main/downloads/MiTV-Pro.apk', 'logo.png')"
+                    onclick="triggerInstall('MiTV Pro v2.5.1', 'https://raw.githubusercontent.com/Phat20110/mitvpro/main/downloads/MiTV-Pro.apk', this)">
+                    <div class="card-top">
+                        <div class="card-icon-frame" style="background: rgba(255, 122, 26, 0.2);">
+                            <img src="logo.png" alt="MiTV Pro" style="width:36px;height:36px;border-radius:8px;">
+                        </div>
+                        <div class="card-info">
+                            <div class="card-app-title">Cập Nhật MiTV Pro</div>
+                            <div class="card-app-ver">v2.5.1 &bull; 617 KB</div>
+                        </div>
+                    </div>
+                    <span class="card-tag" style="background: rgba(255, 122, 26, 0.25); color: #FFA05C; border: 1px solid rgba(255, 122, 26, 0.5);">BẢN MỚI NHẤT</span>
+                    <div class="card-action">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
+                        <span>Cập Nhật Ngay</span>
+                    </div>
+                </article>
+
                 <!-- SmartTube -->
                 <article class="tv-card" tabindex="0"
                     onfocus="updateHero('SmartTube Next 4K', 'Xem YouTube 4K HDR tuyệt đối không có quảng cáo, tự động bỏ qua intro tài trợ, hỗ trợ tài khoản Google và điều khiển Remote D-Pad mượt mà 60 FPS.', 'KHUYÊN DÙNG #1', 'https://raw.githubusercontent.com/Phat20110/mitvpro/main/downloads/SmartTube-Stable.apk', 'img/smarttube_icon.png')"
@@ -409,6 +429,10 @@
             <div class="glass-setting-row" tabindex="0" onclick="showHud('Âm thanh: Dolby Atmos / Digital Plus Passthrough Đã Kích Hoạt')">
                 <span class="glass-setting-label">Âm thanh vòm</span>
                 <span class="glass-setting-val">Dolby Atmos Passthrough</span>
+            </div>
+            <div class="glass-setting-row" tabindex="0" onclick="triggerInstall('MiTV Pro v2.5.1', 'https://raw.githubusercontent.com/Phat20110/mitvpro/main/downloads/MiTV-Pro.apk')">
+                <span class="glass-setting-label">Cập nhật trực tiếp MiTV Pro</span>
+                <span class="glass-setting-val" style="color:#34D399;">Lên v2.5.1 Mới Nhất &rarr;</span>
             </div>
             <div class="glass-setting-row" tabindex="0" onclick="triggerCleanRam()">
                 <span class="glass-setting-label">Bộ nhớ tạm & Cache</span>
