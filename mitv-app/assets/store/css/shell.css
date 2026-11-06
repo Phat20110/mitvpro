@@ -1,0 +1,66 @@
+/* ==========================================================================
+   G2: TV Frame, Shell & Background
+   ========================================================================== */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    user-select: none;
+    -webkit-user-select: none;
+    -webkit-font-smoothing: antialiased;
+}
+
+body {
+    font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, "SF Pro Display", sans-serif;
+    background: var(--bg-void);
+    color: var(--text-high);
+    height: 100vh;
+    width: 100vw;
+    overflow: hidden;
+    display: flex;
+    position: relative;
+}
+
+/* Ambient Dynamic Color Backdrop (Apple TV Cinema Glow) */
+.ambient-backdrop {
+    position: fixed;
+    top: -25%;
+    left: -15%;
+    width: 150vw;
+    height: 150vh;
+    background-size: cover;
+    background-position: center;
+    filter: blur(90px) saturate(200%) brightness(0.24);
+    transform: scale(1.15);
+    transition: all 0.8s var(--bezier-tv);
+    pointer-events: none;
+    z-index: 0;
+    opacity: 0.92;
+}
+
+.ambient-vignette {
+    position: fixed;
+    inset: 0;
+    background: radial-gradient(circle at 65% 35%, transparent 15%, rgba(5, 5, 8, 0.82) 75%),
+                linear-gradient(180deg, rgba(5,5,8,0.4) 0%, rgba(5,5,8,0.95) 100%);
+    pointer-events: none;
+    z-index: 1;
+}
+
+/* ==========================================================================
+   MAIN STAGE (10-Foot Leanback Canvas)
+   ========================================================================== */
+.tv-canvas {
+    flex-grow: 1;
+    height: 100vh;
+    overflow-y: auto;
+    overflow-x: hidden;
+    padding: 34px 56px 80px;
+    scroll-behavior: smooth;
+    position: relative;
+    z-index: 10;
+}
+
+.tv-canvas::-webkit-scrollbar {
+    display: none;
+}

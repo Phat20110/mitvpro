@@ -1,0 +1,49 @@
+/* ==========================================================================
+   HORIZONTAL SHELVES & LUXURY GLASS CARDS
+   G6: Sections & Rails
+   ========================================================================== */
+.shelf-block {
+    margin-bottom: 38px;
+}
+
+.shelf-header {
+    display: flex;
+    align-items: baseline;
+    gap: 12px;
+    margin-bottom: 16px;
+}
+
+.shelf-title {
+    font-size: 1.35rem;
+    font-weight: 800;
+    letter-spacing: -0.02em;
+    color: var(--text-pure);
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.shelf-title svg {
+    width: 20px;
+    height: 20px;
+    stroke: var(--accent-brand);
+}
+
+.shelf-subtitle {
+    font-size: 0.8rem;
+    font-weight: 600;
+    color: var(--text-low);
+    letter-spacing: 0.02em;
+}
+
+.shelf-rail {
+    display: flex;
+    gap: 22px;
+    overflow-x: auto;
+    padding: 12px 6px 24px;
+    scroll-behavior: smooth;
+}
+
+.shelf-rail::-webkit-scrollbar {
+    display: none;
+}

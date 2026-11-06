@@ -1,0 +1,192 @@
+/* ==========================================================================
+   LEFT NAVIGATION DOCK (Apple TV Frosted Rail)
+   G3: Sidebar
+   ========================================================================== */
+.tv-dock {
+    width: 88px;
+    height: 100vh;
+    background: rgba(12, 12, 20, 0.65);
+    backdrop-filter: blur(50px);
+    -webkit-backdrop-filter: blur(50px);
+    border-right: 1px solid var(--border-subtle);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    padding: 28px 0;
+    transition: width 0.35s var(--bezier-tv), background 0.35s var(--bezier-tv);
+    z-index: 100;
+    flex-shrink: 0;
+    position: relative;
+}
+
+.tv-dock:hover, .tv-dock:focus-within, .tv-dock.expanded {
+    width: 250px;
+    background: rgba(14, 14, 24, 0.92);
+    box-shadow: 25px 0 70px rgba(0, 0, 0, 0.85);
+}
+
+.dock-brand {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    padding: 0 20px;
+    width: 100%;
+    overflow: hidden;
+    text-decoration: none;
+}
+
+.dock-brand-logo {
+    width: 48px;
+    height: 48px;
+    border-radius: 14px;
+    flex-shrink: 0;
+    box-shadow: 0 6px 20px rgba(255, 103, 0, 0.4);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+}
+
+.dock-brand-meta {
+    opacity: 0;
+    white-space: nowrap;
+    transition: opacity 0.25s ease;
+}
+
+.tv-dock:hover .dock-brand-meta, .tv-dock:focus-within .dock-brand-meta, .tv-dock.expanded .dock-brand-meta {
+    opacity: 1;
+}
+
+.dock-brand-title {
+    font-size: 1.15rem;
+    font-weight: 800;
+    letter-spacing: -0.02em;
+    color: var(--text-pure);
+}
+
+.dock-brand-sub {
+    font-size: 0.7rem;
+    font-weight: 700;
+    color: var(--accent-brand);
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+}
+
+/* Dock Navigation Items */
+.dock-menu {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    width: 100%;
+    padding: 0 12px;
+}
+
+.dock-item {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    padding: 13px 18px;
+    border-radius: 14px;
+    color: var(--text-med);
+    cursor: pointer;
+    outline: none;
+    transition: all 0.22s var(--bezier-tv);
+    white-space: nowrap;
+    overflow: hidden;
+    border: 1px solid transparent;
+    background: transparent;
+    width: 100%;
+    text-align: left;
+    font-size: 0.95rem;
+    font-weight: 600;
+}
+
+.dock-item svg {
+    width: 22px;
+    height: 22px;
+    stroke-width: 2;
+    flex-shrink: 0;
+    transition: stroke 0.2s ease, transform 0.2s ease;
+}
+
+.dock-item .dock-label {
+    opacity: 0;
+    transition: opacity 0.25s ease;
+}
+
+.tv-dock:hover .dock-label, .tv-dock:focus-within .dock-label, .tv-dock.expanded .dock-label {
+    opacity: 1;
+}
+
+.dock-item:focus, .dock-item:hover, .dock-item.active {
+    background: rgba(255, 103, 0, 0.16);
+    color: var(--text-pure);
+    border-color: rgba(255, 103, 0, 0.45);
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.15);
+}
+
+.dock-item:focus svg, .dock-item:hover svg, .dock-item.active svg {
+    stroke: var(--accent-brand);
+    transform: scale(1.1);
+}
+
+/* RAM Quick-Clean Capsule */
+.dock-ram-widget {
+    width: 88%;
+    background: rgba(255, 255, 255, 0.04);
+    border: 1px solid var(--border-subtle);
+    border-radius: 14px;
+    padding: 12px;
+    cursor: pointer;
+    outline: none;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    color: var(--text-high);
+    transition: all 0.25s var(--bezier-tv);
+    overflow: hidden;
+}
+
+.dock-ram-widget svg {
+    width: 20px;
+    height: 20px;
+    stroke: var(--accent-brand);
+    flex-shrink: 0;
+}
+
+.dock-ram-meta {
+    display: flex;
+    flex-direction: column;
+    opacity: 0;
+    white-space: nowrap;
+    transition: opacity 0.25s ease;
+}
+
+.tv-dock:hover .dock-ram-meta, .tv-dock:focus-within .dock-ram-meta, .tv-dock.expanded .dock-ram-meta {
+    opacity: 1;
+}
+
+.dock-ram-title {
+    font-size: 0.82rem;
+    font-weight: 800;
+}
+
+.dock-ram-val {
+    font-size: 0.68rem;
+    color: var(--accent-emerald);
+    font-weight: 700;
+}
+
+.dock-ram-widget:focus, .dock-ram-widget:hover {
+    background: var(--accent-brand);
+    color: #fff;
+    border-color: #fff;
+    box-shadow: 0 0 25px var(--accent-brand-glow);
+    transform: scale(1.04);
+}
+
+.dock-ram-widget:focus svg, .dock-ram-widget:hover svg {
+    stroke: #fff;
+}
+
+.dock-ram-widget:focus .dock-ram-val, .dock-ram-widget:hover .dock-ram-val {
+    color: #fff;
+}
