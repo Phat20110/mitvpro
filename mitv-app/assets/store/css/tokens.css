@@ -1,217 +1,66 @@
 /* ==========================================================================
-   UI/UX PRO MAX - LIQUID GLASS DESIGN SYSTEM
-   G1: Tokens (T1, T2, T3)
+   UI/UX PRO MAX - LIQUID GLASS MASTER TOKENS (VISION OS / APPLE TV 4K)
    ========================================================================== */
 :root {
-    /* Liquid Glass Core Tokens */
-    --glass-bg: rgba(255, 255, 255, 0.08);
-    --glass-bg-strong: rgba(255, 255, 255, 0.14);
-    --glass-border: rgba(255, 255, 255, 0.20);
-    --glass-blur: 24px;
-    --glass-saturate: 180%;
-    --glass-shadow: 0 8px 32px rgba(0, 0, 0, 0.35);
-    --glass-highlight: inset 0 1px 0 rgba(255, 255, 255, 0.35), inset 0 -1px 0 rgba(255, 255, 255, 0.05);
+    /* Crystal Liquid Glass Core */
+    --glass-bg: rgba(255, 255, 255, 0.045);
+    --glass-bg-hover: rgba(255, 255, 255, 0.085);
+    --glass-bg-strong: rgba(255, 255, 255, 0.07);
+    --glass-border: rgba(255, 255, 255, 0.35);
+    --glass-border-bright: rgba(255, 255, 255, 0.75);
+    --glass-blur: 16px;
+    --glass-saturate: 220%;
 
-    /* Brand & Accent */
+    /* Chromatic Aberration & Refractive Prism Shadows */
+    --glass-shadow: 
+        inset 1.5px 2px 4px rgba(255, 255, 255, 0.9),
+        inset -3px -3px 8px rgba(0, 240, 255, 0.65),
+        inset 3px 3px 10px rgba(255, 0, 120, 0.55),
+        0 20px 50px rgba(0, 0, 0, 0.6);
+
+    --glass-highlight: 
+        inset 0 1px 0 rgba(255, 255, 255, 0.85), 
+        inset 0 -1px 0 rgba(255, 255, 255, 0.06);
+
+    --glass-bubble-shadow:
+        inset 2px 3px 6px rgba(255, 255, 255, 1),
+        inset -3px -3px 10px rgba(0, 240, 255, 0.9),
+        inset 4px 4px 14px rgba(255, 20, 140, 0.85),
+        inset 0 -4px 12px rgba(255, 220, 0, 0.7),
+        0 20px 50px rgba(0, 0, 0, 0.65),
+        0 0 25px rgba(0, 240, 255, 0.45);
+
+    /* Brand & Accents */
     --accent: #FF7A1A;
-    --accent-glow: rgba(255, 122, 26, 0.45);
-    --accent-brand: var(--accent);
-    --accent-brand-glow: var(--accent-glow);
-    --accent-cyan: #06B6D4;
-    --accent-emerald: #10B981;
-    --accent-purple: #8B5CF6;
+    --accent-brand: #FF7A1A;
+    --accent-glow: rgba(255, 122, 26, 0.6);
+    --accent-cyan: #00E5FF;
+    --accent-magenta: #FF007F;
 
     /* Border Radii */
     --radius-xl: 28px;
-    --radius-lg: 20px;
+    --radius-lg: 22px;
     --radius-md: 14px;
     --radius-pill: 999px;
 
-    /* Typography Colors */
+    /* Typography */
     --text-primary: #FFFFFF;
-    --text-secondary: rgba(255, 255, 255, 0.72);
-    --text-tertiary: rgba(255, 255, 255, 0.45);
-    --text-pure: var(--text-primary);
-    --text-high: var(--text-primary);
-    --text-med: var(--text-secondary);
-    --text-low: var(--text-tertiary);
+    --text-pure: #FFFFFF;
+    --text-high: rgba(255, 255, 255, 0.95);
+    --text-secondary: rgba(255, 255, 255, 0.82);
+    --text-med: rgba(255, 255, 255, 0.75);
+    --text-tertiary: rgba(255, 255, 255, 0.52);
+    --text-low: rgba(255, 255, 255, 0.50);
 
-    /* T8: Spacing Scale 4/8/12/16/24/32px */
+    /* Transitions */
+    --bezier-tv: cubic-bezier(0.16, 1, 0.3, 1);
+    --bezier-bubble: cubic-bezier(0.34, 1.56, 0.64, 1);
+
+    /* Spacing */
     --space-4: 4px;
     --space-8: 8px;
     --space-12: 12px;
     --space-16: 16px;
     --space-24: 24px;
     --space-32: 32px;
-    --gap-xs: var(--space-4);
-    --gap-sm: var(--space-8);
-    --gap-md: var(--space-12);
-    --gap-lg: var(--space-16);
-    --gap-xl: var(--space-24);
-    --gap-2xl: var(--space-32);
-    --pad-xs: var(--space-4);
-    --pad-sm: var(--space-8);
-    --pad-md: var(--space-12);
-    --pad-lg: var(--space-16);
-    --pad-xl: var(--space-24);
-    --pad-2xl: var(--space-32);
-
-    /* T5: Standardized Font & TV Size Scale */
-    --font-family-tv: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-    --font-tv-body: 18px;
-    --font-tv-body-lg: 20px;
-    --font-tv-subtitle: 22px;
-    --font-tv-title: 28px;
-    --font-tv-title-lg: 32px;
-    --font-tv-hero: 42px;
-    --font-body: var(--font-tv-body);
-    --font-title: var(--font-tv-title);
-    --font-hero: var(--font-tv-hero);
-
-    /* T2: Dark Mesh Gradient */
-    --bg-mesh: radial-gradient(circle at 15% 15%, rgba(26, 18, 54, 0.95) 0%, transparent 55%),
-               radial-gradient(circle at 85% 20%, rgba(12, 28, 48, 0.90) 0%, transparent 50%),
-               radial-gradient(circle at 50% 90%, rgba(45, 22, 14, 0.65) 0%, transparent 55%),
-               linear-gradient(180deg, #07070D 0%, #050508 100%);
-    --bg-void: var(--bg-mesh);
-    --bg-canvas: #090912;
-    --border-subtle: rgba(255, 255, 255, 0.08);
-    --border-glass: var(--glass-border);
-    --border-highlight: rgba(255, 255, 255, 0.28);
-    --glass-base: var(--glass-bg);
-    --glass-surface: var(--glass-bg-strong);
-    --glass-focus: rgba(42, 42, 68, 0.95);
-    --bezier-tv: cubic-bezier(0.16, 1, 0.3, 1);
-}
-
-/* T3: Blurred Ambient Orbs (cam & cyan, đậm thấp, cố định phía sau) */
-body::before {
-    content: '';
-    position: fixed;
-    top: -120px;
-    right: 8%;
-    width: 520px;
-    height: 520px;
-    border-radius: 50%;
-    background: radial-gradient(circle, rgba(255, 122, 26, 0.12) 0%, transparent 70%);
-    filter: blur(40px);
-    pointer-events: none;
-    z-index: 0;
-}
-
-body::after {
-    content: '';
-    position: fixed;
-    bottom: -140px;
-    left: 12%;
-    width: 580px;
-    height: 580px;
-    border-radius: 50%;
-    background: radial-gradient(circle, rgba(6, 182, 212, 0.08) 0%, transparent 70%);
-    filter: blur(50px);
-    pointer-events: none;
-    z-index: 0;
-}
-
-/* T4: Subtle Noise Texture (SVG data-URI, 3% opacity) */
-.bg-noise {
-    position: fixed;
-    inset: 0;
-    width: 100vw;
-    height: 100vh;
-    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.03'/%3E%3C/svg%3E");
-    pointer-events: none;
-    z-index: 1;
-}
-
-/* T5: Standardized Font Rule */
-body {
-    font-family: var(--font-family-tv);
-    font-size: var(--font-tv-body);
-}
-
-/* T6: Section Title Typography */
-h1, h2, h3, .shelf-title {
-    font-weight: 700;
-    letter-spacing: 0.02em;
-    text-shadow: 0 2px 10px rgba(0, 0, 0, 0.45);
-}
-
-/* T7: Text Color Tokens applied to all text */
-body, h1, h2, h3, h4, h5, h6, .text-primary {
-    color: var(--text-primary);
-}
-
-p, .text-secondary, .shelf-subtitle, .card-desc, .hero-desc {
-    color: var(--text-secondary);
-}
-
-small, .text-tertiary, .card-app-ver, .dock-brand-sub {
-    color: var(--text-tertiary);
-}
-
-/* T9: .glass core class (nền, blur, viền, shadow, highlight) bọc @supports kèm fallback */
-.glass {
-    background: rgba(20, 22, 35, 0.85); /* Fallback khi không hỗ trợ backdrop-filter */
-    border: 1px solid var(--glass-border);
-    border-radius: var(--radius-lg);
-    box-shadow: var(--glass-shadow);
-}
-
-@supports (backdrop-filter: blur(24px)) or (-webkit-backdrop-filter: blur(24px)) {
-    .glass {
-        background: var(--glass-bg);
-        backdrop-filter: blur(var(--glass-blur)) saturate(var(--glass-saturate));
-        -webkit-backdrop-filter: blur(var(--glass-blur)) saturate(var(--glass-saturate));
-        box-shadow: var(--glass-shadow), var(--glass-highlight);
-    }
-}
-
-/* T10: Glass Variants & Sheen (Chưa áp dụng) */
-.glass--strong {
-    background: rgba(26, 28, 44, 0.92);
-    border: 1px solid var(--glass-border);
-    border-radius: var(--radius-xl);
-    box-shadow: 0 16px 40px rgba(0, 0, 0, 0.5);
-}
-
-@supports (backdrop-filter: blur(24px)) or (-webkit-backdrop-filter: blur(24px)) {
-    .glass--strong {
-        background: var(--glass-bg-strong);
-        backdrop-filter: blur(var(--glass-blur)) saturate(200%);
-        -webkit-backdrop-filter: blur(var(--glass-blur)) saturate(200%);
-        border: 1px solid rgba(255, 255, 255, 0.25);
-        box-shadow: 0 16px 40px rgba(0, 0, 0, 0.5), inset 0 1px 0 rgba(255, 255, 255, 0.45);
-    }
-}
-
-.glass--subtle {
-    background: rgba(16, 17, 28, 0.75);
-    border: 1px solid rgba(255, 255, 255, 0.12);
-    border-radius: var(--radius-lg);
-    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.25);
-}
-
-@supports (backdrop-filter: blur(24px)) or (-webkit-backdrop-filter: blur(24px)) {
-    .glass--subtle {
-        background: rgba(255, 255, 255, 0.04);
-        backdrop-filter: blur(16px) saturate(150%);
-        -webkit-backdrop-filter: blur(16px) saturate(150%);
-        border: 1px solid rgba(255, 255, 255, 0.12);
-        box-shadow: 0 4px 16px rgba(0, 0, 0, 0.25);
-    }
-}
-
-.glass-sheen {
-    position: relative;
-    overflow: hidden;
-}
-
-.glass-sheen::before {
-    content: '';
-    position: absolute;
-    inset: 0;
-    background: linear-gradient(135deg, rgba(255, 255, 255, 0.14) 0%, transparent 60%);
-    pointer-events: none;
-    z-index: 1;
 }

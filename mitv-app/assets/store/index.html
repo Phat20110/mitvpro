@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>MiTV Pro - Apple TV 4K & OLED Cinema Edition</title>
+    <title>MiTV Pro - Liquid Glass Android TV App</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
@@ -20,50 +20,67 @@
 </head>
 <body>
 
-    <!-- Ambient Dynamic Cinema Glow (Apple TV Style) -->
-    <div class="ambient-backdrop" id="ambientLayer" style="background-image: url('img/cinema_4k.png');"></div>
+    <!-- Pink Lily Stage Backdrop with Cinema Glow -->
+    <div class="ambient-backdrop" id="ambientLayer"></div>
     <div class="ambient-vignette"></div>
-    <div class="bg-noise"></div>
 
-    <!-- Navigation Dock -->
+    <!-- 1. LEFT VERTICAL CAPSULE LIQUID DOCK -->
     <aside class="tv-dock" id="tvDock">
+        <!-- Organic 3D Bulging Droplet Bubble -->
+        <div class="droplet-bulge-bubble" id="dropletBulge">
+            <div class="glint-spec"></div>
+        </div>
+
         <div class="dock-brand">
             <img src="logo.png" alt="MiTV Pro" class="dock-brand-logo">
-            <div class="dock-brand-meta">
-                <div class="dock-brand-title">MiTV PRO</div>
-                <div class="dock-brand-sub">Xiaomi Edition</div>
-            </div>
         </div>
 
         <nav class="dock-menu">
-            <button class="dock-item active" tabindex="0" onclick="jumpSection('sec-recommended')">
+            <!-- 1. Home / Recommended (Star) -->
+            <button class="dock-item" id="dockBtnHome" tabindex="0" onclick="selectDock(this, 'sec-recommended')">
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
-                <span class="dock-label">Khuyên Dùng</span>
             </button>
-            <button class="dock-item" tabindex="0" onclick="jumpSection('sec-sports')">
+            <!-- 2. Football / Thể Thao (Active Bulging Bubble by Default!) -->
+            <button class="dock-item active" id="dockBtnSports" tabindex="0" onclick="selectDock(this, 'sec-sports')">
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><circle cx="12" cy="12" r="10"></circle><path d="M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20"></path><path d="M2 12h20"></path></svg>
-                <span class="dock-label">Bóng Đá</span>
             </button>
-            <button class="dock-item" tabindex="0" onclick="jumpSection('sec-cinema')">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><rect x="2" y="2" width="20" height="20" rx="2.18" ry="2.18"></rect><line x1="7" y1="2" x2="7" y2="22"></line><line x1="17" y1="2" x2="17" y2="22"></line><line x1="2" y1="12" x2="22" y2="12"></line><line x1="2" y1="7" x2="7" y2="7"></line><line x1="2" y1="17" x2="7" y2="17"></line><line x1="17" y1="17" x2="22" y2="17"></line><line x1="17" y1="7" x2="22" y2="7"></line></svg>
-                <span class="dock-label">Phim 4K HDR</span>
+            <!-- 3. Satellite / TV Channels -->
+            <button class="dock-item" id="dockBtnTv" tabindex="0" onclick="selectDock(this, 'sec-recommended')">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M4 11a9 9 0 0 1 9 9"></path><path d="M4 4a16 16 0 0 1 16 16"></path><circle cx="5" cy="19" r="1"></circle></svg>
+            </button>
+            <!-- 4. Clapperboard / 4K Cinema -->
+            <button class="dock-item" id="dockBtnCinema" tabindex="0" onclick="selectDock(this, 'sec-cinema')">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><rect x="2" y="2" width="20" height="20" rx="2.18" ry="2.18"></rect><line x1="7" y1="2" x2="7" y2="22"></line><line x1="17" y1="17" x2="22" y2="17"></line><line x1="2" y1="12" x2="22" y2="12"></line></svg>
+            </button>
+            <!-- 5. Download Arrow -->
+            <button class="dock-item" id="dockBtnDownload" tabindex="0" onclick="selectDock(this, 'sec-recommended')">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
+            </button>
+            <!-- 6. History Clock -->
+            <button class="dock-item" id="dockBtnHistory" tabindex="0" onclick="selectDock(this, 'sec-sports')">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
+            </button>
+            <!-- 7. Settings Cog -->
+            <button class="dock-item" id="dockBtnSettings" tabindex="0" onclick="showHud('Cài đặt hệ thống Tivi Xiaomi MiTV Pro')">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><circle cx="12" cy="12" r="3"></circle><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"></path></svg>
+            </button>
+            <!-- 8. Power -->
+            <button class="dock-item" id="dockBtnPower" tabindex="0" onclick="showHud('Nhấn giữ nút nguồn remote để tắt Tivi Xiaomi')">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M18.36 6.64a9 9 0 1 1-12.73 0"></path><line x1="12" y1="2" x2="12" y2="12"></line></svg>
             </button>
         </nav>
 
-        <button class="dock-ram-widget" tabindex="0" onclick="triggerCleanRam()">
+        <!-- Quick RAM Clean -->
+        <button class="dock-ram-widget" id="dockRamBtn" tabindex="0" onclick="triggerCleanRam()" title="Dọn Bộ Nhớ RAM">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon></svg>
-            <div class="dock-ram-meta">
-                <span class="dock-ram-title">Dọn Bộ Nhớ</span>
-                <span class="dock-ram-val">RAM: Trống 68%</span>
-            </div>
         </button>
     </aside>
 
-    <!-- Main Canvas -->
+    <!-- 2. MAIN TV CANVAS (Leanback 10-foot UI) -->
     <main class="tv-canvas" id="tvCanvas">
 
         <!-- Cinema Hero Showcase -->
-        <section class="hero-banner">
+        <section class="hero-banner" id="heroBanner">
             <div class="hero-info">
                 <div class="hero-badge-row">
                     <span class="hero-badge" id="heroBadge">CHÍNH HÃNG CHO TIVI XIAOMI</span>
@@ -106,7 +123,7 @@
                             <div class="card-app-ver">v22.40 &bull; 35 MB</div>
                         </div>
                     </div>
-                    <span class="card-tag" style="background: rgba(16, 185, 129, 0.15); color: #34D399; border: 1px solid rgba(16, 185, 129, 0.35);">CHẶN 100% QC</span>
+                    <span class="card-tag" style="background: rgba(16, 185, 129, 0.2); color: #34D399; border: 1px solid rgba(16, 185, 129, 0.4);">CHẶN 100% QC</span>
                     <div class="card-action">
                         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
                         <span>Cài Đặt Ngay</span>
@@ -126,7 +143,7 @@
                             <div class="card-app-ver">Đài THVN &bull; HD</div>
                         </div>
                     </div>
-                    <span class="card-tag" style="background: rgba(6, 182, 212, 0.15); color: #22D3EE; border: 1px solid rgba(6, 182, 212, 0.35);">VTV1 - VTV9 HD</span>
+                    <span class="card-tag" style="background: rgba(6, 182, 212, 0.2); color: #22D3EE; border: 1px solid rgba(6, 182, 212, 0.4);">VTV1 - VTV9 HD</span>
                     <div class="card-action">
                         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
                         <span>Cài Đặt Ngay</span>
@@ -146,7 +163,7 @@
                             <div class="card-app-ver">v4.7.0 &bull; 14 MB</div>
                         </div>
                     </div>
-                    <span class="card-tag" style="background: rgba(139, 92, 246, 0.15); color: #C084FC; border: 1px solid rgba(139, 92, 246, 0.35);">250+ KÊNH HD</span>
+                    <span class="card-tag" style="background: rgba(139, 92, 246, 0.2); color: #C084FC; border: 1px solid rgba(139, 92, 246, 0.4);">250+ KÊNH HD</span>
                     <div class="card-action">
                         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
                         <span>Cài Đặt Ngay</span>
@@ -178,7 +195,7 @@
                             <div class="card-app-ver">v3.8.2 &bull; Thể Thao</div>
                         </div>
                     </div>
-                    <span class="card-tag" style="background: rgba(239, 68, 68, 0.15); color: #F87171; border: 1px solid rgba(239, 68, 68, 0.35);">NGOẠI HẠNG ANH</span>
+                    <span class="card-tag" style="background: rgba(239, 68, 68, 0.2); color: #F87171; border: 1px solid rgba(239, 68, 68, 0.4);">NGOẠI HẠNG ANH</span>
                     <div class="card-action">
                         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
                         <span>Cài Đặt Ngay</span>
@@ -198,7 +215,7 @@
                             <div class="card-app-ver">Full HD &bull; 60 FPS</div>
                         </div>
                     </div>
-                    <span class="card-tag" style="background: rgba(245, 158, 11, 0.15); color: #FBBF24; border: 1px solid rgba(245, 158, 11, 0.35);">BL TIẾNG VIỆT</span>
+                    <span class="card-tag" style="background: rgba(245, 158, 11, 0.2); color: #FBBF24; border: 1px solid rgba(245, 158, 11, 0.4);">BL TIẾNG VIỆT</span>
                     <div class="card-action">
                         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
                         <span>Cài Đặt Ngay</span>
@@ -211,7 +228,7 @@
         <section class="shelf-block" id="sec-cinema">
             <div class="shelf-header">
                 <h2 class="shelf-title">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><rect x="2" y="2" width="20" height="20" rx="2.18" ry="2.18"></rect><line x1="7" y1="2" x2="7" y2="22"></line><line x1="17" y1="2" x2="17" y2="22"></line><line x1="2" y1="12" x2="22" y2="12"></line><line x1="2" y1="7" x2="7" y2="7"></line><line x1="2" y1="17" x2="7" y2="17"></line><line x1="17" y1="17" x2="22" y2="17"></line><line x1="17" y1="7" x2="22" y2="7"></line></svg>
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><rect x="2" y="2" width="20" height="20" rx="2.18" ry="2.18"></rect><line x1="7" y1="2" x2="7" y2="22"></line><line x1="17" y1="17" x2="22" y2="17"></line><line x1="2" y1="12" x2="22" y2="12"></line></svg>
                     Rạp Phim 4K & Dolby Vision
                 </h2>
                 <span class="shelf-subtitle">Phim chiếu rạp bom tấn quốc tế và phụ đề tiếng Việt</span>
@@ -230,7 +247,7 @@
                             <div class="card-app-ver">v1.6.11 &bull; 32 MB</div>
                         </div>
                     </div>
-                    <span class="card-tag" style="background: rgba(139, 92, 246, 0.15); color: #C084FC; border: 1px solid rgba(139, 92, 246, 0.35);">RẠP PHIM 4K</span>
+                    <span class="card-tag" style="background: rgba(139, 92, 246, 0.2); color: #C084FC; border: 1px solid rgba(139, 92, 246, 0.4);">RẠP PHIM 4K</span>
                     <div class="card-action">
                         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
                         <span>Cài Đặt Ngay</span>
@@ -250,7 +267,7 @@
                             <div class="card-app-ver">Dolby Vision &bull; Vietsub</div>
                         </div>
                     </div>
-                    <span class="card-tag" style="background: rgba(255, 103, 0, 0.15); color: #FFA05C; border: 1px solid rgba(255, 103, 0, 0.35);">RẠP PHIM TẠI GIA</span>
+                    <span class="card-tag" style="background: rgba(255, 122, 26, 0.2); color: #FFA05C; border: 1px solid rgba(255, 122, 26, 0.4);">RẠP PHIM TẠI GIA</span>
                     <div class="card-action">
                         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><polygon points="5 3 19 12 5 21 5 3"></polygon></svg>
                         <span>Khám Phá Ngay</span>
@@ -260,6 +277,51 @@
         </section>
 
     </main>
+
+    <!-- 3. FLOATING LIQUID CRYSTAL REMOTE CONTROL WIDGET -->
+    <aside class="tv-remote-widget" id="remoteWidget">
+        <div class="remote-gloss-sheen"></div>
+        
+        <!-- Top bar: Mute & Power -->
+        <div class="remote-top-bar">
+            <div class="remote-mini-btn" onclick="showHud('Tắt tiếng (Mute)')" title="Tắt tiếng">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="1" y1="1" x2="23" y2="23"></line><path d="M9 9v3a3 3 0 0 0 5.12 2.12M15 9.34V4a3 3 0 0 0-5.94-.6"></path><path d="M17 16.95A7 7 0 0 1 5 12v-2m14 0v2a7 7 0 0 1-.11 1.23"></path></svg>
+            </div>
+            <div class="remote-mini-btn" onclick="showHud('Tắt màn hình Tivi')" title="Nguồn">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18.36 6.64a9 9 0 1 1-12.73 0"></path><line x1="12" y1="2" x2="12" y2="12"></line></svg>
+            </div>
+        </div>
+
+        <!-- D-Pad Navigation Disc -->
+        <div class="remote-dpad-circle">
+            <div class="dpad-arrow up" onclick="remoteDpad('Up')">&#9650;</div>
+            <div class="dpad-arrow down" onclick="remoteDpad('Down')">&#9660;</div>
+            <div class="dpad-arrow left" onclick="remoteDpad('Left')">&#9664;</div>
+            <div class="dpad-arrow right" onclick="remoteDpad('Right')">&#9654;</div>
+            <div class="dpad-center-btn" onclick="remoteClick()">OK</div>
+        </div>
+
+        <!-- Middle Controls: Back, Home, Menu -->
+        <div class="remote-btn-row">
+            <div class="remote-mini-btn" onclick="remoteBack()" title="Quay lại">&#8592;</div>
+            <div class="remote-mini-btn" onclick="selectDock(document.getElementById('dockBtnHome'), 'sec-recommended')" title="Trang chủ">&#8962;</div>
+            <div class="remote-mini-btn" onclick="showHud('Menu tùy chọn MiTV Pro')" title="Menu">&#9776;</div>
+        </div>
+
+        <!-- Bottom Controls: Mic, Vol Pill -->
+        <div class="remote-btn-row" style="align-items: center;">
+            <div class="remote-mini-btn" onclick="showHud('Tìm kiếm bằng giọng nói tiếng Việt')" title="Voice Search">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"></path><path d="M19 10v2a7 7 0 0 1-14 0v-2"></path><line x1="12" y1="19" x2="12" y2="23"></line><line x1="8" y1="23" x2="16" y2="23"></line></svg>
+            </div>
+            <div class="remote-vol-pill">
+                <span class="vol-btn" onclick="showHud('Âm lượng: +')">+</span>
+                <span class="vol-btn" onclick="showHud('Âm lượng: -')">&minus;</span>
+            </div>
+            <div class="remote-mini-btn" onclick="triggerCleanRam()" title="Dọn RAM">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon></svg>
+            </div>
+        </div>
+    </aside>
 
     <!-- TV HUD Notification -->
     <div id="tvHud"></div>
@@ -285,11 +347,11 @@
         }
 
         function triggerInstall(name, url) {
+            showHud(`Đang gửi lệnh tải & cài đặt [${name}] vào Tivi Xiaomi...`);
             if (window.AndroidBridge && window.AndroidBridge.installApp) {
-                window.AndroidBridge.installApp(url, name);
+                window.AndroidBridge.installApp(url || currentInstallUrl, name);
             } else {
-                showHud(`Đang bắt đầu tải và cài đặt ${name}...`);
-                window.location.href = url;
+                window.location.href = url || currentInstallUrl;
             }
         }
 
@@ -310,7 +372,22 @@
             const hud = document.getElementById('tvHud');
             hud.innerText = text;
             hud.style.display = 'block';
-            setTimeout(() => { hud.style.display = 'none'; }, 3600);
+            clearTimeout(window.hudTimer);
+            window.hudTimer = setTimeout(() => { hud.style.display = 'none'; }, 3400);
+        }
+
+        function selectDock(btn, targetSectionId) {
+            document.querySelectorAll('.dock-item').forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
+            moveDockBulge(btn);
+            if (targetSectionId) jumpSection(targetSectionId);
+        }
+
+        function moveDockBulge(btn) {
+            const bulge = document.getElementById('dropletBulge');
+            if (!bulge || !btn) return;
+            const topPos = btn.offsetTop - 8;
+            bulge.style.top = `${topPos}px`;
         }
 
         function jumpSection(id) {
@@ -322,7 +399,29 @@
             }
         }
 
-        // Remote D-Pad Navigation Engine
+        // Virtual Remote Action Handlers
+        function remoteDpad(direction) {
+            const active = document.activeElement;
+            const event = new KeyboardEvent('keydown', { key: `Arrow${direction}` });
+            document.dispatchEvent(event);
+        }
+
+        function remoteClick() {
+            const active = document.activeElement;
+            if (active && active.click) active.click();
+        }
+
+        function remoteBack() {
+            const active = document.activeElement;
+            if (active && active.classList.contains('tv-card')) {
+                const activeDock = document.querySelector('.dock-item.active');
+                if (activeDock) activeDock.focus();
+            } else {
+                showHud('Nhấn Back lần nữa để thoát ứng dụng');
+            }
+        }
+
+        // TV Remote D-Pad Navigation Engine
         document.addEventListener('keydown', function(e) {
             const active = document.activeElement;
             if (!active) return;
@@ -378,6 +477,7 @@
                     active.click();
                 }
             } else if (active.classList.contains('dock-item')) {
+                moveDockBulge(active);
                 if (e.key === 'ArrowRight') {
                     const firstCard = document.querySelector('.tv-card');
                     if (firstCard) firstCard.focus();
@@ -386,6 +486,7 @@
                     const next = active.nextElementSibling;
                     if (next && next.classList.contains('dock-item')) {
                         next.focus();
+                        moveDockBulge(next);
                         e.preventDefault();
                     } else {
                         const ramBtn = document.querySelector('.dock-ram-widget');
@@ -396,6 +497,7 @@
                     const prev = active.previousElementSibling;
                     if (prev && prev.classList.contains('dock-item')) {
                         prev.focus();
+                        moveDockBulge(prev);
                         e.preventDefault();
                     }
                 } else if (e.key === 'Enter') {
@@ -404,7 +506,10 @@
             } else if (active.classList.contains('dock-ram-widget')) {
                 if (e.key === 'ArrowUp') {
                     const lastItem = document.querySelector('.dock-item:last-of-type');
-                    if (lastItem) lastItem.focus();
+                    if (lastItem) {
+                        lastItem.focus();
+                        moveDockBulge(lastItem);
+                    }
                     e.preventDefault();
                 } else if (e.key === 'ArrowRight') {
                     const firstCard = document.querySelector('.tv-card');
@@ -421,21 +526,23 @@
                         e.preventDefault();
                     }
                 } else if (e.key === 'ArrowLeft') {
-                    const firstDock = document.querySelector('.dock-item');
+                    const firstDock = document.querySelector('.dock-item.active') || document.querySelector('.dock-item');
                     if (firstDock) {
                         firstDock.focus();
+                        moveDockBulge(firstDock);
                         e.preventDefault();
                     }
                 }
             }
         });
 
-        // Set initial focus on first card
+        // Initialize active bulge position and first card focus
         window.addEventListener('load', () => {
+            const activeDock = document.querySelector('.dock-item.active');
+            if (activeDock) moveDockBulge(activeDock);
             const firstCard = document.querySelector('.tv-card');
             if (firstCard) firstCard.focus();
         });
     </script>
-    <script src="js/focus.js"></script>
 </body>
 </html>

@@ -1,6 +1,11 @@
 /* ==========================================================================
-   G7: Focus & Remote Navigation
+   D-PAD REMOTE FOCUS NAVIGATION
    ========================================================================== */
 :focus-visible {
+    outline: none;
+}
+
+/* TV active glow */
+*:focus {
     outline: none;
 }

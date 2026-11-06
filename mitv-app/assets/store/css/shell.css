@@ -1,5 +1,5 @@
 /* ==========================================================================
-   G2: TV Frame, Shell & Background
+   SHELL & BACKDROP (NATURE FLORAL + CINEMA VIGNETTE)
    ========================================================================== */
 * {
     box-sizing: border-box;
@@ -12,8 +12,8 @@
 
 body {
     font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, "SF Pro Display", sans-serif;
-    background: var(--bg-void);
-    color: var(--text-high);
+    background: #060807;
+    color: var(--text-primary);
     height: 100vh;
     width: 100vw;
     overflow: hidden;
@@ -21,41 +21,36 @@ body {
     position: relative;
 }
 
-/* Ambient Dynamic Color Backdrop (Apple TV Cinema Glow) */
+/* Authentic Stage Backdrop */
 .ambient-backdrop {
     position: fixed;
-    top: -25%;
-    left: -15%;
-    width: 150vw;
-    height: 150vh;
+    inset: -20px;
+    background-image: url('../img/pink_lily.jpg');
     background-size: cover;
     background-position: center;
-    filter: blur(90px) saturate(200%) brightness(0.24);
-    transform: scale(1.15);
-    transition: all 0.8s var(--bezier-tv);
+    filter: brightness(0.85) contrast(1.12);
+    transform: scale(1.02);
+    transition: all 0.6s var(--bezier-tv);
     pointer-events: none;
     z-index: 0;
-    opacity: 0.92;
 }
 
 .ambient-vignette {
     position: fixed;
     inset: 0;
-    background: radial-gradient(circle at 65% 35%, transparent 15%, rgba(5, 5, 8, 0.82) 75%),
-                linear-gradient(180deg, rgba(5,5,8,0.4) 0%, rgba(5,5,8,0.95) 100%);
+    background: radial-gradient(circle at 60% 40%, rgba(0,0,0,0.12) 0%, rgba(0,0,0,0.68) 100%);
     pointer-events: none;
     z-index: 1;
 }
 
-/* ==========================================================================
-   MAIN STAGE (10-Foot Leanback Canvas)
-   ========================================================================== */
+/* Main Canvas with TV Overscan Margin */
 .tv-canvas {
     flex-grow: 1;
     height: 100vh;
     overflow-y: auto;
     overflow-x: hidden;
-    padding: 34px 56px 80px;
+    margin-left: 96px;
+    padding: 28px 48px 80px;
     scroll-behavior: smooth;
     position: relative;
     z-index: 10;
